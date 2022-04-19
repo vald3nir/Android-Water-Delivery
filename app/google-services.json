@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "670408711665",
+    "project_id": "diskwater-afb43",
+    "storage_bucket": "diskwater-afb43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670408711665:android:b4a846a14dd601908db850",
+        "android_client_info": {
+          "package_name": "com.vald3nir.diskwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe3sn4DiN2zm9XYqvw_ltvgkn-pDEtvVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
