@@ -31,16 +31,17 @@ class RegisterRepositoryImpl : RegisterRepository {
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        val collection = if (isSalesman) "vendedores" else "clientes"
+        val path = if (isSalesman) "vendedores" else "clientes"
         val data = HashMap<String, String>()
         data["id"] = userID
 
-        Firebase.firestore.collection(collection).add(data).addOnCompleteListener(activity) {
-            if (it.isSuccessful) {
-                onSuccess.invoke()
-            } else {
-                onError.invoke(it.exception)
+        Firebase.firestore.collection(path).document(path).collection(path).add(data)
+            .addOnCompleteListener(activity) {
+                if (it.isSuccessful) {
+                    onSuccess.invoke()
+                } else {
+                    onError.invoke(it.exception)
+                }
             }
-        }
     }
 }
