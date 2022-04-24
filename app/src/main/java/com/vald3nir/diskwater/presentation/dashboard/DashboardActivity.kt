@@ -1,7 +1,6 @@
 package com.vald3nir.diskwater.presentation.dashboard
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseActivity
 import com.vald3nir.diskwater.databinding.ActivityDashboardBinding
@@ -16,23 +15,18 @@ class DashboardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.view = this
         initViews()
         setupObservers()
     }
 
     private fun initViews() {
+        viewModel.view = this
         binding.apply {}
     }
 
 
     private fun setupObservers() {
-        viewModel.subscriberConsumptionRealTime()
 
-        viewModel.consumptionRealTimeDTO.observe(this@DashboardActivity, Observer {
-            val consumptionRealTimeDTO = it ?: return@Observer
-
-        })
     }
 
 

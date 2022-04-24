@@ -2,27 +2,15 @@ package com.vald3nir.diskwater.common.extensions
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.graphics.DashPathEffect
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vald3nir.diskwater.R
-import com.vald3nir.diskwater.common.utils.MAX_VALUE_POWER_CONSUMPTION
-import com.vald3nir.diskwater.common.utils.getColorPowerValue
-import com.vald3nir.diskwater.data.dto.ItemChartRealTimeDTO
-import kotlin.math.abs
 
-fun Fragment.hideKeyboard() {
-    view?.let { activity?.hideKeyboard(it) }
-}
 
 fun Activity.hideKeyboard() {
     hideKeyboard(currentFocus ?: View(this))

@@ -5,8 +5,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
-import kotlin.concurrent.schedule
 
 open class BaseViewModel : ViewModel() {
     var view: AppView? = null
