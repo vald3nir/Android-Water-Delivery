@@ -6,7 +6,7 @@ import com.vald3nir.diskwater.common.core.BaseActivity
 import com.vald3nir.diskwater.databinding.ActivityDashboardBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DashboardActivity : BaseActivity() {
+class DashboardClientActivity : BaseActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
     private val viewModel: DashboardViewModel by viewModel()
