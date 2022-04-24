@@ -2,11 +2,12 @@ package com.vald3nir.diskwater.data.repository.remote.register
 
 import android.app.Activity
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class RegisterRepositoryImpl : RegisterRepository {
 
-    override fun registerNewUser(
+    override suspend fun registerNewUser(
         activity: Activity,
         email: String,
         password: String,
@@ -21,5 +22,25 @@ class RegisterRepositoryImpl : RegisterRepository {
                     onError.invoke(it.exception)
                 }
             }
+    }
+
+    override suspend fun registerUserType(
+        activity: Activity,
+        userID: String,
+        isSalesman: Boolean,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit
+    ) {
+        val collection = if (isSalesman) "vendedores" else "clientes"
+        val data = HashMap<String, String>()
+        data["id"] = userID
+
+        Firebase.firestore.collection(collection).add(data).addOnCompleteListener(activity) {
+            if (it.isSuccessful) {
+                onSuccess.invoke()
+            } else {
+                onError.invoke(it.exception)
+            }
+        }
     }
 }

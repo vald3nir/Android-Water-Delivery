@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">disk water</string>
+    <string name="app_name">Disk Água</string>
+    <string name="client">Cliente</string>
+    <string name="salesman">Vendedor</string>
     <string name="real_time_consumption">Consumo em Tempo Real</string>
     <string name="consumption_level">Nível de consumo</string>
     <string name="consumption">Consumo</string>

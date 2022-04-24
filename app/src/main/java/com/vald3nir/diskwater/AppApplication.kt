@@ -28,7 +28,6 @@ import com.vald3nir.diskwater.domain.use_cases.sensor.SensorUseCaseImpl
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
 import com.vald3nir.diskwater.presentation.register.RegisterViewModel
-import com.vald3nir.diskwater.presentation.splash.SplashViewModel
 import io.realm.Realm
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -74,9 +73,8 @@ class AppApplication : Application() {
             factory<ScreenNavigation> { ScreenNavigationImpl() }
 
             viewModel { DashboardViewModel(get(), get(), get()) }
-            viewModel { SplashViewModel(get(), get(), get()) }
             viewModel { LoginViewModel(get(), get()) }
-            viewModel { RegisterViewModel(get(), get()) }
+            viewModel { RegisterViewModel(get(), get(), get()) }
         }
     }
 }

@@ -49,18 +49,18 @@ android {
     }
     flavorDimensions "version"
     productFlavors {
-        cliente {
+        client {
             dimension "version"
             firebaseAppDistribution {
-                releaseNotes="Versão de testes"
+                releaseNotes="Versão dos clientes"
                 testers="vald3nir@gmail.com"
             }
         }
-        gerente {
+        salesman {
             dimension "version"
             firebaseAppDistribution {
-                releaseNotes="Versão de produção"
-                groups="PROD"
+                releaseNotes="Versão do vendedor"
+                testers="vald3nir@gmail.com"
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.core.BaseViewModel
+import com.vald3nir.diskwater.common.utils.isAppClient
 import com.vald3nir.diskwater.common.validations.isEmailValid
 import com.vald3nir.diskwater.common.validations.isPasswordValid
 import com.vald3nir.diskwater.data.dto.LoginDTO
@@ -20,6 +21,8 @@ class LoginViewModel(
 
     private val _loginForm = MutableLiveData<DataUserInputForm>()
     val loginFormState: LiveData<DataUserInputForm> = _loginForm
+
+    val showRegisterButton: Boolean = isAppClient()
 
     private val _loginDTO = MutableLiveData<LoginDTO?>()
     val loginDTO: LiveData<LoginDTO?> = _loginDTO

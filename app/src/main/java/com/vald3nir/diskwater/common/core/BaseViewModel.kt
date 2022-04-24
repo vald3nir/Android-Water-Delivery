@@ -27,17 +27,8 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    fun runDelay(delay: Long = 2000, callback: () -> Unit) {
-        Timer().schedule(delay) {
-            callback.invoke()
-        }
-    }
-
-    fun runOnBackground(callback: () -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch { callback.invoke() }
-    }
-
-    fun runOnMainThread(callback: () -> Unit) {
-        CoroutineScope(Dispatchers.Main).launch { callback.invoke() }
+    fun showError(it: Exception?) {
+        view?.showLoading(false)
+        view?.showMessage(it?.message)
     }
 }

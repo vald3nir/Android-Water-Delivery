@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/app_background_gradient"
     android:padding="20dp">
 
     <include
@@ -42,8 +42,8 @@
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
                 app:boxCornerRadiusTopStart="5dp"
-                app:boxStrokeColor="@color/yellow"
-                app:hintTextColor="@color/yellow">
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_email"
@@ -62,7 +62,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:hint="@string/prompt_password"
                 android:inputType="textPassword"
@@ -73,8 +73,8 @@
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
                 app:boxCornerRadiusTopStart="5dp"
-                app:boxStrokeColor="@color/yellow"
-                app:hintTextColor="@color/yellow">
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_password"
@@ -94,7 +94,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:hint="@string/prompt_confirm_password"
                 android:inputType="textPassword"
@@ -105,8 +105,8 @@
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
                 app:boxCornerRadiusTopStart="5dp"
-                app:boxStrokeColor="@color/yellow"
-                app:hintTextColor="@color/yellow">
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_confirm_password"
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/button_yellow_layout"
+                android:background="@drawable/button_white_layout"
                 android:gravity="center"
                 android:text="@string/register"
                 android:textAllCaps="false"

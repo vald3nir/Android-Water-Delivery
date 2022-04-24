@@ -4,11 +4,19 @@ import com.vald3nir.diskwater.common.core.AppView
 
 interface RegisterUseCase {
 
-    fun registerNewUser(
+    suspend fun registerNewUser(
         appView: AppView?,
         email: String,
         password: String,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
+    )
+
+    suspend fun registerUserType(
+        appView: AppView?,
+        userID: String,
+        isSalesman: Boolean,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit
     )
 }
