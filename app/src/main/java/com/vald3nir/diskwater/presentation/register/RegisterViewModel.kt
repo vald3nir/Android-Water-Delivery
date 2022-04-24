@@ -47,7 +47,7 @@ class RegisterViewModel(
                 isSalesman = isAppSalesman(),
                 onSuccess = {
                     view?.showLoading(false)
-                    screenNavigation.redirectToHome(view)
+                    screenNavigation.redirectToLogin(view)
                 },
                 onError = { showError(it) }
             )
