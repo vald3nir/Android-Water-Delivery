@@ -23,4 +23,8 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="BigTittleStyle" parent="LabelStyle">
+        <item name="android:textSize">28sp</item>
+    </style>
+
 </resources>
