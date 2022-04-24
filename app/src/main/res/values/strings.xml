@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">disk water</string>
+    <string name="real_time_consumption">Consumo em Tempo Real</string>
+    <string name="consumption_level">Nível de consumo</string>
+    <string name="consumption">Consumo</string>
+    <string name="moderate">Moderado</string>
+    <string name="normal">Normal</string>
+    <string name="high">Alto</string>
+    <string name="setup">Configurações</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="prompt_confirm_password">Confirmar senha</string>
+    <string name="invalid_email">Email não é válido</string>
+    <string name="invalid_password">A Senha deve ser maior que 5 caracteres</string>
+    <string name="passwords_not_equals">As senhas não são iguais</string>
+    <string name="login">Login</string>
+    <string name="register">Cadastrar</string>
+    <string name="save">Salvar</string>
+    <string name="configuration">Configurações</string>
+    <string name="remember_login">Lembrar do login</string>
+    <string name="cancel">Cancelar</string>
+    <string name="options">Opções</string>
+    <string name="update">Atualizar</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="device_settings">Configurações do Dispositivo</string>
+    <string name="devices">Dispositivos</string>
+    <string name="item_menu">item do menu</string>
+    <string name="sensor_management">Gestão de Sensores</string>
+    <string name="edit">Editar</string>
+    <string name="sensor">Sensor</string>
 </resources>
