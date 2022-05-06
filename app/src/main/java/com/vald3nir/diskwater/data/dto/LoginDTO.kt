@@ -1,7 +1,10 @@
 package com.vald3nir.diskwater.data.dto
 
+import androidx.room.Entity
+
+@Entity
 data class LoginDTO(
-    val email: String? = null,
-    val password: String? = null,
-    val rememberLogin: Boolean = false,
+    var email: String?,
+    var password: String?,
+    var rememberLogin: Boolean = false,
 ) : BaseDTO()

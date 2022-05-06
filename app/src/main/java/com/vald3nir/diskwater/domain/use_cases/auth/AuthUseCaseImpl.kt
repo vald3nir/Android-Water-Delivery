@@ -42,4 +42,8 @@ class AuthUseCaseImpl(private val repository: AuthRepository) : AuthUseCase {
     ) {
         repository.loadLoginData(onSuccess, onError)
     }
+
+    override suspend fun saveLoginData(loginDTO: LoginDTO, onSuccess: () -> Unit) {
+        repository.saveLoginData(loginDTO, onSuccess)
+    }
 }

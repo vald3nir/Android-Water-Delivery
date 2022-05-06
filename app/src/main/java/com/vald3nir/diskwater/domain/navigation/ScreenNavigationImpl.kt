@@ -3,7 +3,9 @@ package com.vald3nir.diskwater.domain.navigation
 import android.content.Intent
 import com.vald3nir.diskwater.common.core.AppView
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
-import com.vald3nir.diskwater.presentation.dashboard.DashboardActivity
+import com.vald3nir.diskwater.common.utils.isAppClient
+import com.vald3nir.diskwater.presentation.dashboard.DashboardClientActivity
+import com.vald3nir.diskwater.presentation.dashboard.DashboardSalesmanActivity
 import com.vald3nir.diskwater.presentation.login.LoginActivity
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
 
@@ -29,12 +31,11 @@ class ScreenNavigationImpl : ScreenNavigation {
     }
 
     override fun redirectToHome(appView: AppView?) {
-        openActivity(appView, DashboardActivity::class.java, newStack = true)
-    }
-
-    override fun redirectToSettings(appView: AppView?) {
-    }
-
-    override fun redirectToSensorManager(appView: AppView?) {
+        val activityClass = if (isAppClient()) {
+            DashboardClientActivity::class.java
+        } else {
+            DashboardSalesmanActivity::class.java
+        }
+        openActivity(appView, activityClass, newStack = true)
     }
 }

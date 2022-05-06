@@ -8,8 +8,11 @@
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/drawable/button_white_layout.xml" value="0.1215" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/drawable/button_yellow_layout.xml" value="0.2115" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+        <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/activity_dashboard_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/activity_dashboard_salesman.xml" value="0.20416666666666666" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/custom_loading_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/custom_toolbar.xml" value="0.20416666666666666" />
       </map>
     </option>

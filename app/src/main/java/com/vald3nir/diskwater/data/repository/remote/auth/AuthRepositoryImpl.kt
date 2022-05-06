@@ -5,10 +5,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.vald3nir.diskwater.data.dto.LoginDTO
-import com.vald3nir.diskwater.data.repository.local.LocalPreferencesRepository
+import com.vald3nir.diskwater.data.repository.local.daos.LoginDao
 
 class AuthRepositoryImpl(
-    private val localPreferences: LocalPreferencesRepository
+    private val loginDao: LoginDao
 ) : AuthRepository {
 
     override suspend fun disconnect() {
@@ -32,7 +32,6 @@ class AuthRepositoryImpl(
         Firebase.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) {
                 if (it.isSuccessful) {
-                    localPreferences.saveLoginPreferences(if (loginDTO.rememberLogin) loginDTO else null)
                     onSuccess.invoke()
                 } else {
                     onError.invoke(it.exception)
@@ -40,10 +39,20 @@ class AuthRepositoryImpl(
             }
     }
 
+    override suspend fun saveLoginData(loginDTO: LoginDTO, onSuccess: () -> Unit) {
+        if (loginDTO.rememberLogin) {
+            loginDao.insert(loginDTO)
+        } else {
+            loginDao.deleteAll()
+        }
+        onSuccess.invoke()
+    }
+
     override suspend fun loadLoginData(
         onSuccess: (loginDTO: LoginDTO?) -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        onSuccess.invoke(localPreferences.loadLoginPreferences())
+        val loginDTO = loginDao.first()
+        onSuccess.invoke(loginDTO)
     }
 }

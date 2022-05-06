@@ -11,12 +11,14 @@ import com.vald3nir.diskwater.common.validations.isPasswordValid
 import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.diskwater.data.form.DataUserInputForm
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
+import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val screenNavigation: ScreenNavigation,
     private val authUseCase: AuthUseCase,
+    private val addressUseCase: AddressUseCase,
 ) : BaseViewModel() {
 
     private val _loginForm = MutableLiveData<DataUserInputForm>()
@@ -44,12 +46,13 @@ class LoginViewModel(
         viewModelScope.launch {
             if (checkLoginData(email, password)) {
                 showLoading(true)
-                val loginDTO = LoginDTO(email, password, rememberLogin)
+                val loginDTO = LoginDTO(
+                    email = email,
+                    password = password,
+                    rememberLogin = rememberLogin
+                )
                 authUseCase.login(appView = view, loginDTO = loginDTO,
-                    onSuccess = {
-                        showLoading(false)
-                        screenNavigation.redirectToHome(view)
-                    },
+                    onSuccess = { saveLoginData(loginDTO) },
                     onError = {
                         showLoading(false)
                         showMessage(it?.message)
@@ -58,6 +61,26 @@ class LoginViewModel(
             }
         }
     }
+
+    private fun saveLoginData(loginDTO: LoginDTO) {
+        viewModelScope.launch {
+            authUseCase.saveLoginData(loginDTO, onSuccess = {
+                showLoading(false)
+//                        screenNavigation.redirectToHome(view)
+                checkAddress()
+            })
+        }
+    }
+
+
+    private fun checkAddress() {
+        viewModelScope.launch {
+            addressUseCase.searchAddressByCEP(cep = "60320250", onSuccess = {
+                println(it)
+            }, onError = {})
+        }
+    }
+
 
     fun checkLoginData(email: String, password: String): Boolean {
         var isValid = true

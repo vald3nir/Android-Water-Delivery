@@ -21,4 +21,6 @@ interface AuthRepository {
         onSuccess: (loginDTO: LoginDTO?) -> Unit,
         onError: (e: Exception?) -> Unit,
     )
+
+    suspend fun saveLoginData(loginDTO: LoginDTO, onSuccess: () -> Unit)
 }

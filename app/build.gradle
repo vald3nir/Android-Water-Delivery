@@ -3,11 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
-    id 'realm-android'
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.appdistribution'
 }
-
 
 android {
 
@@ -52,15 +50,15 @@ android {
         client {
             dimension "version"
             firebaseAppDistribution {
-                releaseNotes="Versão dos clientes"
-                testers="vald3nir@gmail.com"
+                releaseNotes = "Versão dos clientes"
+                testers = "vald3nir@gmail.com"
             }
         }
         salesman {
             dimension "version"
             firebaseAppDistribution {
-                releaseNotes="Versão do vendedor"
-                testers="vald3nir@gmail.com"
+                releaseNotes = "Versão do vendedor"
+                testers = "vald3nir@gmail.com"
             }
         }
     }
@@ -71,14 +69,11 @@ dependencies {
     // MQTT Client
     implementation 'com.hivemq:hivemq-mqtt-client:1.3.0'
 
-    // GSON
-    implementation 'com.google.code.gson:gson:2.9.0'
-
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.10'
     implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
 
     // Android X
@@ -97,8 +92,8 @@ dependencies {
     kapt "com.android.databinding:compiler:3.1.4"
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1-native-mt'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1-native-mt'
 
     // Koin (dependency injection framework)
     implementation "io.insert-koin:koin-androidx-ext:2.2.3"
@@ -106,7 +101,20 @@ dependencies {
 
     // Multidex
     implementation "androidx.multidex:multidex:2.0.1"
-   
+
+    // GSON
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Database
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation 'androidx.room:room-ktx:2.4.2'
+    testImplementation "androidx.room:room-testing:2.4.2"
+
     // Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
