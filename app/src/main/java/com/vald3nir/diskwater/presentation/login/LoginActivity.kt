@@ -3,13 +3,11 @@ package com.vald3nir.diskwater.presentation.login
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.core.BaseActivity
 import com.vald3nir.diskwater.common.extensions.actionDoneListener
 import com.vald3nir.diskwater.common.extensions.afterTextChanged
 import com.vald3nir.diskwater.common.extensions.format
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
-import com.vald3nir.diskwater.common.utils.isAppClient
 import com.vald3nir.diskwater.databinding.ActivityLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,6 +29,7 @@ class LoginActivity : BaseActivity() {
         viewModel.view = this
         binding.apply {
             txvAppName.text = getTypeAppName()
+            btnRegister.isVisible = viewModel.showRegisterButton
         }
     }
 
@@ -41,7 +40,7 @@ class LoginActivity : BaseActivity() {
             btnRegister.setOnClickListener { register() }
         }
 
-        viewModel.loginDTO.observe(this@LoginActivity, Observer {
+        viewModel.loginDTO.observe(this@LoginActivity) {
 
             binding.apply {
 
@@ -57,7 +56,7 @@ class LoginActivity : BaseActivity() {
             }
 
             hideKeyboard()
-        })
+        }
 
         viewModel.loginFormState.observe(this@LoginActivity, Observer {
 

@@ -66,12 +66,11 @@ class LoginViewModel(
         viewModelScope.launch {
             authUseCase.saveLoginData(loginDTO, onSuccess = {
                 showLoading(false)
-//                        screenNavigation.redirectToHome(view)
+                screenNavigation.redirectToHome(view)
                 checkAddress()
             })
         }
     }
-
 
     private fun checkAddress() {
         viewModelScope.launch {
