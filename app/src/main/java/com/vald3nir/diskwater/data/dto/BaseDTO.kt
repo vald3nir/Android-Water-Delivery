@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.Gson
 
 open class BaseDTO(
-    @PrimaryKey(autoGenerate = true) var uid: Int = 0
+    @PrimaryKey(autoGenerate = false) var uid: Int = 0
 ) {
 
     fun toJson(): String? {

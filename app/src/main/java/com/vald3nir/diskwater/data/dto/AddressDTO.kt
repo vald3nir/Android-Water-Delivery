@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName
 class AddressDTO(
     @SerializedName("estado") var state: String? = null,
     @SerializedName("cidade") var city: String? = null,
-    @SerializedName("bairro") var district: String?,
-    @SerializedName("logradouro") var street: String?,
-    var number: String?,
-    var complement: String?,
-    var cep: String?,
+    @SerializedName("bairro") var district: String? = null,
+    @SerializedName("logradouro") var street: String? = null,
+    var number: String? = null,
+    var complement: String? = null,
+    var cep: String? = null,
 ) : BaseDTO()

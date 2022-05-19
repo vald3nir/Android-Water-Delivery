@@ -29,4 +29,8 @@ open class BaseViewModel : ViewModel() {
         view?.showLoading(false)
         view?.showMessage(it?.message)
     }
+
+    fun finish() {
+        view?.getActivityContext()?.finish()
+    }
 }

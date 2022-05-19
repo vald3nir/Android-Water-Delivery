@@ -75,7 +75,7 @@ class AppApplication : Application() {
             viewModel { DashboardViewModel(get(), get()) }
             viewModel { LoginViewModel(get(), get()) }
             viewModel { RegisterViewModel(get(), get(), get()) }
-            viewModel { AddressViewModel(get(), get(), get()) }
+            viewModel { AddressViewModel(get()) }
         }
     }
 }

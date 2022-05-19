@@ -7,14 +7,10 @@ import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.core.BaseViewModel
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
-import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import kotlinx.coroutines.launch
 
 class AddressViewModel(
-    private val screenNavigation: ScreenNavigation,
-    private val authUseCase: AuthUseCase,
     private val addressUseCase: AddressUseCase,
 ) : BaseViewModel() {
 
@@ -25,36 +21,56 @@ class AddressViewModel(
     val addressFields: LiveData<AddressDTO> = _addressFields
 
     fun loadAddress() {
-        showLoading(true)
         viewModelScope.launch {
             val address = addressUseCase.loadAddress()
             address.let {
                 _addressFields.postValue(it)
-                showLoading(false)
             }
         }
     }
 
-    private var lastCEP = ""
     fun searchByCep(cep: String) {
         viewModelScope.launch {
-            if (cep.isCEPValid() && cep != lastCEP) {
+            if (cep.isCEPValid() && cep != addressFields.value?.cep) {
                 addressUseCase.searchAddressByCEP(
                     cep = cep,
                     onSuccess = {
-                        lastCEP = cep
-                        _addressFields.postValue(it)
+                        addressFields.value.apply {
+                            this?.cep = cep
+                            this?.street = it?.street
+                            this?.district = it?.district
+                        }
+                        _addressFields.postValue(addressFields.value)
                     },
-                    onError = {}
+                    onError = { showError(it) }
                 )
             }
         }
     }
 
-    fun saveAddress(addressDTO: AddressDTO) {
+    fun saveAddress(
+        cep: String,
+        street: String,
+        number: String,
+        complement: String,
+        district: String,
+    ) {
         viewModelScope.launch {
-            if (checkAddressFields(addressDTO)) {
-                addressUseCase.updateAddress(addressDTO)
+
+            addressFields.value.apply {
+                this?.cep = cep
+                this?.street = street
+                this?.number = number
+                this?.complement = complement
+                this?.district = district
+            }
+
+            addressFields.value.let {
+                if (it != null && checkAddressFields(it)) {
+                    addressUseCase.updateAddress(it)
+                    showMessage(getString(R.string.address_successfully_updated))
+                    finish()
+                }
             }
         }
     }
@@ -81,7 +97,7 @@ class AddressViewModel(
         return isValid
     }
 
-    fun String?.isCEPValid(): Boolean {
+    private fun String?.isCEPValid(): Boolean {
         return this?.length == 8
     }
 }

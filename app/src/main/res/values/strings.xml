@@ -43,4 +43,5 @@
     <string name="street_invalid">Rua inválida</string>
     <string name="district_invalid">Bairro inválido</string>
     <string name="number_invalid">Número inválido</string>
+    <string name="address_successfully_updated">Endereço atualizado com sucesso!</string>
 </resources>

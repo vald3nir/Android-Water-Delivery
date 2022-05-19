@@ -26,6 +26,7 @@ class AddressActivity : BaseActivity() {
     }
 
     private fun initViews() {
+        viewModel.view = this
         binding.apply {
             toolbar.title.text = getString(R.string.order_address)
         }
@@ -68,13 +69,11 @@ class AddressActivity : BaseActivity() {
         hideKeyboard()
         binding.apply {
             viewModel.saveAddress(
-                AddressDTO(
-                    cep = edtCep.text.toString(),
-                    street = edtStreet.text.toString(),
-                    number = edtNumber.text.toString(),
-                    complement = edtComplement.text.toString(),
-                    district = edtDistrict.text.toString(),
-                )
+                cep = edtCep.text.toString(),
+                street = edtStreet.text.toString(),
+                number = edtNumber.text.toString(),
+                complement = edtComplement.text.toString(),
+                district = edtDistrict.text.toString()
             )
         }
     }
