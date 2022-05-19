@@ -5,12 +5,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.componets.LoadingScreenDialog
+import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
 
 open class BaseActivity : AppCompatActivity(), AppView {
 
     private var toast: Toast? = null
     private var loadingScreenDialog: LoadingScreenDialog? = null
+
+    override fun onResume() {
+        super.onResume()
+        hideKeyboard()
+    }
 
     override fun getActivityContext(): Activity? {
         return this

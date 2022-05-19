@@ -35,7 +35,12 @@
     <string name="state">Estado</string>
     <string name="city">Cidade</string>
     <string name="street">Rua</string>
+    <string name="complement">Complemento</string>
     <string name="district">Bairro</string>
     <string name="number">Número</string>
     <string name="order_address">Endereço do Pedido</string>
+    <string name="cep_invalid">CEP inválido</string>
+    <string name="street_invalid">Rua inválida</string>
+    <string name="district_invalid">Bairro inválido</string>
+    <string name="number_invalid">Número inválido</string>
 </resources>
