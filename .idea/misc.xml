@@ -14,7 +14,10 @@
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/custom_loading_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Documents/Projetos/Android-Water-Delivery/app/src/main/res/layout/custom_toolbar.xml" value="0.20416666666666666" />
-        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_address.xml" value="0.1" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_dashboard_client.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2115" />
       </map>
     </option>

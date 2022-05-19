@@ -31,23 +31,14 @@
             <TextView
                 android:id="@+id/txv_app_name"
                 style="@style/TittleStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 tools:text="@string/client" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_email_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/EmailInputLayoutStyle"
                 android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
@@ -57,27 +48,15 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="start"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    style="@style/EmailInputStyle"
                     tools:text="vald3nir@gmail.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_password_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/PasswordInputLayoutStyle"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
@@ -87,13 +66,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="start"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    style="@style/PasswordInputStyle"
                     tools:text="12345678" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -110,27 +83,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                style="@style/ButtonStyle"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/button_white_layout"
-                android:gravity="center"
-                android:text="@string/login"
-                android:textAllCaps="false"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
+                android:text="@string/login" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                style="@style/ButtonStyle"
                 android:layout_marginTop="20dp"
                 android:background="@null"
-                android:gravity="center"
                 android:text="@string/register"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

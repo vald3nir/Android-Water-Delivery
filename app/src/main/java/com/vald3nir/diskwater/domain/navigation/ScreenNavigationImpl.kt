@@ -4,6 +4,7 @@ import android.content.Intent
 import com.vald3nir.diskwater.common.core.AppView
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
+import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardClientActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardSalesmanActivity
 import com.vald3nir.diskwater.presentation.login.LoginActivity
@@ -28,6 +29,10 @@ class ScreenNavigationImpl : ScreenNavigation {
 
     override fun redirectToRegister(appView: AppView?) {
         openActivity(appView, RegisterActivity::class.java)
+    }
+
+    override fun redirectToEditAddress(appView: AppView?) {
+        openActivity(appView, AddressActivity::class.java)
     }
 
     override fun redirectToHome(appView: AppView?) {

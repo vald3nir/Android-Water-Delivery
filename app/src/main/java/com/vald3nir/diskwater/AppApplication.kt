@@ -3,8 +3,6 @@ package com.vald3nir.diskwater
 import android.app.Application
 import androidx.room.Room
 import com.vald3nir.diskwater.data.repository.local.AppDatabase
-import com.vald3nir.diskwater.data.repository.local.LocalPreferencesRepository
-import com.vald3nir.diskwater.data.repository.local.LocalPreferencesRepositoryImpl
 import com.vald3nir.diskwater.data.repository.remote.address.AddressRepository
 import com.vald3nir.diskwater.data.repository.remote.address.AddressRepositoryImpl
 import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepository
@@ -23,6 +21,7 @@ import com.vald3nir.diskwater.domain.use_cases.config.AppConfigUseCase
 import com.vald3nir.diskwater.domain.use_cases.config.AppConfigUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
+import com.vald3nir.diskwater.presentation.address.AddressViewModel
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
 import com.vald3nir.diskwater.presentation.register.RegisterViewModel
@@ -59,8 +58,6 @@ class AppApplication : Application() {
             single { get<AppDatabase>().getLoginDao() }
             single { get<AppDatabase>().getAddressDao() }
 
-//            factory<LocalPreferencesRepository> { LocalPreferencesRepositoryImpl(get()) }
-
             factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
             factory<AddressRepository> { AddressRepositoryImpl() }
 
@@ -76,8 +73,9 @@ class AppApplication : Application() {
             factory<ScreenNavigation> { ScreenNavigationImpl() }
 
             viewModel { DashboardViewModel(get(), get()) }
-            viewModel { LoginViewModel(get(), get(), get()) }
+            viewModel { LoginViewModel(get(), get()) }
             viewModel { RegisterViewModel(get(), get(), get()) }
+            viewModel { AddressViewModel(get(), get(), get()) }
         }
     }
 }

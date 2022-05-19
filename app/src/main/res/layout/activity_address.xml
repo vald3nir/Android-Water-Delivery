@@ -27,9 +27,10 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_email_layout"
-                style="@style/EmailInputLayoutStyle"
+                style="@style/TextInputLayoutStyle"
                 android:layout_marginTop="30dp"
+                android:hint="@string/cep"
+                android:inputType="numberDecimal"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
@@ -38,16 +39,17 @@
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_email"
-                    style="@style/EmailInputStyle"
-                    tools:text="vald3nir@gmail.com" />
+                    android:id="@+id/edt_cep"
+                    style="@style/TextInputStyle"
+                    android:inputType="numberDecimal"
+                    tools:text="62738000" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_password_layout"
-                style="@style/PasswordInputLayoutStyle"
-                android:layout_marginTop="20dp"
+                style="@style/TextInputLayoutStyle"
+                android:layout_marginTop="30dp"
+                android:hint="@string/street"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
@@ -56,16 +58,17 @@
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_password"
-                    style="@style/PasswordInputStyle"
-                    tools:text="12345678" />
+                    android:id="@+id/edt_street"
+                    style="@style/TextInputStyle"
+                    tools:text="Rua Coronel Mozart Gondim" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_confirm_password_layout"
-                style="@style/PasswordInputLayoutStyle"
-                android:layout_marginTop="20dp"
+                style="@style/TextInputLayoutStyle"
+                android:layout_marginTop="30dp"
+                android:hint="@string/number"
+                android:inputType="numberDecimal"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
@@ -74,9 +77,28 @@
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_confirm_password"
-                    style="@style/PasswordInputStyle"
-                    tools:text="12345678" />
+                    android:id="@+id/edt_number"
+                    style="@style/TextInputStyle"
+                    android:inputType="numberDecimal"
+                    tools:text="1320" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_marginTop="30dp"
+                android:hint="@string/district"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_district"
+                    style="@style/TextInputStyle"
+                    tools:text="São Gerardo" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +106,8 @@
                 android:id="@+id/btn_register"
                 style="@style/ButtonStyle"
                 android:layout_marginTop="50dp"
-                android:text="@string/register" />
+                android:text="@string/save"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
