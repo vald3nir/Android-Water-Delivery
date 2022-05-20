@@ -1,5 +1,6 @@
 package com.vald3nir.diskwater.common.core
 
+import android.app.Activity
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -7,6 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 open class BaseViewModel : ViewModel() {
+
     var view: AppView? = null
 
     fun getString(id: Int): String? {
@@ -31,6 +33,10 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun finish() {
-        view?.getActivityContext()?.finish()
+        view?.getActivityContext()?.apply {
+            showLoading(false)
+            setResult(Activity.RESULT_OK)
+            finish()
+        }
     }
 }

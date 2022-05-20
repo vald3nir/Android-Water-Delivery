@@ -9,13 +9,11 @@ import com.vald3nir.diskwater.common.utils.isAppSalesman
 import com.vald3nir.diskwater.common.validations.isEmailValid
 import com.vald3nir.diskwater.common.validations.isPasswordValid
 import com.vald3nir.diskwater.data.form.DataUserInputForm
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val screenNavigation: ScreenNavigation,
     private val registerUseCase: RegisterUseCase,
     private val authUseCase: AuthUseCase,
 ) : BaseViewModel() {
@@ -38,17 +36,13 @@ class RegisterViewModel(
         }
     }
 
-
     private fun registerUserType() {
         viewModelScope.launch {
             registerUseCase.registerUserType(
                 appView = view,
                 userID = authUseCase.getUserID().orEmpty(),
                 isSalesman = isAppSalesman(),
-                onSuccess = {
-                    view?.showLoading(false)
-                    screenNavigation.redirectToLogin(view)
-                },
+                onSuccess = { finish() },
                 onError = { showError(it) }
             )
         }

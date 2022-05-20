@@ -24,7 +24,6 @@ import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
 import com.vald3nir.diskwater.presentation.address.AddressViewModel
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
-import com.vald3nir.diskwater.presentation.main.MainViewModel
 import com.vald3nir.diskwater.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -33,7 +32,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
 import org.koin.dsl.module
-
 
 class AppApplication : Application() {
 
@@ -71,9 +69,8 @@ class AppApplication : Application() {
     }
 
     private fun Module.setupViewModels() {
-        viewModel { MainViewModel(get()) }
-        viewModel { LoginViewModel(get(), get(), get()) }
-        viewModel { RegisterViewModel(get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get()) }
+        viewModel { RegisterViewModel(get(), get()) }
         viewModel { AddressViewModel(get()) }
         viewModel { DashboardViewModel(get(), get()) }
     }

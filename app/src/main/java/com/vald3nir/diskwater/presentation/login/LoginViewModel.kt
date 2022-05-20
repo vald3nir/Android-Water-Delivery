@@ -1,7 +1,5 @@
 package com.vald3nir.diskwater.presentation.login
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,15 +11,12 @@ import com.vald3nir.diskwater.common.validations.isPasswordValid
 import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.diskwater.data.form.DataUserInputForm
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigation.Companion.EDIT_ADDRESS_CODE
-import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val screenNavigation: ScreenNavigation,
     private val authUseCase: AuthUseCase,
-    private val addressUseCase: AddressUseCase,
 ) : BaseViewModel() {
 
     private val _loginForm = MutableLiveData<DataUserInputForm>()
@@ -70,17 +65,9 @@ class LoginViewModel(
 
     private fun saveLoginData(loginDTO: LoginDTO) {
         viewModelScope.launch {
-            authUseCase.saveLoginData(loginDTO, onSuccess = { checkRegisteredAddress() })
-        }
-    }
-
-    private fun checkRegisteredAddress() {
-        viewModelScope.launch {
-            if (addressUseCase.loadAddress() == null) {
-                screenNavigation.redirectToEditAddress(view)
-            } else {
-                screenNavigation.redirectToHome(view)
-            }
+            authUseCase.saveLoginData(
+                loginDTO,
+                onSuccess = { screenNavigation.redirectToHome(view) })
         }
     }
 
@@ -103,11 +90,5 @@ class LoginViewModel(
         }
 
         return isValid
-    }
-
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == RESULT_OK && requestCode == EDIT_ADDRESS_CODE) {
-
-        }
     }
 }

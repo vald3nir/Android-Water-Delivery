@@ -1,6 +1,5 @@
 package com.vald3nir.diskwater.presentation.login
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -23,6 +22,9 @@ class LoginActivity : BaseActivity() {
         initViews()
         setupObservers()
         viewModel.loadLoginData()
+    }
+
+    override fun onBackPressed() {
     }
 
     private fun initViews() {
@@ -65,11 +67,6 @@ class LoginActivity : BaseActivity() {
                 edtPasswordLayout.error = loginState.passwordError
             }
         })
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        viewModel.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun ActivityLoginBinding.loginDataChanged() {

@@ -4,7 +4,6 @@ import android.content.Intent
 import com.vald3nir.diskwater.common.core.AppView
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigation.Companion.EDIT_ADDRESS_CODE
 import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardClientActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardSalesmanActivity
@@ -12,7 +11,6 @@ import com.vald3nir.diskwater.presentation.login.LoginActivity
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
 
 class ScreenNavigationImpl : ScreenNavigation {
-
 
     private fun <T> startActivity(view: AppView?, classJava: Class<T>, newStack: Boolean = false) {
         view?.getActivityContext()?.apply {
@@ -25,14 +23,6 @@ class ScreenNavigationImpl : ScreenNavigation {
         }
     }
 
-    private fun <T> startActivityForResult(view: AppView?, classJava: Class<T>, code: Int) {
-        view?.getActivityContext()?.apply {
-            hideKeyboard()
-            val newIntent = Intent(this, classJava)
-            startActivityForResult(newIntent, code)
-        }
-    }
-
     override fun redirectToLogin(appView: AppView?) {
         startActivity(appView, LoginActivity::class.java, newStack = true)
     }
@@ -42,7 +32,7 @@ class ScreenNavigationImpl : ScreenNavigation {
     }
 
     override fun redirectToEditAddress(appView: AppView?) {
-        startActivityForResult(appView, AddressActivity::class.java, code = EDIT_ADDRESS_CODE)
+        startActivity(appView, AddressActivity::class.java)
     }
 
     override fun redirectToHome(appView: AppView?) {
