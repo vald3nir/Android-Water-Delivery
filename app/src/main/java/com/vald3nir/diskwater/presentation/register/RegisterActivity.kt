@@ -24,7 +24,7 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        viewModel.view = this
+        viewModel.appView = this
         binding.apply {
             toolbar.setupToolbar(title = "${getString(R.string.register)} - ${getTypeAppName()}")
             btnRegister.setOnClickListener { registerNewUser() }

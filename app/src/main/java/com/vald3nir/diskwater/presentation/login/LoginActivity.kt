@@ -28,7 +28,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        viewModel.view = this
+        viewModel.appView = this
         binding.apply {
             txvAppName.text = getTypeAppName()
             btnRegister.isVisible = viewModel.showRegisterButton

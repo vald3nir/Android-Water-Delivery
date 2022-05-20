@@ -37,7 +37,7 @@ class LoginViewModel(
     }
 
     fun register() {
-        screenNavigation.redirectToRegister(view)
+        screenNavigation.redirectToRegister(appView)
     }
 
     fun login(email: String, password: String, rememberLogin: Boolean) {
@@ -52,7 +52,7 @@ class LoginViewModel(
                     rememberLogin = rememberLogin
                 )
 
-                authUseCase.login(appView = view, loginDTO = loginDTO,
+                authUseCase.login(appView = appView, loginDTO = loginDTO,
                     onSuccess = { saveLoginData(loginDTO) },
                     onError = {
                         showLoading(false)
@@ -67,7 +67,7 @@ class LoginViewModel(
         viewModelScope.launch {
             authUseCase.saveLoginData(
                 loginDTO,
-                onSuccess = { screenNavigation.redirectToHome(view) })
+                onSuccess = { screenNavigation.redirectToHome(appView) })
         }
     }
 

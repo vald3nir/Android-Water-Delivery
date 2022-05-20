@@ -23,10 +23,10 @@ class RegisterViewModel(
 
     fun registerNewUser(email: String, password: String, confirmPassword: String) {
         if (checkRegisterData(email, password, confirmPassword)) {
-            view?.showLoading(true)
+            appView?.showLoading(true)
             viewModelScope.launch {
                 registerUseCase.registerNewUser(
-                    appView = view,
+                    appView = appView,
                     email = email,
                     password = password,
                     onSuccess = { registerUserType() },
@@ -39,7 +39,7 @@ class RegisterViewModel(
     private fun registerUserType() {
         viewModelScope.launch {
             registerUseCase.registerUserType(
-                appView = view,
+                appView = appView,
                 userID = authUseCase.getUserID().orEmpty(),
                 isSalesman = isAppSalesman(),
                 onSuccess = { finish() },

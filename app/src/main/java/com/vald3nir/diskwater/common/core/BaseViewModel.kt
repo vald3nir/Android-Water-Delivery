@@ -9,31 +9,31 @@ import kotlinx.coroutines.withContext
 
 open class BaseViewModel : ViewModel() {
 
-    var view: AppView? = null
+    var appView: AppView? = null
 
     fun getString(id: Int): String? {
-        return view?.getActivityContext()?.getString(id)
+        return appView?.getActivityContext()?.getString(id)
     }
 
     fun showMessage(message: String?) {
-        view?.showMessage(message)
+        appView?.showMessage(message)
     }
 
     fun showLoading(show: Boolean) {
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
-                view?.showLoading(show)
+                appView?.showLoading(show)
             }
         }
     }
 
     fun showError(it: Exception?) {
-        view?.showLoading(false)
-        view?.showMessage(it?.message)
+        appView?.showLoading(false)
+        appView?.showMessage(it?.message)
     }
 
     fun finish() {
-        view?.getActivityContext()?.apply {
+        appView?.getActivityContext()?.apply {
             showLoading(false)
             setResult(Activity.RESULT_OK)
             finish()

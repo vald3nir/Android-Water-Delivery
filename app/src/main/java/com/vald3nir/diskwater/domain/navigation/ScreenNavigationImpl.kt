@@ -5,9 +5,9 @@ import com.vald3nir.diskwater.common.core.AppView
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
 import com.vald3nir.diskwater.presentation.address.AddressActivity
-import com.vald3nir.diskwater.presentation.dashboard.DashboardClientActivity
-import com.vald3nir.diskwater.presentation.dashboard.DashboardSalesmanActivity
+import com.vald3nir.diskwater.presentation.dashboard.DashboardActivity
 import com.vald3nir.diskwater.presentation.login.LoginActivity
+import com.vald3nir.diskwater.presentation.orders.OrderActivity
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
 
 class ScreenNavigationImpl : ScreenNavigation {
@@ -37,9 +37,9 @@ class ScreenNavigationImpl : ScreenNavigation {
 
     override fun redirectToHome(appView: AppView?) {
         val activityClass = if (isAppClient()) {
-            DashboardClientActivity::class.java
+            OrderActivity::class.java
         } else {
-            DashboardSalesmanActivity::class.java
+            DashboardActivity::class.java
         }
         startActivity(appView, activityClass, newStack = true)
     }

@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiskWater">
         <activity
+            android:name=".presentation.orders.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.address.AddressActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.dashboard.DashboardClientActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.dashboard.DashboardSalesmanActivity"
+            android:name=".presentation.dashboard.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
@@ -32,6 +32,7 @@
             android:theme="@style/Theme.DiskWater.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

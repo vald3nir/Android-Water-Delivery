@@ -1,29 +1,20 @@
 package com.vald3nir.diskwater.common.core
 
-import android.app.Activity
 import androidx.fragment.app.Fragment
 
-open class BaseFragment : Fragment(), AppView {
+open class BaseFragment : Fragment() {
 
-    override fun getActivityContext(): Activity? {
-        return activity
+    var appView: AppView? = null
+
+    fun showMessage(message: String?) {
+        appView?.showMessage(message)
     }
 
-    override fun showMessage(message: String?) {
-        if (activity is BaseActivity) {
-            (activity as BaseActivity).showMessage(message)
-        }
+    fun showMessage(message: Int) {
+        appView?.showMessage(message)
     }
 
-    override fun showMessage(message: Int) {
-        if (activity is BaseActivity) {
-            (activity as BaseActivity).showMessage(message)
-        }
-    }
-
-    override fun showLoading(show: Boolean) {
-        if (activity is BaseActivity) {
-            (activity as BaseActivity).showLoading(show)
-        }
+    fun showLoading(show: Boolean) {
+        appView?.showLoading(show)
     }
 }

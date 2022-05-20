@@ -26,7 +26,7 @@ class AddressActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        viewModel.view = this
+        viewModel.appView = this
         binding.apply {
             toolbar.setupToolbar(title = getString(R.string.order_address))
         }
