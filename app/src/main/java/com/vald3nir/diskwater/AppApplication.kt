@@ -24,6 +24,7 @@ import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
 import com.vald3nir.diskwater.presentation.address.AddressViewModel
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
+import com.vald3nir.diskwater.presentation.main.MainViewModel
 import com.vald3nir.diskwater.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -49,14 +50,7 @@ class AppApplication : Application() {
 
         return module {
 
-            // Database
-            single {
-                Room.databaseBuilder(get(), AppDatabase::class.java, "database.db")
-                    .fallbackToDestructiveMigration()
-                    .build()
-            }
-            single { get<AppDatabase>().getLoginDao() }
-            single { get<AppDatabase>().getAddressDao() }
+            setupDatabase()
 
             factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
             factory<AddressRepository> { AddressRepositoryImpl() }
@@ -72,10 +66,25 @@ class AppApplication : Application() {
 
             factory<ScreenNavigation> { ScreenNavigationImpl() }
 
-            viewModel { DashboardViewModel(get(), get()) }
-            viewModel { LoginViewModel(get(), get()) }
-            viewModel { RegisterViewModel(get(), get(), get()) }
-            viewModel { AddressViewModel(get()) }
+            setupViewModels()
         }
+    }
+
+    private fun Module.setupViewModels() {
+        viewModel { MainViewModel(get()) }
+        viewModel { LoginViewModel(get(), get(), get()) }
+        viewModel { RegisterViewModel(get(), get(), get()) }
+        viewModel { AddressViewModel(get()) }
+        viewModel { DashboardViewModel(get(), get()) }
+    }
+
+    private fun Module.setupDatabase() {
+        single {
+            Room.databaseBuilder(get(), AppDatabase::class.java, "database.db")
+                .fallbackToDestructiveMigration()
+                .build()
+        }
+        single { get<AppDatabase>().getLoginDao() }
+        single { get<AppDatabase>().getAddressDao() }
     }
 }

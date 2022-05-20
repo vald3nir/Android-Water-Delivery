@@ -7,12 +7,14 @@
     android:background="@drawable/app_background_gradient"
     android:padding="20dp">
 
-    <include
+    <com.vald3nir.diskwater.common.componets.HeaderNavigationComponent
         android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:showBackButton="true" />
 
     <ScrollView
         android:layout_width="match_parent"

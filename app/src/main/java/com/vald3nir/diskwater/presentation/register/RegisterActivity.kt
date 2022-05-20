@@ -1,6 +1,5 @@
 package com.vald3nir.diskwater.presentation.register
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.vald3nir.diskwater.R
@@ -24,14 +23,10 @@ class RegisterActivity : BaseActivity() {
         setupObservers()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initViews() {
         viewModel.view = this
         binding.apply {
-            toolbar.apply {
-                title.text = "${getString(R.string.register)} - ${getTypeAppName()}"
-                btnBack.setOnClickListener { onBackPressed() }
-            }
+            toolbar.setupToolbar(title = "${getString(R.string.register)} - ${getTypeAppName()}")
             btnRegister.setOnClickListener { registerNewUser() }
             edtEmail.afterTextChanged { registerDataChanged() }
             edtPassword.apply { afterTextChanged { registerDataChanged() } }
