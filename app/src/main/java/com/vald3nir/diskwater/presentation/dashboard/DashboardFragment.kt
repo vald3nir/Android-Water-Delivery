@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseFragment
+import com.vald3nir.diskwater.common.extensions.setup
 import com.vald3nir.diskwater.common.extensions.setupToolbar
 import com.vald3nir.diskwater.databinding.FragmentDashboardBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,6 +34,9 @@ class DashboardFragment : BaseFragment() {
                 title = "Minhas entregas",
                 showBackButton = false,
                 menuClickListener = { activity?.let { openMenu(it) } }
+            )
+            rcvOrders.setup(
+                adapter =
             )
         }
     }

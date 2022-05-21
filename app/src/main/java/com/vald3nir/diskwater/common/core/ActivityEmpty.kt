@@ -11,13 +11,17 @@ import org.koin.ext.getFullName
 
 class ActivityEmpty : BaseActivity() {
 
+    companion object {
+        const val FRAGMENT_ENUM_PARAM = "FRAGMENT_ENUM_PARAM"
+    }
+
     private val screenNavigation: ScreenNavigation by inject()
-    private lateinit var binding: ActivityEmptyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEmptyBinding.inflate(layoutInflater)
+        val binding = ActivityEmptyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadFragment(intent.getSerializableExtra(FRAGMENT_ENUM_PARAM) as FragmentEnum)
     }
 
     fun loadFragment(fragmentEnum: FragmentEnum) {

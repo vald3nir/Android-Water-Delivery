@@ -3,6 +3,7 @@ package com.vald3nir.diskwater.domain.navigation
 import android.app.Activity
 import android.content.Intent
 import com.vald3nir.diskwater.common.core.ActivityEmpty
+import com.vald3nir.diskwater.common.core.ActivityEmpty.Companion.FRAGMENT_ENUM_PARAM
 import com.vald3nir.diskwater.common.core.AppView
 import com.vald3nir.diskwater.common.core.BaseFragment
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
@@ -56,7 +57,7 @@ class ScreenNavigationImpl : ScreenNavigation {
         }
         appView?.getActivityContext()?.apply {
             val intent = Intent(this, ActivityEmpty::class.java)
-            intent.putExtra("FragmentEnum", fragmentEnum)
+            intent.putExtra(FRAGMENT_ENUM_PARAM, fragmentEnum)
             startActivity(this, intent, true)
         }
     }
