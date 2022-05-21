@@ -41,10 +41,9 @@ class LoginViewModel(
     }
 
     fun login(email: String, password: String, rememberLogin: Boolean) {
-
+//        showLoading(true)
         viewModelScope.launch {
             if (checkLoginData(email, password)) {
-                showLoading(true)
 
                 val loginDTO = LoginDTO(
                     email = email,

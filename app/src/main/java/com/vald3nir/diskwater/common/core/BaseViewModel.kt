@@ -2,6 +2,8 @@ package com.vald3nir.diskwater.common.core
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,11 +22,7 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun showLoading(show: Boolean) {
-        CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.Main) {
-                appView?.showLoading(show)
-            }
-        }
+        appView?.showLoading(show)
     }
 
     fun showError(it: Exception?) {
@@ -37,6 +35,14 @@ open class BaseViewModel : ViewModel() {
             showLoading(false)
             setResult(Activity.RESULT_OK)
             finish()
+        }
+    }
+
+    fun replaceFragment(fragmentEnum: FragmentEnum) {
+        appView?.getActivityContext().let {
+            if (it is ActivityEmpty) {
+                it.loadFragment(fragmentEnum)
+            }
         }
     }
 }

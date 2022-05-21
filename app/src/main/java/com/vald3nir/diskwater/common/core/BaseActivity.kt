@@ -42,6 +42,7 @@ open class BaseActivity : AppCompatActivity(), AppView {
             loadingScreenDialog?.show()
         } else {
             loadingScreenDialog?.dismiss()
+            loadingScreenDialog = null
         }
     }
 

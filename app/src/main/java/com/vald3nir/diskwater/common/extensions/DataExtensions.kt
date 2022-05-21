@@ -4,6 +4,10 @@ import android.text.Editable
 import com.google.gson.Gson
 
 
+fun Float?.toMoney(): String {
+    return "R$ $this"
+}
+
 fun Editable?.format(): String {
     return this.toString().trim()
 }

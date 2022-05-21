@@ -23,6 +23,23 @@ fun Context.hideKeyboard(view: View) {
 }
 
 fun RecyclerView.setup(
+    layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
+        context,
+        LinearLayoutManager.VERTICAL,
+        false
+    ),
+    itemDecoration: RecyclerView.ItemDecoration? = null
+) {
+    this.layoutManager = layoutManager
+    if (itemDecoration != null) {
+        while (itemDecorationCount > 0) {
+            removeItemDecorationAt(0)
+        }
+        this.addItemDecoration(itemDecoration)
+    }
+}
+
+fun RecyclerView.setup(
     adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
     layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
         context,
@@ -49,7 +66,7 @@ fun HeaderNavigationComponent.setupToolbar(
 ) {
     setTitle(title)
     showBackButton(showBackButton)
-    showBackButton(menuClickListener != null)
+    showMenuButton(menuClickListener != null)
     setBackButtonClickListener { activity?.onBackPressed() }
     setMenuButtonClickListener { menuClickListener?.invoke() }
 }

@@ -7,8 +7,8 @@ import com.vald3nir.diskwater.data.repository.remote.address.AddressRepository
 import com.vald3nir.diskwater.data.repository.remote.address.AddressRepositoryImpl
 import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepository
 import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepositoryImpl
-import com.vald3nir.diskwater.data.repository.remote.config.AppConfigRepository
-import com.vald3nir.diskwater.data.repository.remote.config.AppConfigRepositoryImpl
+import com.vald3nir.diskwater.data.repository.remote.product.ProductRepository
+import com.vald3nir.diskwater.data.repository.remote.product.ProductRepositoryImpl
 import com.vald3nir.diskwater.data.repository.remote.register.RegisterRepository
 import com.vald3nir.diskwater.data.repository.remote.register.RegisterRepositoryImpl
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
@@ -17,13 +17,15 @@ import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCaseImpl
-import com.vald3nir.diskwater.domain.use_cases.config.AppConfigUseCase
-import com.vald3nir.diskwater.domain.use_cases.config.AppConfigUseCaseImpl
+import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
+import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
 import com.vald3nir.diskwater.presentation.address.AddressViewModel
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
+import com.vald3nir.diskwater.presentation.orders.OrderViewModel
+import com.vald3nir.diskwater.presentation.product.ProductViewModel
 import com.vald3nir.diskwater.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -50,17 +52,17 @@ class AppApplication : Application() {
 
             setupDatabase()
 
-            factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
             factory<AddressRepository> { AddressRepositoryImpl() }
+            factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
+
+            factory<ProductUseCase> { ProductUseCaseImpl() }
+            factory<ProductRepository> { ProductRepositoryImpl() }
 
             factory<AuthRepository> { AuthRepositoryImpl(get()) }
             factory<AuthUseCase> { AuthUseCaseImpl(get()) }
 
             factory<RegisterRepository> { RegisterRepositoryImpl() }
             factory<RegisterUseCase> { RegisterUseCaseImpl(get()) }
-
-            factory<AppConfigRepository> { AppConfigRepositoryImpl() }
-            factory<AppConfigUseCase> { AppConfigUseCaseImpl(get(), get()) }
 
             factory<ScreenNavigation> { ScreenNavigationImpl() }
 
@@ -73,6 +75,8 @@ class AppApplication : Application() {
         viewModel { RegisterViewModel(get(), get()) }
         viewModel { AddressViewModel(get()) }
         viewModel { DashboardViewModel(get(), get()) }
+        viewModel { ProductViewModel() }
+        viewModel { OrderViewModel() }
     }
 
     private fun Module.setupDatabase() {

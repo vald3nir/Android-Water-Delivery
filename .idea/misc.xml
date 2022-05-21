@@ -21,6 +21,7 @@
         <entry key="..\:/GitHub/Android-Water-Delivery/app/src/main/res/layout/activity_order.xml" value="0.2" />
         <entry key="..\:/GitHub/Android-Water-Delivery/app/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
         <entry key="..\:/GitHub/Android-Water-Delivery/app/src/main/res/layout/order_item_view.xml" value="0.33" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/drawable/ic_update.xml" value="0.2115" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_address.xml" value="0.1" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_dashboard.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_dashboard_client.xml" value="0.20416666666666666" />
@@ -29,6 +30,8 @@
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_main.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_order.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/custom_item_list.xml" value="0.49" />
+        <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/custom_sheet_dialog.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/custom_toolbar.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/fragment_dashboard.xml" value="0.49" />
         <entry key="..\:/Projects/Android-Water-Delivery/app/src/main/res/layout/fragment_my_orders.xml" value="0.49" />

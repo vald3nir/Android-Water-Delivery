@@ -4,6 +4,7 @@ import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 
@@ -37,15 +38,12 @@ class DashboardViewModel(
     )
 
 
-
-
-
     fun getMenuItems(): List<CustomSheetDialog.CustomItemSheet> {
         return listOf(
             CustomSheetDialog.CustomItemSheet(
-                icon = R.drawable.ic_exit,
-                title = getString(R.string.disconnect),
-                action = { }
+                icon = R.drawable.ic_update,
+                title = "Atualizar produtos",
+                action = { replaceFragment(FragmentEnum.PRODUCTS) }
             ),
         )
     }
