@@ -1,11 +1,8 @@
 package com.vald3nir.diskwater.data.dto
 
-import androidx.room.PrimaryKey
 import com.google.gson.Gson
 
-open class BaseDTO(
-    @PrimaryKey(autoGenerate = false) var uid: Int = 0
-) {
+open class BaseDTO {
 
     fun toJson(): String? {
         return Gson().toJson(this)

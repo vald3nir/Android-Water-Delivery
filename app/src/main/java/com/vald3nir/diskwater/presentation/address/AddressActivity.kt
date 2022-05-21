@@ -6,6 +6,7 @@ import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.core.BaseActivity
 import com.vald3nir.diskwater.common.extensions.afterTextChanged
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
+import com.vald3nir.diskwater.common.extensions.setupToolbar
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.databinding.ActivityAddressBinding
@@ -28,7 +29,10 @@ class AddressActivity : BaseActivity() {
     private fun initViews() {
         viewModel.appView = this
         binding.apply {
-            toolbar.setupToolbar(title = getString(R.string.order_address))
+            toolbar.setupToolbar(
+                activity = this@AddressActivity,
+                title = getString(R.string.order_address)
+            )
         }
     }
 

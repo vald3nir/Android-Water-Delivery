@@ -58,5 +58,13 @@ class HeaderNavigationComponent : LinearLayout {
     fun setBackButtonClickListener(listener: () -> Unit) {
         binding.btnBack.setOnClickListener { listener.invoke() }
     }
+
+    fun showMenuButton(show: Boolean) {
+        binding.btnConfig.isVisible = show
+    }
+
+    fun setMenuButtonClickListener(listener: () -> Unit) {
+        binding.btnConfig.setOnClickListener { listener.invoke() }
+    }
 }
 

@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vald3nir.diskwater.common.componets.HeaderNavigationComponent
 
 
 fun Activity.hideKeyboard() {
@@ -39,6 +40,20 @@ fun RecyclerView.setup(
         this.addItemDecoration(itemDecoration)
     }
 }
+
+fun HeaderNavigationComponent.setupToolbar(
+    activity: Activity?,
+    title: String,
+    showBackButton: Boolean = true,
+    menuClickListener: (() -> Unit)? = null
+) {
+    setTitle(title)
+    showBackButton(showBackButton)
+    showBackButton(menuClickListener != null)
+    setBackButtonClickListener { activity?.onBackPressed() }
+    setMenuButtonClickListener { menuClickListener?.invoke() }
+}
+
 
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
 

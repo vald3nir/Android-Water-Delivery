@@ -83,5 +83,7 @@ class AppApplication : Application() {
         }
         single { get<AppDatabase>().getLoginDao() }
         single { get<AppDatabase>().getAddressDao() }
+        single { get<AppDatabase>().getOrderDao() }
+        single { get<AppDatabase>().getProductDao() }
     }
 }

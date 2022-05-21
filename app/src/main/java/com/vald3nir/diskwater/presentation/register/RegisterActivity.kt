@@ -7,6 +7,7 @@ import com.vald3nir.diskwater.common.core.BaseActivity
 import com.vald3nir.diskwater.common.extensions.actionDoneListener
 import com.vald3nir.diskwater.common.extensions.afterTextChanged
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
+import com.vald3nir.diskwater.common.extensions.setupToolbar
 import com.vald3nir.diskwater.databinding.ActivityRegisterBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,7 +27,10 @@ class RegisterActivity : BaseActivity() {
     private fun initViews() {
         viewModel.appView = this
         binding.apply {
-            toolbar.setupToolbar(title = "${getString(R.string.register)} - ${getTypeAppName()}")
+            toolbar.setupToolbar(
+                activity = this@RegisterActivity,
+                title = "${getString(R.string.register)} - ${getTypeAppName()}"
+            )
             btnRegister.setOnClickListener { registerNewUser() }
             edtEmail.afterTextChanged { registerDataChanged() }
             edtPassword.apply { afterTextChanged { registerDataChanged() } }

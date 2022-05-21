@@ -4,7 +4,6 @@ import android.app.Activity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.vald3nir.diskwater.R
-import com.vald3nir.diskwater.common.componets.HeaderNavigationComponent
 import com.vald3nir.diskwater.common.componets.LoadingScreenDialog
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
@@ -18,15 +17,6 @@ open class BaseActivity : AppCompatActivity(), AppView {
         super.onResume()
         showLoading(false)
         hideKeyboard()
-    }
-
-    fun HeaderNavigationComponent.setupToolbar(
-        title: String,
-        showBackButton: Boolean = true
-    ) {
-        setTitle(title)
-        showBackButton(showBackButton)
-        setBackButtonClickListener { onBackPressed() }
     }
 
     override fun getActivityContext(): Activity? {

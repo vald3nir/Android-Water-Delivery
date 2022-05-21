@@ -1,25 +1,63 @@
 package com.vald3nir.diskwater.domain.navigation
 
+import android.app.Activity
 import android.content.Intent
+import com.vald3nir.diskwater.common.core.ActivityEmpty
 import com.vald3nir.diskwater.common.core.AppView
+import com.vald3nir.diskwater.common.core.BaseFragment
 import com.vald3nir.diskwater.common.extensions.hideKeyboard
 import com.vald3nir.diskwater.common.utils.isAppClient
 import com.vald3nir.diskwater.presentation.address.AddressActivity
-import com.vald3nir.diskwater.presentation.dashboard.DashboardActivity
+import com.vald3nir.diskwater.presentation.dashboard.DashboardFragment
 import com.vald3nir.diskwater.presentation.login.LoginActivity
-import com.vald3nir.diskwater.presentation.orders.OrderActivity
+import com.vald3nir.diskwater.presentation.orders.MyOrdersFragment
+import com.vald3nir.diskwater.presentation.orders.PaymentMethodsFragment
+import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
+import com.vald3nir.diskwater.presentation.product.ProductsFragment
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
 
 class ScreenNavigationImpl : ScreenNavigation {
 
-    private fun <T> startActivity(view: AppView?, classJava: Class<T>, newStack: Boolean = false) {
-        view?.getActivityContext()?.apply {
+    private fun startActivity(activity: Activity, intent: Intent, newStack: Boolean = false) {
+        activity.apply {
             hideKeyboard()
-            val newIntent = Intent(this, classJava)
-            if (newStack) {
-                newIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            startActivity(newIntent)
+            if (newStack) intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+
+    private fun <T> startActivity(
+        appView: AppView?,
+        activityClass: Class<T>,
+        newStack: Boolean = false
+    ) {
+        appView?.getActivityContext()?.apply {
+            val newIntent = Intent(this, activityClass)
+            startActivity(this, newIntent, newStack)
+        }
+    }
+
+    override fun createFragment(fragmentEnum: FragmentEnum): BaseFragment {
+        return when (fragmentEnum) {
+            FragmentEnum.MY_ORDERS -> MyOrdersFragment()
+            FragmentEnum.PAYMENT -> PaymentMethodsFragment()
+            FragmentEnum.DASHBOARD -> DashboardFragment()
+            FragmentEnum.PRODUCTS -> ProductsFragment()
+            FragmentEnum.PRODUCT_DETAIL -> ProductDetailFragment()
+        }
+    }
+
+    override fun redirectToHome(appView: AppView?) {
+        val fragmentEnum = if (isAppClient()) {
+            FragmentEnum.MY_ORDERS
+        } else {
+            FragmentEnum.DASHBOARD
+        }
+        appView?.getActivityContext()?.apply {
+            val intent = Intent(this, ActivityEmpty::class.java)
+            intent.putExtra("FragmentEnum", fragmentEnum)
+            startActivity(this, intent, true)
         }
     }
 
@@ -33,14 +71,5 @@ class ScreenNavigationImpl : ScreenNavigation {
 
     override fun redirectToEditAddress(appView: AppView?) {
         startActivity(appView, AddressActivity::class.java)
-    }
-
-    override fun redirectToHome(appView: AppView?) {
-        val activityClass = if (isAppClient()) {
-            OrderActivity::class.java
-        } else {
-            DashboardActivity::class.java
-        }
-        startActivity(appView, activityClass, newStack = true)
     }
 }
