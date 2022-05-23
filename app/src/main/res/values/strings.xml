@@ -50,4 +50,5 @@
     <string name="make_new_order">Fazer novo pedido</string>
     <string name="back_button">back button</string>
     <string name="menu_button">menu button</string>
+    <string name="list_empty">Lista vazia</string>
 </resources>

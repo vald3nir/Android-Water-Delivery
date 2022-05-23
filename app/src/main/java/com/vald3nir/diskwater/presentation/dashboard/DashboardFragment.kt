@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import com.vald3nir.diskwater.R
+import com.vald3nir.diskwater.common.componets.CustomListAdapterDiffer
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
-import com.vald3nir.diskwater.common.componets.SingleAsyncTypeGenericAdapterDiffer
 import com.vald3nir.diskwater.common.core.BaseFragment
-import com.vald3nir.diskwater.common.extensions.setup
+import com.vald3nir.diskwater.common.extensions.setupLayoutManager
 import com.vald3nir.diskwater.common.extensions.setupToolbar
 import com.vald3nir.diskwater.common.extensions.toMoney
 import com.vald3nir.diskwater.data.dto.OrderDTO
@@ -23,6 +24,18 @@ class DashboardFragment : BaseFragment() {
     lateinit var binding: FragmentDashboardBinding
 
     private val orders = mutableListOf(
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
@@ -46,13 +59,12 @@ class DashboardFragment : BaseFragment() {
     }
 
     private val mainCardAdapter by lazy {
-        val adapter = SingleAsyncTypeGenericAdapterDiffer(
+        val adapter = CustomListAdapterDiffer(
             bindingInflater = OrderItemViewBinding::inflate,
             list = orders,
             itemDiffUtil = OrderDiffUtil,
             ::bindAdapter
         )
-        binding.rcvOrders.adapter = adapter
         adapter
     }
 
@@ -88,12 +100,24 @@ class DashboardFragment : BaseFragment() {
                 menuClickListener = { activity?.let { openMenu(it) } }
             )
 
-            rcvOrders.setup()
+            clcOrdersOpen.apply {
+                setTitle("Pedidos abertos", R.color.green_light)
+                getRecyclerView().apply {
+                    adapter = mainCardAdapter
+                    setupLayoutManager()
+                }
+            }
+
+            clcOrdersClose.apply {
+                setTitle("Pedidos fechados", R.color.red)
+                getRecyclerView().apply {
+                    adapter = mainCardAdapter
+                    setupLayoutManager()
+                }
+            }
             mainCardAdapter.submitList(orders)
         }
     }
-
-
 
     private fun openMenu(context: Context) {
         val dialog = CustomSheetDialog(context, viewModel.getMenuItems())

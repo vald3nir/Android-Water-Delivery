@@ -8,10 +8,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vald3nir.diskwater.common.componets.HeaderNavigationComponent
-
 
 fun Activity.hideKeyboard() {
     hideKeyboard(currentFocus ?: View(this))
@@ -22,7 +22,7 @@ fun Context.hideKeyboard(view: View) {
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
-fun RecyclerView.setup(
+fun RecyclerView.setupLayoutManager(
     layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
         context,
         LinearLayoutManager.VERTICAL,
@@ -30,25 +30,6 @@ fun RecyclerView.setup(
     ),
     itemDecoration: RecyclerView.ItemDecoration? = null
 ) {
-    this.layoutManager = layoutManager
-    if (itemDecoration != null) {
-        while (itemDecorationCount > 0) {
-            removeItemDecorationAt(0)
-        }
-        this.addItemDecoration(itemDecoration)
-    }
-}
-
-fun RecyclerView.setup(
-    adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
-    layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
-        context,
-        LinearLayoutManager.VERTICAL,
-        false
-    ),
-    itemDecoration: RecyclerView.ItemDecoration? = null
-) {
-    this.adapter = adapter
     this.layoutManager = layoutManager
     if (itemDecoration != null) {
         while (itemDecorationCount > 0) {
@@ -70,7 +51,6 @@ fun HeaderNavigationComponent.setupToolbar(
     setBackButtonClickListener { activity?.onBackPressed() }
     setMenuButtonClickListener { menuClickListener?.invoke() }
 }
-
 
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
 

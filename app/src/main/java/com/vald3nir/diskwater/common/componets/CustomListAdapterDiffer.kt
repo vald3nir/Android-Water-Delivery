@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
-class SingleAsyncTypeGenericAdapterDiffer<Item, Binding : ViewBinding>(
+class CustomListAdapterDiffer<Item, Binding : ViewBinding>(
     val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> Binding,
     var list: Collection<Item>,
     itemDiffUtil: DiffUtil.ItemCallback<Item>,
-    val onBind: (Item, Binding, Int, SingleAsyncTypeGenericAdapterDiffer<Item, Binding>) -> Unit
-) : ListAdapter<Item, SingleAsyncTypeGenericAdapterDiffer<Item, Binding>.ViewHolder>(itemDiffUtil) {
+    val onBind: (Item, Binding, Int, CustomListAdapterDiffer<Item, Binding>) -> Unit
+) : ListAdapter<Item, CustomListAdapterDiffer<Item, Binding>.ViewHolder>(itemDiffUtil) {
 
     init {
         submitList(list.toMutableList())
@@ -22,24 +22,10 @@ class SingleAsyncTypeGenericAdapterDiffer<Item, Binding : ViewBinding>(
     private var itemClickListener: ((item: Item, pos: Int) -> Unit)? = null
     private var itemLongClickListener: ((itemView: View, item: Item, pos: Int) -> Unit)? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            bindingInflater.invoke(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ), this
+            bindingInflater.invoke(LayoutInflater.from(parent.context), parent, false), this
         )
-    }
-
-    fun submitListAsync(newList: Collection<Item>, onChanged: (() -> Unit)? = null) {
-        submitList(newList.toMutableList()) {
-            list = currentList
-            onChanged?.invoke()
-        }
     }
 
     fun addItem(item: Item, toStart: Boolean, onAdded: (() -> Unit)? = null) {
@@ -65,13 +51,19 @@ class SingleAsyncTypeGenericAdapterDiffer<Item, Binding : ViewBinding>(
         }
     }
 
+    fun submitListAsync(newList: Collection<Item>, onChanged: (() -> Unit)? = null) {
+        submitList(newList.toMutableList()) {
+            list = currentList
+            onChanged?.invoke()
+        }
+    }
+
     override fun submitList(list: MutableList<Item>?, commitCallback: Runnable?) {
         super.submitList(list) {
             this.list = currentList
             commitCallback?.run()
         }
     }
-
 
     override fun submitList(list: MutableList<Item>?) {
         super.submitList(list)
@@ -81,7 +73,7 @@ class SingleAsyncTypeGenericAdapterDiffer<Item, Binding : ViewBinding>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         currentList[position]?.let { item ->
-            (holder as? SingleAsyncTypeGenericAdapterDiffer<Item, Binding>.ViewHolder)?.bindItem(
+            (holder as? CustomListAdapterDiffer<Item, Binding>.ViewHolder)?.bindItem(
                 item,
                 position
             )
@@ -90,8 +82,9 @@ class SingleAsyncTypeGenericAdapterDiffer<Item, Binding : ViewBinding>(
 
     inner class ViewHolder(
         private val binding: Binding,
-        private val genericAdapter: SingleAsyncTypeGenericAdapterDiffer<Item, Binding>
+        private val genericAdapter: CustomListAdapterDiffer<Item, Binding>
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bindItem(item: Item, position: Int) {
             itemView.setOnClickListener {
                 itemClickListener?.invoke(item, layoutPosition)
