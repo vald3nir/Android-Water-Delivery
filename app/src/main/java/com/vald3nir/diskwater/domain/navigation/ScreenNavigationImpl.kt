@@ -12,6 +12,7 @@ import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardFragment
 import com.vald3nir.diskwater.presentation.login.LoginActivity
 import com.vald3nir.diskwater.presentation.orders.MyOrdersFragment
+import com.vald3nir.diskwater.presentation.orders.OrderDetailFragment
 import com.vald3nir.diskwater.presentation.orders.PaymentMethodsFragment
 import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
 import com.vald3nir.diskwater.presentation.product.ProductsFragment
@@ -42,6 +43,7 @@ class ScreenNavigationImpl : ScreenNavigation {
     override fun createFragment(fragmentEnum: FragmentEnum): BaseFragment {
         return when (fragmentEnum) {
             FragmentEnum.MY_ORDERS -> MyOrdersFragment()
+            FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()
             FragmentEnum.PAYMENT -> PaymentMethodsFragment()
             FragmentEnum.DASHBOARD -> DashboardFragment()
             FragmentEnum.PRODUCTS -> ProductsFragment()

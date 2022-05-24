@@ -3,9 +3,7 @@ package com.vald3nir.diskwater.presentation.dashboard
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
-import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.componets.CustomListComponent
-import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseViewModel
 import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
@@ -21,6 +19,15 @@ class DashboardViewModel(
     val ordersSelected: LiveData<MutableList<OrderDTO>> = _ordersSelected
 
     private val ordersOpened = mutableListOf(
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
@@ -62,14 +69,8 @@ class DashboardViewModel(
             }
         }
 
-    fun getMenuItems(): List<CustomSheetDialog.CustomItemSheet> {
-        return listOf(
-            CustomSheetDialog.CustomItemSheet(
-                icon = R.drawable.ic_update,
-                title = "Atualizar produtos",
-                action = { replaceFragment(FragmentEnum.PRODUCTS) }
-            ),
-        )
+    fun redirectToOrderDetail() {
+        replaceFragment(FragmentEnum.ORDER_DETAIL)
     }
 
 

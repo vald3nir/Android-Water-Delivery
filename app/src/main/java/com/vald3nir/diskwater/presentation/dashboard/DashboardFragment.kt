@@ -1,12 +1,10 @@
 package com.vald3nir.diskwater.presentation.dashboard
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.common.componets.CustomListAdapterDiffer
-import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseFragment
 import com.vald3nir.diskwater.common.extensions.setupLayoutManager
 import com.vald3nir.diskwater.common.extensions.setupToolbar
@@ -66,7 +64,6 @@ class DashboardFragment : BaseFragment() {
                 activity = activity,
                 title = "Minhas entregas",
                 showBackButton = false,
-                menuClickListener = { activity?.let { openMenu(it) } }
             )
             clcOrdersOpen.apply {
                 setTabs(viewModel.tabsList)
@@ -79,15 +76,14 @@ class DashboardFragment : BaseFragment() {
     }
 
     private fun setupObservers() {
+
+        mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+           viewModel.redirectToOrderDetail()
+        })
+
         viewModel.ordersSelected.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it)
             binding.clcOrdersOpen.notifyListSize(it.size)
         }
-    }
-
-    private fun openMenu(context: Context) {
-        val dialog = CustomSheetDialog(context, viewModel.getMenuItems())
-        dialog.setCancelable(true)
-        dialog.show()
     }
 }
