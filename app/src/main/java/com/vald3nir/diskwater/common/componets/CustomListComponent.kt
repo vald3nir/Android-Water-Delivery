@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.vald3nir.diskwater.databinding.CustomListComponentBinding
 
 class CustomListComponent : LinearLayout {
@@ -26,10 +26,13 @@ class CustomListComponent : LinearLayout {
     )
 
     fun setTitle(title: String?, backgroundColor: Int) {
+        setTabs(listOf<String>("Pedidos ativos", "Pedidos Fechados"))
+    }
+
+    fun setTabs(tabs: List<String>) {
         binding.txtTitle.apply {
-            isVisible = true
-            text = title
-            setBackgroundColor(ContextCompat.getColor(context, backgroundColor))
+            tabs.forEach { addTab(newTab().setText(it)) }
+            tabGravity = TabLayout.GRAVITY_FILL
         }
     }
 
