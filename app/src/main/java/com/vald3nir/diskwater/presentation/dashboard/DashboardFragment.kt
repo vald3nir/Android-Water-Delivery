@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.componets.CustomListAdapterDiffer
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseFragment
@@ -23,46 +21,11 @@ class DashboardFragment : BaseFragment() {
     private val viewModel: DashboardViewModel by viewModel()
     lateinit var binding: FragmentDashboardBinding
 
-    private val orders = mutableListOf(
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
-    )
-
-    private object OrderDiffUtil : DiffUtil.ItemCallback<OrderDTO>() {
-        override fun areItemsTheSame(
-            oldItem: OrderDTO,
-            newItem: OrderDTO
-        ): Boolean {
-            return oldItem.uid == newItem.uid
-        }
-
-        override fun areContentsTheSame(
-            oldItem: OrderDTO,
-            newItem: OrderDTO
-        ): Boolean {
-            return oldItem.equals(newItem)
-        }
-    }
-
     private val mainCardAdapter by lazy {
         val adapter = CustomListAdapterDiffer(
             bindingInflater = OrderItemViewBinding::inflate,
-            list = orders,
-            itemDiffUtil = OrderDiffUtil,
+            list = listOf(),
+            itemDiffUtil = viewModel.orderDiffUtil(),
             ::bindAdapter
         )
         adapter
@@ -90,6 +53,12 @@ class DashboardFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupObservers()
+        viewModel.loadOrders()
+    }
+
     private fun initViews() {
         viewModel.appView = appView
         binding.apply {
@@ -99,23 +68,20 @@ class DashboardFragment : BaseFragment() {
                 showBackButton = false,
                 menuClickListener = { activity?.let { openMenu(it) } }
             )
-
             clcOrdersOpen.apply {
-                setTitle("Pedidos abertos", R.color.green_light)
+                setTabs(viewModel.tabsList)
                 getRecyclerView().apply {
                     adapter = mainCardAdapter
                     setupLayoutManager()
                 }
             }
+        }
+    }
 
-            clcOrdersClose.apply {
-                setTitle("Pedidos fechados", R.color.red)
-                getRecyclerView().apply {
-                    adapter = mainCardAdapter
-                    setupLayoutManager()
-                }
-            }
-            mainCardAdapter.submitList(orders)
+    private fun setupObservers() {
+        viewModel.ordersSelected.observe(viewLifecycleOwner) {
+            mainCardAdapter.submitList(it)
+            binding.clcOrdersOpen.notifyListSize(it.size)
         }
     }
 

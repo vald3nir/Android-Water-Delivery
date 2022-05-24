@@ -1,9 +1,13 @@
 package com.vald3nir.diskwater.presentation.dashboard
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.DiffUtil
 import com.vald3nir.diskwater.R
+import com.vald3nir.diskwater.common.componets.CustomListComponent
 import com.vald3nir.diskwater.common.componets.CustomSheetDialog
 import com.vald3nir.diskwater.common.core.BaseViewModel
-import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
@@ -13,30 +17,50 @@ class DashboardViewModel(
     private val authUseCase: AuthUseCase,
 ) : BaseViewModel() {
 
+    private val _ordersSelected = MutableLiveData<MutableList<OrderDTO>>()
+    val ordersSelected: LiveData<MutableList<OrderDTO>> = _ordersSelected
 
-    val products = listOf<ProductDTO>(
-        ProductDTO(
-            name = "Renágua 20L",
-            price = 5.20f
-        ),
-        ProductDTO(
-            name = "Clareza 20L",
-            price = 5.80f
-        ),
-        ProductDTO(
-            name = "Indaiá 20L",
-            price = 11.50f
-        ),
-        ProductDTO(
-            name = "Naturágua 20L",
-            price = 11.90f
-        ),
-        ProductDTO(
-            name = "Neblina 20L",
-            price = 11.90f
-        )
+    private val ordersOpened = mutableListOf(
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f)
+    )
+    private val ordersClosed = mutableListOf(
+        OrderDTO(clientName = "Severino", address = "São Gerardo", total = 00.20f),
+        OrderDTO(clientName = "Severino", address = "São Gerardo", total = 00.20f)
     )
 
+    val tabsList = listOf(
+        CustomListComponent.CustomListTab(title = "Pedidos abertos", onTabSelectedListener = {
+            _ordersSelected.postValue(ordersOpened)
+        }),
+        CustomListComponent.CustomListTab(title = "Fechados", onTabSelectedListener = {
+            _ordersSelected.postValue(ordersClosed)
+        }),
+    )
+
+    fun loadOrders() {
+        _ordersSelected.postValue(ordersOpened)
+    }
+
+    fun orderDiffUtil(): DiffUtil.ItemCallback<OrderDTO> =
+        object : DiffUtil.ItemCallback<OrderDTO>() {
+
+            override fun areItemsTheSame(
+                oldItem: OrderDTO,
+                newItem: OrderDTO
+            ): Boolean {
+                return oldItem.uid == newItem.uid
+            }
+
+            override fun areContentsTheSame(
+                oldItem: OrderDTO,
+                newItem: OrderDTO
+            ): Boolean {
+                return oldItem.equals(newItem)
+            }
+        }
 
     fun getMenuItems(): List<CustomSheetDialog.CustomItemSheet> {
         return listOf(

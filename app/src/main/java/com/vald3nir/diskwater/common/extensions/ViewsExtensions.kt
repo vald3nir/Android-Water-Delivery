@@ -8,9 +8,9 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.vald3nir.diskwater.common.componets.HeaderNavigationComponent
 
 fun Activity.hideKeyboard() {
@@ -71,4 +71,15 @@ fun EditText.actionDoneListener(actionDoneListener: () -> Unit) {
         if (actionId == EditorInfo.IME_ACTION_DONE) actionDoneListener.invoke()
         false
     }
+}
+
+fun TabLayout.actionClickListener(actionClickListener: (position: Int) -> Unit) {
+    addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab) {
+            actionClickListener.invoke(tab.position)
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab) {}
+        override fun onTabReselected(tab: TabLayout.Tab) {}
+    })
 }

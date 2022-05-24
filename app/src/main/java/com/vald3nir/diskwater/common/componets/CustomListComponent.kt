@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
+import com.vald3nir.diskwater.common.extensions.actionClickListener
 import com.vald3nir.diskwater.databinding.CustomListComponentBinding
 
 class CustomListComponent : LinearLayout {
@@ -21,17 +22,20 @@ class CustomListComponent : LinearLayout {
         orientation = VERTICAL
     }
 
+    data class CustomListTab(val title: String, val onTabSelectedListener: () -> Unit)
+
     private val binding = CustomListComponentBinding.inflate(
         LayoutInflater.from(context), this, true
     )
 
-    fun setTitle(title: String?, backgroundColor: Int) {
-        setTabs(listOf<String>("Pedidos ativos", "Pedidos Fechados"))
-    }
-
-    fun setTabs(tabs: List<String>) {
-        binding.txtTitle.apply {
-            tabs.forEach { addTab(newTab().setText(it)) }
+    fun setTabs(tabs: List<CustomListTab>) {
+        binding.tblOptions.apply {
+            tabs.forEach { tab ->
+                addTab(newTab().setText(tab.title))
+            }
+            actionClickListener { position ->
+                tabs[position].onTabSelectedListener.invoke()
+            }
             tabGravity = TabLayout.GRAVITY_FILL
         }
     }
