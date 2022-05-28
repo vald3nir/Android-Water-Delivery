@@ -1,2 +1,2 @@
-# AppAgua
- Aplicativo de entrega de água mineral
+# Entrega de Água
+ Aplicativo de entrega de água mineral e similares
