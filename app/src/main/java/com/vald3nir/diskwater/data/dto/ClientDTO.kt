@@ -1,5 +1,7 @@
 package com.vald3nir.diskwater.data.dto
 
+import com.vald3nir.toolkit.data.BaseDTO
+
 class ClientDTO(
     var name: String? = null,
     var photo: String? = null,

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.vald3nir.toolkit.data.BaseDTO
 
 class CustomListAdapterDiffer<Item, Binding : ViewBinding>(
     val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> Binding,

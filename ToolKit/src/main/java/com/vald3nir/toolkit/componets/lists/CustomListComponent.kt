@@ -1,4 +1,4 @@
-package com.vald3nir.toolkit.componets.customviews
+package com.vald3nir.toolkit.componets.lists
 
 import android.content.Context
 import android.util.AttributeSet
@@ -36,6 +36,7 @@ class CustomListComponent : LinearLayout {
             actionClickListener { position ->
                 tabs[position].onTabSelectedListener.invoke()
             }
+            isVisible = true
             tabGravity = TabLayout.GRAVITY_FILL
         }
     }

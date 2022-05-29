@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:showBackButton="true" />
 
-    <com.vald3nir.toolkit.componets.customviews.CustomListComponent
+    <com.vald3nir.toolkit.componets.lists.CustomListComponent
         android:id="@+id/clc_orders_open"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -1,6 +1,6 @@
 package com.vald3nir.diskwater.common
 
-import com.vald3nir.diskwater.domain.isAppClient
+import com.vald3nir.diskwater.domain.utils.isAppClient
 import com.vald3nir.toolkit.R
 import com.vald3nir.toolkit.core.CoreActivity
 

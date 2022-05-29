@@ -2,11 +2,12 @@ package com.vald3nir.diskwater.data.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.vald3nir.toolkit.data.BaseDTO
 
 @Entity
 class OrderDTO(
     @PrimaryKey(autoGenerate = true)
-    var uid: Int = 1,
+    var key: Int = 1,
 //    @TypeConverters(DateConverter.class)
 //    var itens: List<OrderItemDTO>? = null,
     var clientName: String? = null,

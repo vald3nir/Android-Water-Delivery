@@ -1,4 +1,4 @@
-package com.vald3nir.diskwater.domain
+package com.vald3nir.diskwater.domain.utils
 
 import com.vald3nir.diskwater.BuildConfig
 

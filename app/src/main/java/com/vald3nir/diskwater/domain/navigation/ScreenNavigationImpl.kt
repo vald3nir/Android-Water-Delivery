@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import com.vald3nir.diskwater.common.ActivityEmpty
 import com.vald3nir.diskwater.common.ActivityEmpty.Companion.FRAGMENT_ENUM_PARAM
-import com.vald3nir.diskwater.domain.isAppClient
+import com.vald3nir.diskwater.domain.utils.isAppClient
 import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardFragment
 import com.vald3nir.diskwater.presentation.login.LoginActivity
