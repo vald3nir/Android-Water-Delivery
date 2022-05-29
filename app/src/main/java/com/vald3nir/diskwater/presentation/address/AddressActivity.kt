@@ -3,13 +3,13 @@ package com.vald3nir.diskwater.presentation.address
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.vald3nir.diskwater.R
-import com.vald3nir.diskwater.common.core.BaseActivity
-import com.vald3nir.diskwater.common.extensions.afterTextChanged
-import com.vald3nir.diskwater.common.extensions.hideKeyboard
-import com.vald3nir.diskwater.common.extensions.setupToolbar
+import com.vald3nir.diskwater.common.BaseActivity
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.databinding.ActivityAddressBinding
+import com.vald3nir.toolkit.extensions.afterTextChanged
+import com.vald3nir.toolkit.extensions.hideKeyboard
+import com.vald3nir.toolkit.extensions.setupToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddressActivity : BaseActivity() {

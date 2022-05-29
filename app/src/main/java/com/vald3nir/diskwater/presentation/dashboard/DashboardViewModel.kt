@@ -3,12 +3,12 @@ package com.vald3nir.diskwater.presentation.dashboard
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
-import com.vald3nir.diskwater.common.componets.CustomListComponent
-import com.vald3nir.diskwater.common.core.BaseViewModel
+import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
+import com.vald3nir.toolkit.componets.customviews.CustomListComponent
 
 class DashboardViewModel(
     private val screenNavigation: ScreenNavigation,

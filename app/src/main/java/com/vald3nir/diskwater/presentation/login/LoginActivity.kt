@@ -3,11 +3,11 @@ package com.vald3nir.diskwater.presentation.login
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import com.vald3nir.diskwater.common.core.BaseActivity
-import com.vald3nir.diskwater.common.extensions.actionDoneListener
-import com.vald3nir.diskwater.common.extensions.afterTextChanged
-import com.vald3nir.diskwater.common.extensions.format
+import com.vald3nir.diskwater.common.BaseActivity
 import com.vald3nir.diskwater.databinding.ActivityLoginBinding
+import com.vald3nir.toolkit.extensions.actionDoneListener
+import com.vald3nir.toolkit.extensions.afterTextChanged
+import com.vald3nir.toolkit.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity() {

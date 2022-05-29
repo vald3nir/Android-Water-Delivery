@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.diskwater.common.componets.CustomListAdapterDiffer
-import com.vald3nir.diskwater.common.core.BaseFragment
-import com.vald3nir.diskwater.common.extensions.setupLayoutManager
-import com.vald3nir.diskwater.common.extensions.setupToolbar
-import com.vald3nir.diskwater.common.extensions.toMoney
+import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.core.CoreFragment
+import com.vald3nir.toolkit.extensions.setupLayoutManager
+import com.vald3nir.toolkit.extensions.setupToolbar
+import com.vald3nir.toolkit.extensions.toMoney
 import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.databinding.FragmentDashboardBinding
 import com.vald3nir.diskwater.databinding.OrderItemViewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DashboardFragment : BaseFragment() {
+class DashboardFragment : CoreFragment() {
 
     private val viewModel: DashboardViewModel by viewModel()
     lateinit var binding: FragmentDashboardBinding

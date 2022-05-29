@@ -2,12 +2,9 @@ package com.vald3nir.diskwater.domain.navigation
 
 import android.app.Activity
 import android.content.Intent
-import com.vald3nir.diskwater.common.core.ActivityEmpty
-import com.vald3nir.diskwater.common.core.ActivityEmpty.Companion.FRAGMENT_ENUM_PARAM
-import com.vald3nir.diskwater.common.core.AppView
-import com.vald3nir.diskwater.common.core.BaseFragment
-import com.vald3nir.diskwater.common.extensions.hideKeyboard
-import com.vald3nir.diskwater.common.utils.isAppClient
+import com.vald3nir.diskwater.common.ActivityEmpty
+import com.vald3nir.diskwater.common.ActivityEmpty.Companion.FRAGMENT_ENUM_PARAM
+import com.vald3nir.diskwater.domain.isAppClient
 import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardFragment
 import com.vald3nir.diskwater.presentation.login.LoginActivity
@@ -17,6 +14,9 @@ import com.vald3nir.diskwater.presentation.orders.PaymentMethodsFragment
 import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
 import com.vald3nir.diskwater.presentation.product.ProductsFragment
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
+import com.vald3nir.toolkit.core.AppView
+import com.vald3nir.toolkit.core.CoreFragment
+import com.vald3nir.toolkit.extensions.hideKeyboard
 
 class ScreenNavigationImpl : ScreenNavigation {
 
@@ -40,7 +40,7 @@ class ScreenNavigationImpl : ScreenNavigation {
         }
     }
 
-    override fun createFragment(fragmentEnum: FragmentEnum): BaseFragment {
+    override fun createFragment(fragmentEnum: FragmentEnum): CoreFragment {
         return when (fragmentEnum) {
             FragmentEnum.MY_ORDERS -> MyOrdersFragment()
             FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()

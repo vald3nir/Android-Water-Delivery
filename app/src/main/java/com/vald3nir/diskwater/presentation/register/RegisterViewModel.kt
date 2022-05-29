@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.diskwater.R
-import com.vald3nir.diskwater.common.core.BaseViewModel
-import com.vald3nir.diskwater.common.utils.isAppSalesman
-import com.vald3nir.diskwater.common.validations.isEmailValid
-import com.vald3nir.diskwater.common.validations.isPasswordValid
+import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.form.DataUserInputForm
+import com.vald3nir.diskwater.domain.isAppSalesman
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
+import com.vald3nir.toolkit.validations.isEmailValid
+import com.vald3nir.toolkit.validations.isPasswordValid
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(

@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiskWater">
         <activity
-            android:name=".common.core.ActivityEmpty"
+            android:name=".common.ActivityEmpty"
             android:exported="false" />
         <activity
             android:name=".presentation.address.AddressActivity"

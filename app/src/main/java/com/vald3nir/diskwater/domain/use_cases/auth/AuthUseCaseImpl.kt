@@ -1,6 +1,6 @@
 package com.vald3nir.diskwater.domain.use_cases.auth
 
-import com.vald3nir.diskwater.common.core.AppView
+import com.vald3nir.toolkit.core.AppView
 import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepository
 

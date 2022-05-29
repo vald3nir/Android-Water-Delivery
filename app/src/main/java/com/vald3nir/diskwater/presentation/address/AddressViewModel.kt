@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.diskwater.R
-import com.vald3nir.diskwater.common.core.BaseViewModel
+import com.vald3nir.toolkit.core.CoreViewModel
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class AddressViewModel(
     private val addressUseCase: AddressUseCase,
-) : BaseViewModel() {
+) : CoreViewModel() {
 
     private val _addressInputForm = MutableLiveData<AddressInputForm>()
     val addressInputForm: LiveData<AddressInputForm> = _addressInputForm

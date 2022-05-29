@@ -1,7 +1,7 @@
 package com.vald3nir.diskwater.data.repository.local
 
 import android.content.Context
-import com.vald3nir.diskwater.common.extensions.toDTO
+import com.vald3nir.toolkit.extensions.toDTO
 import com.vald3nir.diskwater.data.dto.LoginDTO
 
 class LocalPreferencesRepositoryImpl(context: Context) : LocalRepository(context),

@@ -1,10 +1,10 @@
 package com.vald3nir.diskwater.presentation.product
 
-import com.vald3nir.diskwater.common.core.BaseViewModel
+import com.vald3nir.toolkit.core.CoreViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
 
 class ProductViewModel(
-) : BaseViewModel() {
+) : CoreViewModel() {
 
     val products = listOf<ProductDTO>(
         ProductDTO(

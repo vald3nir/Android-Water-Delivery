@@ -1,6 +1,6 @@
 package com.vald3nir.diskwater.domain.use_cases.register
 
-import com.vald3nir.diskwater.common.core.AppView
+import com.vald3nir.toolkit.core.AppView
 
 interface RegisterUseCase {
 
