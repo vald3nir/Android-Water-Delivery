@@ -5,7 +5,7 @@ import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.toolkit.R
 import com.vald3nir.toolkit.core.CoreActivity
-import com.vald3nir.toolkit.core.CoreFragment
+import com.vald3nir.toolkit.data.BaseDTO
 import com.vald3nir.toolkit.databinding.ActivityEmptyBinding
 import com.vald3nir.toolkit.extensions.hideKeyboard
 import org.koin.android.ext.android.inject
@@ -26,11 +26,12 @@ class ActivityEmpty : CoreActivity() {
         loadFragment(intent.getSerializableExtra(FRAGMENT_ENUM_PARAM) as FragmentEnum)
     }
 
-    fun loadFragment(fragmentEnum: FragmentEnum) {
+    fun loadFragment(fragmentEnum: FragmentEnum, baseDTO: BaseDTO? = null) {
         hideKeyboard()
 
-        val fragment: CoreFragment = screenNavigation.createFragment(fragmentEnum)
+        val fragment = screenNavigation.createFragment(fragmentEnum)
         fragment.let { it.appView = this }
+        fragment.putExtraDTO(baseDTO)
 
         val fragmentName = fragment.let { it::class.getFullName() }
         val fragmentTransaction = supportFragmentManager.beginTransaction()

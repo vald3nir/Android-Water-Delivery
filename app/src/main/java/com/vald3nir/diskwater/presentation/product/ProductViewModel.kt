@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.toolkit.componets.lists.CustomListComponent
 
 class ProductViewModel() : BaseViewModel() {
 
@@ -36,4 +37,7 @@ class ProductViewModel() : BaseViewModel() {
             )
         )
     }
+
+    val tabsList =
+        listOf(CustomListComponent.CustomListTab(title = "Águas Minerais", onTabSelectedListener = { }))
 }

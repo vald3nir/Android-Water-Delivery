@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.toolkit.core.CoreFragment
+import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.databinding.FragmentMyOrdersBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MyOrdersFragment : CoreFragment() {
+class MyOrdersFragment : BaseFragment() {
 
     private val viewModel: OrderViewModel by viewModel()
     lateinit var binding: FragmentMyOrdersBinding

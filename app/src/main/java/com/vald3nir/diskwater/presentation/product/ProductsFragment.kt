@@ -8,6 +8,7 @@ import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.databinding.FragmentProductDetailBinding
 import com.vald3nir.diskwater.databinding.ProductItemViewBinding
+import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
 import com.vald3nir.toolkit.data.BaseDTO
@@ -63,6 +64,7 @@ class ProductsFragment : BaseFragment() {
                 showBackButton = true,
             )
             clcOrdersOpen.apply {
+                setTabs(viewModel.tabsList)
                 getRecyclerView().apply {
                     adapter = mainCardAdapter
                     setupLayoutManager()
@@ -83,6 +85,7 @@ class ProductsFragment : BaseFragment() {
         }
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL,  item)
         })
 
         viewModel.products.observe(viewLifecycleOwner) {

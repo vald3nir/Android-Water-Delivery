@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vald3nir.diskwater.common.BaseFragment
+import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.toolkit.core.CoreFragment
 import com.vald3nir.diskwater.databinding.FragmentProductsBinding
 import com.vald3nir.diskwater.presentation.orders.OrderViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductDetailFragment : CoreFragment() {
+class ProductDetailFragment : BaseFragment() {
 
     private val viewModel: OrderViewModel by viewModel()
     lateinit var binding: FragmentProductsBinding
@@ -24,6 +26,10 @@ class ProductDetailFragment : CoreFragment() {
     }
 
     private fun initViews() {
+
+        val productDTO = loadExtraDTO() as ProductDTO
+        println(productDTO)
+
         viewModel.appView = appView
         binding.apply {
 
