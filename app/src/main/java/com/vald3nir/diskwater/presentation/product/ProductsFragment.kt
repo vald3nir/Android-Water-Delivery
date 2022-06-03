@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.ProductDTO
-import com.vald3nir.diskwater.databinding.FragmentProductDetailBinding
+import com.vald3nir.diskwater.databinding.FragmentProductsBinding
 import com.vald3nir.diskwater.databinding.ProductItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductsFragment : BaseFragment() {
 
     private val viewModel: ProductViewModel by viewModel()
-    lateinit var binding: FragmentProductDetailBinding
+    lateinit var binding: FragmentProductsBinding
 
     private val mainCardAdapter by lazy {
         val adapter = CustomListAdapterDiffer(
@@ -50,7 +50,7 @@ class ProductsFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductDetailBinding.inflate(inflater, container, false)
+        binding = FragmentProductsBinding.inflate(inflater, container, false)
         initViews()
         return binding.root
     }
@@ -85,7 +85,7 @@ class ProductsFragment : BaseFragment() {
         }
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
-            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL,  item)
+            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL, item)
         })
 
         viewModel.products.observe(viewLifecycleOwner) {

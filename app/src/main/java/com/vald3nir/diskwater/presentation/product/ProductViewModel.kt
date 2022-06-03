@@ -2,6 +2,7 @@ package com.vald3nir.diskwater.presentation.product
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.toolkit.componets.lists.CustomListComponent
@@ -10,6 +11,7 @@ class ProductViewModel() : BaseViewModel() {
 
     private val _products = MutableLiveData<MutableList<ProductDTO>>()
     val products: LiveData<MutableList<ProductDTO>> = _products
+    var productDTO: ProductDTO? = null
 
     fun loadProducts() {
         _products.postValue(
@@ -38,6 +40,18 @@ class ProductViewModel() : BaseViewModel() {
         )
     }
 
+    fun loadData(baseFragment: BaseFragment) {
+        this.productDTO = baseFragment.loadExtraDTO() as ProductDTO
+    }
+
+    fun clickSaveButton() {
+
+    }
+
     val tabsList =
-        listOf(CustomListComponent.CustomListTab(title = "Águas Minerais", onTabSelectedListener = { }))
+        listOf(
+            CustomListComponent.CustomListTab(
+                title = "Águas Minerais",
+                onTabSelectedListener = { })
+        )
 }
