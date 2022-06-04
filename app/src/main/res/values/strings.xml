@@ -56,4 +56,5 @@
     <string name="name">Nome</string>
     <string name="add_product">Cadastrar Produto</string>
     <string name="update_product">Alterar Produto</string>
+    <string name="unnamed_product">Produto sem nome informado!</string>
 </resources>

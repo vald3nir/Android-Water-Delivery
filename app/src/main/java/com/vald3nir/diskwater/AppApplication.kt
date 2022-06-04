@@ -55,7 +55,7 @@ class AppApplication : Application() {
             factory<AddressRepository> { AddressRepositoryImpl() }
             factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
 
-            factory<ProductUseCase> { ProductUseCaseImpl() }
+            factory<ProductUseCase> { ProductUseCaseImpl(get()) }
             factory<ProductRepository> { ProductRepositoryImpl() }
 
             factory<AuthRepository> { AuthRepositoryImpl(get()) }
@@ -75,7 +75,7 @@ class AppApplication : Application() {
         viewModel { RegisterViewModel(get(), get()) }
         viewModel { AddressViewModel(get()) }
         viewModel { DashboardViewModel(get(), get()) }
-        viewModel { ProductViewModel() }
+        viewModel { ProductViewModel(get()) }
         viewModel { OrderViewModel() }
     }
 

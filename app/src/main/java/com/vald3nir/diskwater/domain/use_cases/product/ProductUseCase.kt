@@ -1,4 +1,14 @@
 package com.vald3nir.diskwater.domain.use_cases.product
 
-interface ProductUseCase  {
+import android.graphics.Bitmap
+
+interface ProductUseCase {
+
+    suspend fun uploadProductImage(
+        bitmap: Bitmap,
+        productName: String,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit,
+    )
+
 }
