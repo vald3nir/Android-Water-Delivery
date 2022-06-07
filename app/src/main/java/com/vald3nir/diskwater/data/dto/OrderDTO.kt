@@ -2,7 +2,7 @@ package com.vald3nir.diskwater.data.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.vald3nir.toolkit.data.BaseDTO
+import com.vald3nir.toolkit.data.dto.BaseDTO
 
 @Entity
 class OrderDTO(

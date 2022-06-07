@@ -2,7 +2,7 @@ package com.vald3nir.diskwater.common
 
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.toolkit.core.CoreViewModel
-import com.vald3nir.toolkit.data.BaseDTO
+import com.vald3nir.toolkit.data.dto.BaseDTO
 
 open class BaseViewModel : CoreViewModel() {
 

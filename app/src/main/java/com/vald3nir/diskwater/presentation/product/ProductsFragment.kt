@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.databinding.FragmentProductsBinding
@@ -11,8 +12,8 @@ import com.vald3nir.diskwater.databinding.ProductItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
-import com.vald3nir.toolkit.data.BaseDTO
-import com.vald3nir.toolkit.data.baseDiffUtil
+import com.vald3nir.toolkit.data.dto.BaseDTO
+import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.extensions.setupLayoutManager
 import com.vald3nir.toolkit.extensions.setupToolbar
 import com.vald3nir.toolkit.extensions.toMoney
@@ -34,16 +35,25 @@ class ProductsFragment : BaseFragment() {
     }
 
     private fun bindAdapter(
-        procuct: BaseDTO,
+        baseDTO: BaseDTO,
         itemViewBinding: ProductItemViewBinding,
         position: Int,
         any: Any
     ) {
-        if (procuct is ProductDTO)
+        if (baseDTO is ProductDTO) {
             itemViewBinding.apply {
-                txtName.text = procuct.name
-                txtPrice.text = procuct.price.toMoney()
+
+                txtName.text = baseDTO.name
+                txtPrice.text = baseDTO.price.toMoney()
+
+                imvPhoto.apply {
+                    viewModel.loadProductImage(
+                        onSuccess = { loadImage(it, R.drawable.generic_water) },
+                        onError = { loadImage(R.drawable.generic_water) }
+                    )
+                }
             }
+        }
     }
 
     override fun onCreateView(

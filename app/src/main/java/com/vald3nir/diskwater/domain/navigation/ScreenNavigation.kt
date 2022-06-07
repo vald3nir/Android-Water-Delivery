@@ -3,7 +3,7 @@ package com.vald3nir.diskwater.domain.navigation
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.toolkit.core.AppView
 import com.vald3nir.toolkit.core.CoreFragment
-import com.vald3nir.toolkit.data.BaseDTO
+import com.vald3nir.toolkit.data.dto.BaseDTO
 
 interface ScreenNavigation {
     fun createFragment(fragmentEnum: FragmentEnum): BaseFragment

@@ -52,7 +52,7 @@
     <string name="list_empty">Lista vazia</string>
     <string name="generic_water">generic water</string>
     <string name="change_image">Mudar imagem</string>
-    <string name="price">Preço</string>
+    <string name="price">Preço (R$)</string>
     <string name="name">Nome</string>
     <string name="add_product">Cadastrar Produto</string>
     <string name="update_product">Alterar Produto</string>

@@ -16,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:showBackButton="true" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <com.vald3nir.toolkit.componets.customviews.CustomImageView
+        android:id="@+id/imv_photo"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="30dp"
@@ -36,7 +36,7 @@
         android:text="@string/change_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imv_photo" />
 
 
     <com.google.android.material.textfield.TextInputLayout

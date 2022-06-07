@@ -3,7 +3,7 @@ package com.vald3nir.diskwater.data.dto
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.vald3nir.toolkit.data.BaseDTO
+import com.vald3nir.toolkit.data.dto.BaseDTO
 
 @Entity
 class AddressDTO(

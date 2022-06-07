@@ -1,20 +1,19 @@
 package com.vald3nir.diskwater.data.repository.remote.product
 
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.toolkit.data.repository.updateData
 
 class ProductRepositoryImpl : ProductRepository {
 
-    override suspend fun uploadProductImage(
-        data: ByteArray,
-        imagePath: String,
+    override suspend fun insertNewProduct(
+        product: ProductDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        val storageRef: StorageReference = FirebaseStorage.getInstance().reference
-        val mountainsRef = storageRef.child(imagePath)
-        val uploadTask = mountainsRef.putBytes(data)
-        uploadTask.addOnFailureListener { onError.invoke(it) }
-            .addOnSuccessListener { onSuccess.invoke() }
+        updateData(
+            collectionPath = "produtos",
+            baseDTO = product,
+            onSuccess, onError
+        )
     }
 }

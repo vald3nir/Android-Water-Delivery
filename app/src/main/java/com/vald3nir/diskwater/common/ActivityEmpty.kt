@@ -5,7 +5,7 @@ import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.toolkit.R
 import com.vald3nir.toolkit.core.CoreActivity
-import com.vald3nir.toolkit.data.BaseDTO
+import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.databinding.ActivityEmptyBinding
 import com.vald3nir.toolkit.extensions.hideKeyboard
 import org.koin.android.ext.android.inject

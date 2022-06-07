@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.vald3nir.toolkit.componets.customviews.CustomImageView
+            android:id="@+id/imv_photo"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:contentDescription="@string/generic_water"
@@ -31,7 +31,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imv_photo"
             tools:text="Água Mineral" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imv_photo"
             tools:text="R$ 5,90" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
