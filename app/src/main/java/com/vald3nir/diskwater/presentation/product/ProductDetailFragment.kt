@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.databinding.FragmentProductDetailBinding
-import com.vald3nir.toolkit.extensions.afterTextChanged
 import com.vald3nir.toolkit.extensions.setupToolbar
 import com.vald3nir.toolkit.extensions.toFloatValue
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,14 +39,6 @@ class ProductDetailFragment : BaseFragment() {
         viewModel.appView = appView
         binding.apply {
 
-            toolbar.setupToolbar(
-                activity = activity,
-                showBackButton = true,
-                title = getString(
-                    if (viewModel.flagCreateProduct) R.string.add_product else R.string.update_product
-                )
-            )
-
             imvPhoto.apply {
                 viewModel.loadProductImage(
                     onSuccess = { loadImage(it, R.drawable.generic_water) },
@@ -55,33 +46,44 @@ class ProductDetailFragment : BaseFragment() {
                 )
             }
 
-            txtChangeImage.setOnClickListener { takePhoto() }
-            edtName.setText(viewModel.productDTO?.name)
-            edtPrice.setText(viewModel.productDTO?.price.toString())
-
             btnSaveProducts.apply {
-                setTitle(getString(if (viewModel.productDTO == null) R.string.register else R.string.update))
                 setTitleColor(R.color.white)
                 setBackgroundDrawable(R.drawable.button_white_layout)
             }
         }
     }
 
+
     @SuppressLint("SetTextI18n")
     private fun setupObservers() {
+
         binding.apply {
             imvPhoto.setOnClickListener { takePhoto() }
-            btnSaveProducts.setOnClickListener { insertNewProduct() }
-            viewModel.productDTO.apply {
-                edtName.afterTextChanged(afterTextChanged = { this?.name = it })
-                edtPrice.afterTextChanged(afterTextChanged = { this?.price = it.toFloatValue() })
+            txtChangeImage.setOnClickListener { takePhoto() }
+            btnSaveProducts.setOnClickListener { updateProduct() }
+        }
+
+        viewModel.product.observe(viewLifecycleOwner) {
+            binding.apply {
+                edtName.setText(it.name)
+                edtPrice.setText(it.price.toString())
+                btnSaveProducts.setTitle(getString(if (it.isNew) R.string.register else R.string.update))
+                toolbar.setupToolbar(
+                    activity = activity,
+                    showBackButton = true,
+                    title = getString(
+                        if (it.isNew) R.string.add_product else R.string.update_product
+                    )
+                )
             }
         }
     }
 
-    private fun FragmentProductDetailBinding.insertNewProduct() {
+    private fun FragmentProductDetailBinding.updateProduct() {
         btnSaveProducts.showLoading(true)
-        viewModel.insertNewProduct(
+        viewModel.updateProduct(
+            name = edtName.text.toString(),
+            price = edtPrice.text.toString().toFloatValue(),
             onSuccess = {
                 btnSaveProducts.showLoading(false)
                 activity?.onBackPressed()

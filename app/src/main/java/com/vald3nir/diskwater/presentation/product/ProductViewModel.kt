@@ -19,56 +19,74 @@ class ProductViewModel(
 
     private val _products = MutableLiveData<MutableList<ProductDTO>>()
     val products: LiveData<MutableList<ProductDTO>> = _products
-    var productDTO: ProductDTO? = null
-    var flagCreateProduct: Boolean = false
+
+    private val _product = MutableLiveData<ProductDTO>()
+    val product: LiveData<ProductDTO> = _product
 
     fun loadProducts() {
-        _products.postValue(
-            mutableListOf(
-                ProductDTO(
-                    name = "Renágua 20L",
-                    price = 5.20f
-                ),
-                ProductDTO(
-                    name = "Clareza 20L",
-                    price = 5.50f
-                ),
-                ProductDTO(
-                    name = "Indaiá 20L",
-                    price = 11.50f
-                ),
-                ProductDTO(
-                    name = "Naturágua 20L",
-                    price = 11.90f
-                ),
-                ProductDTO(
-                    name = "Neblina 20L",
-                    price = 11.90f
-                )
-            )
-        )
+        viewModelScope.launch {
+            productUseCase.listProducts(onSuccess = {
+                _products.postValue(it)
+            }, onError = {
+                _products.postValue(mutableListOf())
+            })
+        }
+//        _products.postValue(
+//            mutableListOf(
+//                ProductDTO(
+//                    name = "Renágua 20L",
+//                    price = 5.20f
+//                ),
+//                ProductDTO(
+//                    name = "Clareza 20L",
+//                    price = 5.50f
+//                ),
+//                ProductDTO(
+//                    name = "Indaiá 20L",
+//                    price = 11.50f
+//                ),
+//                ProductDTO(
+//                    name = "Naturágua 20L",
+//                    price = 11.90f
+//                ),
+//                ProductDTO(
+//                    name = "Neblina 20L",
+//                    price = 11.90f
+//                )
+//            )
+//        )
     }
 
     fun loadData(baseFragment: BaseFragment) {
-        productDTO = baseFragment.loadExtraDTO() as ProductDTO
+        var productDTO = baseFragment.loadExtraDTO() as ProductDTO?
         if (productDTO == null) {
             productDTO = ProductDTO()
-            flagCreateProduct = true
         } else {
-            flagCreateProduct = false
+            productDTO.isNew = false
         }
+        productDTO.let { _product.postValue(it) }
     }
 
-    fun insertNewProduct(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit) {
+    fun updateProduct(
+        name: String,
+        price: Float,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit
+    ) {
         viewModelScope.launch {
-            productUseCase.insertNewProduct(productDTO, onSuccess, onError)
+            _product.value.apply {
+                this?.isNew = false
+                this?.name = name
+                this?.price = price
+                productUseCase.updateProduct(this, onSuccess, onError)
+            }
         }
     }
 
 
     fun updateProductImage(bitmap: Bitmap, onSuccess: () -> Unit) {
         viewModelScope.launch {
-            productDTO?.imageBase64 = bitmap.toBase64()
+            _product.value?.imageBase64 = bitmap.toBase64()
             onSuccess.invoke()
         }
     }
@@ -85,10 +103,5 @@ class ProductViewModel(
 //        }
     }
 
-    val tabsList =
-        listOf(
-            CustomListComponent.CustomListTab(
-                title = "Águas Minerais",
-                onTabSelectedListener = { })
-        )
+
 }

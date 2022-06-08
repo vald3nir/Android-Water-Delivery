@@ -7,7 +7,7 @@ class ProductUseCaseImpl(
     private val repository: ProductRepository,
 ) : ProductUseCase {
 
-    override suspend fun insertNewProduct(
+    override suspend fun updateProduct(
         product: ProductDTO?,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
@@ -15,14 +15,14 @@ class ProductUseCaseImpl(
         if (product == null) {
             onError.invoke(Exception("Produto não preenchido"))
         } else {
-            product.let { repository.insertNewProduct(it, onSuccess, onError) }
+            product.let { repository.updateProduct(it, onSuccess, onError) }
         }
     }
 
-    override suspend fun updateProduct(
-        product: ProductDTO,
-        onSuccess: () -> Unit,
+    override suspend fun listProducts(
+        onSuccess: (MutableList<ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
+        repository.listProducts(onSuccess, onError)
     }
 }

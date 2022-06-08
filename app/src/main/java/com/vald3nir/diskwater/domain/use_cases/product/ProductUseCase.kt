@@ -4,15 +4,14 @@ import com.vald3nir.diskwater.data.dto.ProductDTO
 
 interface ProductUseCase {
 
-    suspend fun insertNewProduct(
+    suspend fun updateProduct(
         product: ProductDTO?,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun updateProduct(
-        product: ProductDTO,
-        onSuccess: () -> Unit,
+    suspend fun listProducts(
+        onSuccess: (MutableList<ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit,
     )
 }

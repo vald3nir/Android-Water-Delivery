@@ -12,6 +12,7 @@ import com.vald3nir.diskwater.databinding.ProductItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.componets.lists.CustomListComponent
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.extensions.setupLayoutManager
@@ -70,15 +71,24 @@ class ProductsFragment : BaseFragment() {
         binding.apply {
             toolbar.setupToolbar(
                 activity = activity,
-                title = "Meus Produtos",
+                title = getString(R.string.my_products),
                 showBackButton = true,
             )
             clcOrdersOpen.apply {
-                setTabs(viewModel.tabsList)
+                setTab(
+                    CustomListComponent.CustomListTab(
+                        title = getString(R.string.mineral_waters)
+                    )
+                )
                 getRecyclerView().apply {
                     adapter = mainCardAdapter
                     setupLayoutManager()
                 }
+            }
+            btnAddProducts.apply {
+                setTitle(getString(R.string.add_product))
+                setTitleColor(R.color.white)
+                setBackgroundDrawable(R.drawable.button_white_layout)
             }
         }
     }
@@ -86,12 +96,18 @@ class ProductsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        loadProducts()
+    }
+
+    private fun loadProducts() {
+        binding.btnAddProducts.showLoading(true)
         viewModel.loadProducts()
     }
 
     private fun setupObservers() {
 
-        binding.btnSaveProducts.setOnClickListener {
+        binding.btnAddProducts.setOnClickListener {
+            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL)
         }
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
@@ -101,6 +117,7 @@ class ProductsFragment : BaseFragment() {
         viewModel.products.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it.toMutableBaseList())
             binding.clcOrdersOpen.notifyListSize(it.size)
+            binding.btnAddProducts.showLoading(false)
         }
     }
 }
