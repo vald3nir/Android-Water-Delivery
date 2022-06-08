@@ -3,33 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background_gradient">
+    android:background="@drawable/app_background_gradient"
+    android:padding="5dp">
 
-
-    <TextView
-        android:id="@+id/txt_last_orders"
-        style="@style/TittleStyle"
-        android:text="@string/my_last_orders"
+    <com.vald3nir.toolkit.componets.HeaderNavigationComponent
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:showBackButton="false" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_my_orders"
+    <com.vald3nir.toolkit.componets.lists.CustomListComponent
+        android:id="@+id/clc_my_orders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_new_order"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_last_orders" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.vald3nir.toolkit.componets.customviews.CustomButton
         android:id="@+id/btn_new_order"
         style="@style/ButtonStyle"
-        android:text="@string/make_new_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
