@@ -29,19 +29,20 @@ class LoginViewModel(
 
     fun loadLoginData() {
         viewModelScope.launch {
-            authUseCase.loadLoginData(
-                onSuccess = { _loginDTO.postValue(it) },
-                onError = { showMessage(it?.message) }
-            )
+            _loginDTO.postValue(authUseCase.loadLoginData(requireActivityContext()))
         }
     }
 
     fun register() {
-        screenNavigation.redirectToRegister(appView)
+        screenNavigation.redirectToRegister(requireActivityContext())
     }
 
-    fun login(email: String, password: String, rememberLogin: Boolean) {
-//        showLoading(true)
+    fun login(
+        email: String,
+        password: String,
+        rememberLogin: Boolean,
+        onError: (e: Exception?) -> Unit
+    ) {
         viewModelScope.launch {
             if (checkLoginData(email, password)) {
 
@@ -51,11 +52,12 @@ class LoginViewModel(
                     rememberLogin = rememberLogin
                 )
 
-                authUseCase.login(appView = appView, loginDTO = loginDTO,
-                    onSuccess = { saveLoginData(loginDTO) },
+                authUseCase.login(activity = requireActivityContext(), loginDTO = loginDTO,
+                    onSuccess = {
+                        saveLoginData(loginDTO)
+                    },
                     onError = {
-                        showLoading(false)
-                        showMessage(it?.message)
+                        onError.invoke(it)
                     }
                 )
             }
@@ -64,9 +66,8 @@ class LoginViewModel(
 
     private fun saveLoginData(loginDTO: LoginDTO) {
         viewModelScope.launch {
-            authUseCase.saveLoginData(
-                loginDTO,
-                onSuccess = { screenNavigation.redirectToHome(appView) })
+            authUseCase.saveLoginData(requireActivityContext(), loginDTO)
+            screenNavigation.redirectToHome(requireActivityContext())
         }
     }
 

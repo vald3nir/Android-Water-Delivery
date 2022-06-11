@@ -21,16 +21,20 @@ class RegisterViewModel(
     private val _registerForm = MutableLiveData<DataUserInputForm>()
     val registerFormState: LiveData<DataUserInputForm> = _registerForm
 
-    fun registerNewUser(email: String, password: String, confirmPassword: String) {
+    fun registerNewUser(
+        email: String,
+        password: String,
+        confirmPassword: String,
+        onError: (e: Exception?) -> Unit
+    ) {
         if (checkRegisterData(email, password, confirmPassword)) {
-            appView?.showLoading(true)
             viewModelScope.launch {
                 registerUseCase.registerNewUser(
-                    appView = appView,
+                    activity = requireActivityContext(),
                     email = email,
                     password = password,
                     onSuccess = { registerUserType() },
-                    onError = { showError(it) }
+                    onError = { onError.invoke(it) }
                 )
             }
         }
@@ -39,7 +43,7 @@ class RegisterViewModel(
     private fun registerUserType() {
         viewModelScope.launch {
             registerUseCase.registerUserType(
-                appView = appView,
+                activity = requireActivityContext(),
                 userID = authUseCase.getUserID().orEmpty(),
                 isSalesman = isAppSalesman(),
                 onSuccess = { finish() },
@@ -67,7 +71,12 @@ class RegisterViewModel(
             dataUserInputForm.passwordError = getString(R.string.invalid_password)
         }
 
-        if (password != confirmPassword) {
+        if (!isPasswordValid(confirmPassword)) {
+            isValid = false
+            dataUserInputForm.confirmPasswordError = getString(R.string.invalid_password)
+        }
+
+        if (confirmPassword.isNotBlank() && password != confirmPassword) {
             isValid = false
             dataUserInputForm.confirmPasswordError = getString(R.string.passwords_not_equals)
         }
