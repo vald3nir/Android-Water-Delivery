@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.common.BaseFragment
-import com.vald3nir.toolkit.core.CoreFragment
 import com.vald3nir.diskwater.databinding.FragmentPaymentMethodsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -13,6 +12,10 @@ class PaymentMethodsFragment : BaseFragment() {
 
     private val viewModel: OrderViewModel by viewModel()
     lateinit var binding: FragmentPaymentMethodsBinding
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +27,6 @@ class PaymentMethodsFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        viewModel.appView = appView
         binding.apply {
 
         }

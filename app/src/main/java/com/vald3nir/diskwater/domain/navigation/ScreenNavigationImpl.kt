@@ -15,8 +15,6 @@ import com.vald3nir.diskwater.presentation.orders.PaymentMethodsFragment
 import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
 import com.vald3nir.diskwater.presentation.product.ProductsFragment
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
-import com.vald3nir.toolkit.core.AppView
-import com.vald3nir.toolkit.core.CoreFragment
 import com.vald3nir.toolkit.extensions.hideKeyboard
 
 class ScreenNavigationImpl : ScreenNavigation {
@@ -31,11 +29,11 @@ class ScreenNavigationImpl : ScreenNavigation {
     }
 
     private fun <T> startActivity(
-        appView: AppView?,
+        activity: Activity?,
         activityClass: Class<T>,
         newStack: Boolean = false
     ) {
-        appView?.getActivityContext()?.apply {
+        activity?.apply {
             val newIntent = Intent(this, activityClass)
             startActivity(this, newIntent, newStack)
         }
@@ -52,28 +50,28 @@ class ScreenNavigationImpl : ScreenNavigation {
         }
     }
 
-    override fun redirectToHome(appView: AppView?) {
+    override fun redirectToHome(activity: Activity?) {
         val fragmentEnum = if (isAppClient()) {
             FragmentEnum.MY_ORDERS
         } else {
             FragmentEnum.DASHBOARD
         }
-        appView?.getActivityContext()?.apply {
+        activity?.apply {
             val intent = Intent(this, ActivityEmpty::class.java)
             intent.putExtra(FRAGMENT_ENUM_PARAM, fragmentEnum)
             startActivity(this, intent, true)
         }
     }
 
-    override fun redirectToLogin(appView: AppView?) {
-        startActivity(appView, LoginActivity::class.java, newStack = true)
+    override fun redirectToLogin(activity: Activity?) {
+        startActivity(activity, LoginActivity::class.java, newStack = true)
     }
 
-    override fun redirectToRegister(appView: AppView?) {
-        startActivity(appView, RegisterActivity::class.java)
+    override fun redirectToRegister(activity: Activity?) {
+        startActivity(activity, RegisterActivity::class.java)
     }
 
-    override fun redirectToEditAddress(appView: AppView?) {
-        startActivity(appView, AddressActivity::class.java)
+    override fun redirectToEditAddress(activity: Activity?) {
+        startActivity(activity, AddressActivity::class.java)
     }
 }

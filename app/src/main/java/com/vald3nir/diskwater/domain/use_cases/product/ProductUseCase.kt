@@ -10,6 +10,12 @@ interface ProductUseCase {
         onError: (e: Exception?) -> Unit,
     )
 
+    suspend fun deleteProduct(
+        product: ProductDTO?,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit,
+    )
+
     suspend fun listProducts(
         onSuccess: (MutableList<ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit,

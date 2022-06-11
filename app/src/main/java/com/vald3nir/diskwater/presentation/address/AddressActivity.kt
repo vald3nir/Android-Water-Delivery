@@ -17,6 +17,10 @@ class AddressActivity : BaseActivity() {
     private val viewModel: AddressViewModel by viewModel()
     private lateinit var binding: ActivityAddressBinding
 
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddressBinding.inflate(layoutInflater)
@@ -27,7 +31,6 @@ class AddressActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        viewModel.appView = this
         binding.apply {
             toolbar.setupToolbar(
                 activity = this@AddressActivity,

@@ -59,4 +59,5 @@
     <string name="unnamed_product">Produto sem nome informado!</string>
     <string name="my_products">Meus Produtos</string>
     <string name="mineral_waters">Águas Minerais</string>
+    <string name="delete">Apagar</string>
 </resources>

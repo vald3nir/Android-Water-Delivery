@@ -1,4 +1,4 @@
-package com.vald3nir.diskwater.data.repository.remote.register
+package com.vald3nir.diskwater.data.repository.register
 
 import android.app.Activity
 import com.google.firebase.auth.ktx.auth

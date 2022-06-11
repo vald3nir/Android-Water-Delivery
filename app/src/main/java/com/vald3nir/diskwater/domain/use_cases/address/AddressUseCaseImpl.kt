@@ -1,12 +1,11 @@
 package com.vald3nir.diskwater.domain.use_cases.address
 
+import android.content.Context
 import com.vald3nir.diskwater.data.dto.AddressDTO
-import com.vald3nir.diskwater.data.repository.local.daos.AddressDao
-import com.vald3nir.diskwater.data.repository.remote.address.AddressRepository
+import com.vald3nir.diskwater.data.repository.address.AddressRepository
 
 class AddressUseCaseImpl(
     private val repository: AddressRepository,
-    private val addressDao: AddressDao,
 ) : AddressUseCase {
 
     override suspend fun searchAddressByCEP(
@@ -17,13 +16,11 @@ class AddressUseCaseImpl(
         repository.searchAddressByCEP(cep, onSuccess, onError)
     }
 
-    override suspend fun loadAddress(): AddressDTO? {
-        return addressDao.first()
+    override suspend fun loadAddress(context: Context?): AddressDTO {
+        return repository.loadAddress(context)
     }
 
-    override suspend fun updateAddress(address: AddressDTO?) {
-        addressDao.insert(address)
+    override suspend fun updateAddress(context: Context?, address: AddressDTO?) {
+        repository.updateAddress(context, address)
     }
-
-
 }

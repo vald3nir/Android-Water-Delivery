@@ -8,11 +8,13 @@ import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.databinding.FragmentMyOrdersBinding
-import com.vald3nir.diskwater.databinding.ProductItemViewBinding
+import com.vald3nir.diskwater.databinding.OrderItemViewBinding
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.core.CoreViewModel
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.extensions.setupToolbar
+import com.vald3nir.toolkit.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyOrdersFragment : BaseFragment() {
@@ -21,7 +23,7 @@ class MyOrdersFragment : BaseFragment() {
     lateinit var binding: FragmentMyOrdersBinding
     private val mainCardAdapter by lazy {
         val adapter = CustomListAdapterDiffer(
-            bindingInflater = ProductItemViewBinding::inflate,
+            bindingInflater = OrderItemViewBinding::inflate,
             list = listOf(),
             itemDiffUtil = baseDiffUtil(),
             ::bindAdapter
@@ -31,15 +33,23 @@ class MyOrdersFragment : BaseFragment() {
 
     private fun bindAdapter(
         baseDTO: BaseDTO,
-        itemViewBinding: ProductItemViewBinding,
+        itemViewBinding: OrderItemViewBinding,
         position: Int,
         any: Any
     ) {
         if (baseDTO is ProductDTO) {
             itemViewBinding.apply {
-
+                itemViewBinding.apply {
+//                    txtTitle.text = order.clientName
+//                    txtValue.text = order.total.toMoney()
+//                    txtSubtitle.text = order.address
+                }
             }
         }
+    }
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
     }
 
     override fun onCreateView(
@@ -52,7 +62,6 @@ class MyOrdersFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        viewModel.appView = appView
         binding.apply {
             toolbar.setupToolbar(
                 activity = activity,

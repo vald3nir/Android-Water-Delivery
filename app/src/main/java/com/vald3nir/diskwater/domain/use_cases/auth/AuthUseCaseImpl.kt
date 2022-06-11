@@ -1,49 +1,47 @@
 package com.vald3nir.diskwater.domain.use_cases.auth
 
-import com.vald3nir.toolkit.core.AppView
+import android.app.Activity
+import android.content.Context
 import com.vald3nir.diskwater.data.dto.LoginDTO
-import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepository
+import com.vald3nir.diskwater.data.repository.auth.AuthRepository
+import com.vald3nir.toolkit.data.repository.remote.loadCurrentUser
 
 class AuthUseCaseImpl(private val repository: AuthRepository) : AuthUseCase {
 
     override suspend fun disconnect() {
-        repository.disconnect()
     }
 
     override suspend fun getUserID(): String? {
-        return repository.loadCurrentUser()?.uid
+        return loadCurrentUser()?.uid
     }
 
     override suspend fun checkUserLogged(): Boolean {
-        return repository.loadCurrentUser() != null
+        return loadCurrentUser() != null
     }
 
     override suspend fun login(
-        appView: AppView?,
+        activity: Activity?,
         loginDTO: LoginDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
     ) {
-        appView?.apply {
-            getActivityContext()?.let { activity ->
-                repository.login(
-                    activity = activity,
-                    loginDTO = loginDTO,
-                    onSuccess = onSuccess,
-                    onError = onError
-                )
-            }
+        if (activity != null) {
+            repository.login(
+                activity = activity,
+                loginDTO = loginDTO,
+                onSuccess = onSuccess,
+                onError = onError
+            )
+        } else {
+            onError.invoke(Exception("Activity null"))
         }
     }
 
-    override suspend fun loadLoginData(
-        onSuccess: (loginDTO: LoginDTO?) -> Unit,
-        onError: (e: Exception?) -> Unit
-    ) {
-        repository.loadLoginData(onSuccess, onError)
+    override suspend fun loadLoginData(context: Context?): LoginDTO? {
+        return repository.loadLoginData(context)
     }
 
-    override suspend fun saveLoginData(loginDTO: LoginDTO, onSuccess: () -> Unit) {
-        repository.saveLoginData(loginDTO, onSuccess)
+    override suspend fun saveLoginData(context: Context?, loginDTO: LoginDTO) {
+        repository.saveLoginData(context, loginDTO)
     }
 }

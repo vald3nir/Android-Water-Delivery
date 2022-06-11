@@ -83,11 +83,11 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.vald3nir.diskwater.common.componets.BaseButton
                 android:id="@+id/btn_register"
-                style="@style/ButtonStyle"
-                android:layout_marginTop="50dp"
-                android:text="@string/register" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp" />
 
         </LinearLayout>
 

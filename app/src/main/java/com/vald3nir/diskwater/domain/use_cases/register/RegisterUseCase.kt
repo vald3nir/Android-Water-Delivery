@@ -1,11 +1,11 @@
 package com.vald3nir.diskwater.domain.use_cases.register
 
-import com.vald3nir.toolkit.core.AppView
+import android.app.Activity
 
 interface RegisterUseCase {
 
     suspend fun registerNewUser(
-        appView: AppView?,
+        activity: Activity?,
         email: String,
         password: String,
         onSuccess: () -> Unit,
@@ -13,7 +13,7 @@ interface RegisterUseCase {
     )
 
     suspend fun registerUserType(
-        appView: AppView?,
+        activity: Activity?,
         userID: String,
         isSalesman: Boolean,
         onSuccess: () -> Unit,

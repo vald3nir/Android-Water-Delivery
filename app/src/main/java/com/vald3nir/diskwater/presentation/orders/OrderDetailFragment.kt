@@ -15,6 +15,10 @@ class OrderDetailFragment : BaseFragment() {
     private val viewModel: OrderViewModel by viewModel()
     lateinit var binding: FragmentOrderDetailBinding
 
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

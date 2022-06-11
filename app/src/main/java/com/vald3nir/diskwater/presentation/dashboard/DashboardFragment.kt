@@ -37,10 +37,14 @@ class DashboardFragment : BaseFragment() {
         any: Any
     ) {
         itemViewBinding.apply {
-            txtClientName.text = order.clientName
+            txtTitle.text = order.clientName
             txtValue.text = order.total.toMoney()
-            txtDistrict.text = order.address
+            txtSubtitle.text = order.address
         }
+    }
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
     }
 
     override fun onCreateView(
@@ -59,7 +63,6 @@ class DashboardFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        viewModel.appView = appView
         binding.apply {
             toolbar.setupToolbar(
                 activity = activity,

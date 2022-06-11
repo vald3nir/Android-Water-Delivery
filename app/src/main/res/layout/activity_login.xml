@@ -81,11 +81,11 @@
                 android:textColor="@color/white"
                 android:theme="@style/checkbox_theme" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.vald3nir.diskwater.common.componets.BaseButton
                 android:id="@+id/btn_login"
-                style="@style/ButtonStyle"
-                android:layout_marginTop="50dp"
-                android:text="@string/login" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register"

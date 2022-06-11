@@ -1,5 +1,6 @@
 package com.vald3nir.diskwater.domain.use_cases.address
 
+import android.content.Context
 import com.vald3nir.diskwater.data.dto.AddressDTO
 
 interface AddressUseCase {
@@ -10,9 +11,8 @@ interface AddressUseCase {
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun loadAddress(): AddressDTO?
+    suspend fun loadAddress(context: Context?): AddressDTO
 
-    suspend fun updateAddress(address: AddressDTO?)
-
+    suspend fun updateAddress(context: Context?, address: AddressDTO?)
 
 }

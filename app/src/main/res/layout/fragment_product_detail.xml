@@ -16,75 +16,81 @@
         app:layout_constraintTop_toTopOf="parent"
         app:showBackButton="true" />
 
-    <com.vald3nir.toolkit.componets.customviews.CustomImageView
-        android:id="@+id/imv_photo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/white"
-        android:contentDescription="@string/generic_water"
-        android:src="@drawable/generic_water"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingVertical="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save_products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <TextView
-        android:id="@+id/txt_change_image"
-        style="@style/TittleStyle"
-        android:layout_width="wrap_content"
-        android:padding="10dp"
-        android:text="@string/change_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imv_photo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <com.vald3nir.toolkit.componets.customviews.CustomImageView
+                android:id="@+id/imv_photo"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:contentDescription="@string/generic_water"
+                android:src="@drawable/generic_water" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_name_layout"
-        style="@style/TextInputLayoutStyle"
-        android:layout_marginTop="30dp"
-        android:hint="@string/name"
-        app:boxCornerRadiusBottomEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxStrokeColor="@color/white"
-        app:hintTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_change_image">
+            <TextView
+                android:id="@+id/txt_change_image"
+                style="@style/TittleStyle"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:text="@string/change_image" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_name"
-            style="@style/TextInputStyle"
-            tools:text="Santa Rita" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_name_layout"
+                style="@style/TextInputLayoutStyle"
+                android:layout_marginTop="30dp"
+                android:hint="@string/name"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
 
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_name"
+                    style="@style/TextInputStyle"
+                    tools:text="Santa Rita" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_price_layout"
-        style="@style/TextInputLayoutStyle"
-        android:layout_marginTop="30dp"
-        android:hint="@string/price"
-        app:boxCornerRadiusBottomEnd="5dp"
-        app:boxCornerRadiusBottomStart="5dp"
-        app:boxCornerRadiusTopEnd="5dp"
-        app:boxCornerRadiusTopStart="5dp"
-        app:boxStrokeColor="@color/white"
-        app:hintTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name_layout">
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_price"
-            style="@style/PriceInputStyle"
-            tools:text="R$ 15.98" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_price_layout"
+                style="@style/TextInputLayoutStyle"
+                android:layout_marginTop="30dp"
+                android:hint="@string/price"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white">
 
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_price"
+                    style="@style/PriceInputStyle"
+                    tools:text="R$ 15.98" />
 
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.vald3nir.toolkit.componets.customviews.CustomButton
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.vald3nir.diskwater.common.componets.BaseButton
         android:id="@+id/btn_save_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

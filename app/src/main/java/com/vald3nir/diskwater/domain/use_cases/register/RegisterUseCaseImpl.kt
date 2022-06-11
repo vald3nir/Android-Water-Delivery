@@ -1,20 +1,21 @@
 package com.vald3nir.diskwater.domain.use_cases.register
 
-import com.vald3nir.toolkit.core.AppView
-import com.vald3nir.diskwater.data.repository.remote.register.RegisterRepository
+import android.app.Activity
+import com.vald3nir.toolkit.core.ViewModelController
+import com.vald3nir.diskwater.data.repository.register.RegisterRepository
 
 class RegisterUseCaseImpl(private val repository: RegisterRepository) : RegisterUseCase {
 
     override suspend fun registerNewUser(
-        appView: AppView?,
+        activity: Activity?,
         email: String,
         password: String,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        appView?.getActivityContext()?.let { activity ->
+        activity?.let {
             repository.registerNewUser(
-                activity = activity,
+                activity = it,
                 email = email,
                 password = password,
                 onSuccess = onSuccess,
@@ -24,15 +25,15 @@ class RegisterUseCaseImpl(private val repository: RegisterRepository) : Register
     }
 
     override suspend fun registerUserType(
-        appView: AppView?,
+        activity: Activity?,
         userID: String,
         isSalesman: Boolean,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        appView?.getActivityContext()?.let { activity ->
+        activity?.let {
             repository.registerUserType(
-                activity = activity,
+                activity = it,
                 isSalesman = isSalesman,
                 userID = userID,
                 onSuccess = onSuccess,

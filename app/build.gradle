@@ -46,6 +46,8 @@ android {
     productFlavors {
         client {
             dimension "version"
+            applicationIdSuffix ".client"
+            versionNameSuffix "-client"
             firebaseAppDistribution {
                 releaseNotes = "Versão dos clientes"
                 testers = "vald3nir@gmail.com"
@@ -53,6 +55,8 @@ android {
         }
         salesman {
             dimension "version"
+            applicationIdSuffix ".salesman"
+            versionNameSuffix "-salesman"
             firebaseAppDistribution {
                 releaseNotes = "Versão do vendedor"
                 testers = "vald3nir@gmail.com"
@@ -65,13 +69,6 @@ dependencies {
 
     // Modules
     implementation project(path: ':ToolKit')
-
-    // MQTT Client
-    implementation 'com.hivemq:hivemq-mqtt-client:1.3.0'
-
-    // Image Loader
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
@@ -113,12 +110,6 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-    // Database
-    kapt "androidx.room:room-compiler:2.4.2"
-    implementation "androidx.room:room-runtime:2.4.2"
-    implementation 'androidx.room:room-ktx:2.4.2'
-    testImplementation "androidx.room:room-testing:2.4.2"
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

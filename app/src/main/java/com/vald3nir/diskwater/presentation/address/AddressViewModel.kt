@@ -22,7 +22,7 @@ class AddressViewModel(
 
     fun loadAddress() {
         viewModelScope.launch {
-            val address = addressUseCase.loadAddress()
+            val address = addressUseCase.loadAddress(requireActivityContext())
             address.let {
                 _addressFields.postValue(it)
             }
@@ -67,7 +67,7 @@ class AddressViewModel(
 
             addressFields.value.let {
                 if (it != null && checkAddressFields(it)) {
-                    addressUseCase.updateAddress(it)
+                    addressUseCase.updateAddress(requireActivityContext(), it)
                     showMessage(getString(R.string.address_successfully_updated))
                     finish()
                 }

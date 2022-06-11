@@ -1,8 +1,9 @@
-package com.vald3nir.diskwater.data.repository.remote.product
+package com.vald3nir.diskwater.data.repository.product
 
 import com.vald3nir.diskwater.data.dto.ProductDTO
-import com.vald3nir.toolkit.data.repository.loadCollection
-import com.vald3nir.toolkit.data.repository.updateData
+import com.vald3nir.toolkit.data.repository.remote.deleteData
+import com.vald3nir.toolkit.data.repository.remote.loadCollection
+import com.vald3nir.toolkit.data.repository.remote.updateData
 
 class ProductRepositoryImpl : ProductRepository {
 
@@ -12,6 +13,18 @@ class ProductRepositoryImpl : ProductRepository {
         onError: (e: Exception?) -> Unit
     ) {
         updateData(
+            collectionPath = "produtos",
+            baseDTO = product,
+            onSuccess, onError
+        )
+    }
+
+    override suspend fun deleteProduct(
+        product: ProductDTO,
+        onSuccess: () -> Unit,
+        onError: (e: Exception?) -> Unit
+    ) {
+        deleteData(
             collectionPath = "produtos",
             baseDTO = product,
             onSuccess, onError

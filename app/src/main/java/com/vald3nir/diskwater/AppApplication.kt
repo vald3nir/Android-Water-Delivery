@@ -1,16 +1,14 @@
 package com.vald3nir.diskwater
 
 import android.app.Application
-import androidx.room.Room
-import com.vald3nir.diskwater.data.repository.local.AppDatabase
-import com.vald3nir.diskwater.data.repository.remote.address.AddressRepository
-import com.vald3nir.diskwater.data.repository.remote.address.AddressRepositoryImpl
-import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepository
-import com.vald3nir.diskwater.data.repository.remote.auth.AuthRepositoryImpl
-import com.vald3nir.diskwater.data.repository.remote.product.ProductRepository
-import com.vald3nir.diskwater.data.repository.remote.product.ProductRepositoryImpl
-import com.vald3nir.diskwater.data.repository.remote.register.RegisterRepository
-import com.vald3nir.diskwater.data.repository.remote.register.RegisterRepositoryImpl
+import com.vald3nir.diskwater.data.repository.address.AddressRepository
+import com.vald3nir.diskwater.data.repository.address.AddressRepositoryImpl
+import com.vald3nir.diskwater.data.repository.auth.AuthRepository
+import com.vald3nir.diskwater.data.repository.auth.AuthRepositoryImpl
+import com.vald3nir.diskwater.data.repository.product.ProductRepository
+import com.vald3nir.diskwater.data.repository.product.ProductRepositoryImpl
+import com.vald3nir.diskwater.data.repository.register.RegisterRepository
+import com.vald3nir.diskwater.data.repository.register.RegisterRepositoryImpl
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigationImpl
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
@@ -50,15 +48,13 @@ class AppApplication : Application() {
 
         return module {
 
-            setupDatabase()
-
             factory<AddressRepository> { AddressRepositoryImpl() }
-            factory<AddressUseCase> { AddressUseCaseImpl(get(), get()) }
+            factory<AddressUseCase> { AddressUseCaseImpl(get()) }
 
             factory<ProductUseCase> { ProductUseCaseImpl(get()) }
             factory<ProductRepository> { ProductRepositoryImpl() }
 
-            factory<AuthRepository> { AuthRepositoryImpl(get()) }
+            factory<AuthRepository> { AuthRepositoryImpl() }
             factory<AuthUseCase> { AuthUseCaseImpl(get()) }
 
             factory<RegisterRepository> { RegisterRepositoryImpl() }
@@ -77,16 +73,5 @@ class AppApplication : Application() {
         viewModel { DashboardViewModel(get(), get()) }
         viewModel { ProductViewModel(get()) }
         viewModel { OrderViewModel() }
-    }
-
-    private fun Module.setupDatabase() {
-        single {
-            Room.databaseBuilder(get(), AppDatabase::class.java, "database.db")
-                .fallbackToDestructiveMigration()
-                .build()
-        }
-        single { get<AppDatabase>().getLoginDao() }
-        single { get<AppDatabase>().getAddressDao() }
-        single { get<AppDatabase>().getOrderDao() }
     }
 }
