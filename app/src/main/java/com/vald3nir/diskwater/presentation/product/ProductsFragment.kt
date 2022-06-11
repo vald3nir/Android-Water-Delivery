@@ -12,6 +12,7 @@ import com.vald3nir.diskwater.databinding.ProductItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.componets.customviews.CustomSheetDialog
 import com.vald3nir.toolkit.componets.lists.CustomListComponent
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
@@ -43,18 +44,23 @@ class ProductsFragment : BaseFragment() {
     ) {
         if (baseDTO is ProductDTO) {
             itemViewBinding.apply {
-
                 txtName.text = baseDTO.name
                 txtPrice.text = baseDTO.price.toMoney()
-
-                imvPhoto.apply {
-                    viewModel.loadProductImage(
-                        onSuccess = { loadImage(it, R.drawable.generic_water) },
-                        onError = { loadImage(R.drawable.generic_water) }
-                    )
-                }
+                imvPhoto.loadImageBase64(baseDTO.imageBase64, R.drawable.generic_water)
+                txtDelete.setOnClickListener { showDeleteProductDialog(baseDTO) }
             }
         }
+    }
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.setupObservers()
+        binding.btnAddProducts.showLoading(true)
+        viewModel.loadProducts()
     }
 
     override fun onCreateView(
@@ -62,62 +68,68 @@ class ProductsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductsBinding.inflate(inflater, container, false)
-        initViews()
+        binding.initViews()
         return binding.root
     }
 
-    private fun initViews() {
-        viewModel.appView = appView
-        binding.apply {
-            toolbar.setupToolbar(
-                activity = activity,
-                title = getString(R.string.my_products),
-                showBackButton = true,
-            )
-            clcOrdersOpen.apply {
-                setTab(
-                    CustomListComponent.CustomListTab(
-                        title = getString(R.string.mineral_waters)
-                    )
+    private fun FragmentProductsBinding.initViews() {
+        toolbar.setupToolbar(
+            activity = activity,
+            title = getString(R.string.my_products),
+            showBackButton = true,
+        )
+        clcOrdersOpen.apply {
+            setTab(
+                CustomListComponent.CustomListTab(
+                    title = getString(R.string.mineral_waters)
                 )
-                getRecyclerView().apply {
-                    adapter = mainCardAdapter
-                    setupLayoutManager()
-                }
-            }
-            btnAddProducts.apply {
-                setTitle(getString(R.string.add_product))
-                setTitleColor(R.color.white)
-                setBackgroundDrawable(R.drawable.button_white_layout)
+            )
+            getRecyclerView().apply {
+                adapter = mainCardAdapter
+                setupLayoutManager()
             }
         }
+        btnAddProducts.setButtonTitle(getString(R.string.add_product))
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupObservers()
-        loadProducts()
-    }
+    private fun FragmentProductsBinding.setupObservers() {
 
-    private fun loadProducts() {
-        binding.btnAddProducts.showLoading(true)
-        viewModel.loadProducts()
-    }
-
-    private fun setupObservers() {
-
-        binding.btnAddProducts.setOnClickListener {
+        btnAddProducts.setButtonClickListener {
             viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL)
         }
 
-        mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+        mainCardAdapter.setOnItemClickListener(listener = { item, position ->
             viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL, item)
         })
 
         viewModel.products.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it.toMutableBaseList())
-            binding.clcOrdersOpen.notifyListSize(it.size)
-            binding.btnAddProducts.showLoading(false)
+            clcOrdersOpen.notifyListSize(it.size)
+            btnAddProducts.showLoading(false)
         }
+    }
+
+    private fun showDeleteProductDialog(productDTO: ProductDTO) {
+        val items: List<CustomSheetDialog.CustomItemSheet> = listOf(
+            CustomSheetDialog.CustomItemSheet(
+                icon = R.drawable.ic_delete,
+                title = "Sim",
+                titleCor = R.color.red,
+                action = { viewModel.deleteProduct(productDTO) }
+            ),
+            CustomSheetDialog.CustomItemSheet(
+                icon = R.drawable.ic_cancel,
+                title = "Não",
+                titleCor = R.color.blue,
+                action = { dialog?.dismiss() }
+            ),
+        )
+        dialog = CustomSheetDialog(
+            context = requireContext(),
+            items = items,
+            title = "Deseja remover o produto: ${productDTO.name}?",
+            titleColor = R.color.blue
+        )
+        dialog?.show()
     }
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.databinding.FragmentProductDetailBinding
+import com.vald3nir.toolkit.extensions.afterTextChanged
 import com.vald3nir.toolkit.extensions.setupToolbar
 import com.vald3nir.toolkit.extensions.toFloatValue
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,6 +20,10 @@ class ProductDetailFragment : BaseFragment() {
 
     private val viewModel: ProductViewModel by viewModel()
     lateinit var binding: FragmentProductDetailBinding
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,53 +35,52 @@ class ProductDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-        setupObservers()
-    }
-
-    private fun initViews() {
+        binding.setupObservers()
         viewModel.loadData(this)
-        viewModel.appView = appView
-        binding.apply {
-
-            imvPhoto.apply {
-                viewModel.loadProductImage(
-                    onSuccess = { loadImage(it, R.drawable.generic_water) },
-                    onError = { loadImage(R.drawable.generic_water) }
-                )
-            }
-
-            btnSaveProducts.apply {
-                setTitleColor(R.color.white)
-                setBackgroundDrawable(R.drawable.button_white_layout)
-            }
-        }
     }
-
 
     @SuppressLint("SetTextI18n")
-    private fun setupObservers() {
+    private fun FragmentProductDetailBinding.setupObservers() {
 
-        binding.apply {
-            imvPhoto.setOnClickListener { takePhoto() }
-            txtChangeImage.setOnClickListener { takePhoto() }
-            btnSaveProducts.setOnClickListener { updateProduct() }
-        }
+        imvPhoto.setOnClickListener { takePhoto() }
+        txtChangeImage.setOnClickListener { takePhoto() }
+        btnSaveProducts.setButtonClickListener { updateProduct() }
+        edtName.afterTextChanged { onDataChange() }
+        edtPrice.afterTextChanged { onDataChange() }
 
         viewModel.product.observe(viewLifecycleOwner) {
-            binding.apply {
-                edtName.setText(it.name)
-                edtPrice.setText(it.price.toString())
-                btnSaveProducts.setTitle(getString(if (it.isNew) R.string.register else R.string.update))
-                toolbar.setupToolbar(
-                    activity = activity,
-                    showBackButton = true,
-                    title = getString(
-                        if (it.isNew) R.string.add_product else R.string.update_product
-                    )
+            edtName.setText(it.name)
+            edtPrice.setText(it.price.toString())
+            imvPhoto.loadImageBase64(it.imageBase64, R.drawable.generic_water)
+
+            btnSaveProducts.setButtonTitle(getString(if (it.isNew) R.string.register else R.string.update))
+            toolbar.setupToolbar(
+                activity = activity,
+                showBackButton = true,
+                title = getString(
+                    if (it.isNew) R.string.add_product else R.string.update_product
                 )
-            }
+            )
         }
+
+        viewModel.productForm.observe(viewLifecycleOwner) {
+            edtNameLayout.error = it.nameError
+            edtPriceLayout.error = it.priceError
+            btnSaveProducts.showLoading(false)
+        }
+    }
+
+    private fun FragmentProductDetailBinding.clearError() {
+        edtNameLayout.error = null
+        edtPriceLayout.error = null
+    }
+
+    private fun FragmentProductDetailBinding.onDataChange() {
+        clearError()
+        viewModel.checkProductData(
+            name = edtName.text.toString(),
+            price = edtPrice.text.toString().toFloatValue()
+        )
     }
 
     private fun FragmentProductDetailBinding.updateProduct() {
