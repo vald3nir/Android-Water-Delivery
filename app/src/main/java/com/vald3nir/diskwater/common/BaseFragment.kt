@@ -4,7 +4,7 @@ import android.content.Intent
 import android.provider.MediaStore
 import com.vald3nir.toolkit.core.CoreFragment
 
-open class BaseFragment : CoreFragment() {
+abstract class BaseFragment : CoreFragment() {
 
     val REQUEST_IMAGE_CAPTURE = 1
 

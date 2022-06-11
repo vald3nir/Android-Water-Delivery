@@ -19,6 +19,8 @@ class ActivityEmpty : CoreActivity() {
 
     private val screenNavigation: ScreenNavigation by inject()
 
+    override fun registerViewModel() {}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityEmptyBinding.inflate(layoutInflater)
@@ -30,7 +32,6 @@ class ActivityEmpty : CoreActivity() {
         hideKeyboard()
 
         val fragment = screenNavigation.createFragment(fragmentEnum)
-        fragment.let { it.appView = this }
         fragment.putExtraDTO(baseDTO)
 
         val fragmentName = fragment.let { it::class.getFullName() }

@@ -4,7 +4,7 @@ import com.vald3nir.diskwater.domain.utils.isAppClient
 import com.vald3nir.toolkit.R
 import com.vald3nir.toolkit.core.CoreActivity
 
-open class BaseActivity : CoreActivity() {
+abstract class BaseActivity : CoreActivity() {
 
     fun getTypeAppName(): String {
         return getString(

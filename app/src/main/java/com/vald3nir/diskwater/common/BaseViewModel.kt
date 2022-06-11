@@ -7,7 +7,7 @@ import com.vald3nir.toolkit.data.dto.BaseDTO
 open class BaseViewModel : CoreViewModel() {
 
     fun replaceFragment(fragmentEnum: FragmentEnum, baseDTO: BaseDTO? = null) {
-        appView?.getActivityContext().let {
+        controller?.requireActivityContext().let {
             if (it is ActivityEmpty) {
                 it.loadFragment(fragmentEnum, baseDTO)
             }
