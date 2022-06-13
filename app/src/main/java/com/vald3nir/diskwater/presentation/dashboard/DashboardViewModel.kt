@@ -32,14 +32,22 @@ class DashboardViewModel(
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
         OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f)
     )
+    private val ordersProgress = mutableListOf(
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f),
+        OrderDTO(clientName = "Valdenir", address = "São Gerardo", total = 125.20f)
+    )
     private val ordersClosed = mutableListOf(
         OrderDTO(clientName = "Severino", address = "São Gerardo", total = 00.20f),
         OrderDTO(clientName = "Severino", address = "São Gerardo", total = 00.20f)
     )
 
     val tabsList = listOf(
-        CustomListComponent.CustomListTab(title = "Pedidos abertos", onTabSelectedListener = {
+        CustomListComponent.CustomListTab(title = "Abertos", onTabSelectedListener = {
             _ordersSelected.postValue(ordersOpened)
+        }),
+        CustomListComponent.CustomListTab(title = "Andamento", onTabSelectedListener = {
+            _ordersSelected.postValue(ordersProgress)
         }),
         CustomListComponent.CustomListTab(title = "Fechados", onTabSelectedListener = {
             _ordersSelected.postValue(ordersClosed)
