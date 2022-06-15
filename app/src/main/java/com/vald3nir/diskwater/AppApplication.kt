@@ -19,7 +19,6 @@ import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
-import com.vald3nir.diskwater.presentation.address.AddressViewModel
 import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
 import com.vald3nir.diskwater.presentation.login.LoginViewModel
 import com.vald3nir.diskwater.presentation.orders.OrderViewModel
@@ -69,9 +68,8 @@ class AppApplication : Application() {
     private fun Module.setupViewModels() {
         viewModel { LoginViewModel(get(), get()) }
         viewModel { RegisterViewModel(get(), get()) }
-        viewModel { AddressViewModel(get()) }
         viewModel { DashboardViewModel(get(), get()) }
         viewModel { ProductViewModel(get()) }
-        viewModel { OrderViewModel() }
+        viewModel { OrderViewModel(get()) }
     }
 }

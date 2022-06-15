@@ -71,7 +71,7 @@ dependencies {
     implementation project(path: ':ToolKit')
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
@@ -94,8 +94,8 @@ dependencies {
     kapt "com.android.databinding:compiler:3.1.4"
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1-native-mt'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1-native-mt'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2'
 
     // Koin (dependency injection framework)
     implementation "io.insert-koin:koin-androidx-ext:2.2.3"

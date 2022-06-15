@@ -6,12 +6,9 @@ import com.vald3nir.diskwater.common.ActivityEmpty
 import com.vald3nir.diskwater.common.ActivityEmpty.Companion.FRAGMENT_ENUM_PARAM
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.domain.utils.isAppClient
-import com.vald3nir.diskwater.presentation.address.AddressActivity
 import com.vald3nir.diskwater.presentation.dashboard.DashboardFragment
 import com.vald3nir.diskwater.presentation.login.LoginActivity
-import com.vald3nir.diskwater.presentation.orders.MyOrdersFragment
-import com.vald3nir.diskwater.presentation.orders.OrderDetailFragment
-import com.vald3nir.diskwater.presentation.orders.PaymentMethodsFragment
+import com.vald3nir.diskwater.presentation.orders.*
 import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
 import com.vald3nir.diskwater.presentation.product.ProductsFragment
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
@@ -41,7 +38,12 @@ class ScreenNavigationImpl : ScreenNavigation {
 
     override fun createFragment(fragmentEnum: FragmentEnum): BaseFragment {
         return when (fragmentEnum) {
+
+            // Orders
             FragmentEnum.MY_ORDERS -> MyOrdersFragment()
+            FragmentEnum.CONFIRM_ADDRESS -> ConfirmAddressFragment()
+            FragmentEnum.ADD_ITEMS_ORDER -> ItemsOrderFragment()
+
             FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()
             FragmentEnum.PAYMENT -> PaymentMethodsFragment()
             FragmentEnum.DASHBOARD -> DashboardFragment()
@@ -72,6 +74,5 @@ class ScreenNavigationImpl : ScreenNavigation {
     }
 
     override fun redirectToEditAddress(activity: Activity?) {
-        startActivity(activity, AddressActivity::class.java)
     }
 }

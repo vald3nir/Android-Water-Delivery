@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
-import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.databinding.FragmentMyOrdersBinding
 import com.vald3nir.diskwater.databinding.OrderItemViewBinding
+import com.vald3nir.diskwater.domain.navigation.FragmentEnum
+import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
-import com.vald3nir.toolkit.core.CoreViewModel
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.extensions.setupToolbar
@@ -37,12 +38,12 @@ class MyOrdersFragment : BaseFragment() {
         position: Int,
         any: Any
     ) {
-        if (baseDTO is ProductDTO) {
+        if (baseDTO is OrderDTO) {
             itemViewBinding.apply {
                 itemViewBinding.apply {
-//                    txtTitle.text = order.clientName
-//                    txtValue.text = order.total.toMoney()
-//                    txtSubtitle.text = order.address
+                    txtTitle.text = baseDTO.clientName
+                    txtSubtitle.text = baseDTO.address
+                    txtValue.text = baseDTO.total.toMoney()
                 }
             }
         }
@@ -57,45 +58,40 @@ class MyOrdersFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyOrdersBinding.inflate(inflater, container, false)
-        initViews()
+        binding.initViews()
         return binding.root
     }
 
-    private fun initViews() {
-        binding.apply {
-            toolbar.setupToolbar(
-                activity = activity,
-                title = getString(R.string.my_last_orders),
-                showBackButton = false,
-            )
-        }
+    private fun FragmentMyOrdersBinding.initViews() {
+        toolbar.setupToolbar(
+            activity = activity,
+            title = getString(R.string.my_last_orders),
+            showBackButton = false,
+        )
+        btnNewOrder.setButtonTitle(R.string.new_order)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObservers()
-        loadLastOrders()
+        this.binding.setupObservers()
+        this.binding.btnNewOrder.showLoading(true)
+        this.viewModel.loadLastOrders()
     }
 
-    private fun loadLastOrders() {
-        binding.btnNewOrder.showLoading(true)
-        viewModel.loadLastOrders()
-    }
+    private fun FragmentMyOrdersBinding.setupObservers() {
 
-    private fun setupObservers() {
+        btnNewOrder.setButtonClickListener {
+            viewModel.replaceFragment(FragmentEnum.CONFIRM_ADDRESS)
+        }
 
-//        binding.btnAddProducts.setOnClickListener {
-//            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL)
-//        }
-//
-//        mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
-//            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL, item)
-//        })
-//
-//        viewModel.products.observe(viewLifecycleOwner) {
-//            mainCardAdapter.submitList(it.toMutableBaseList())
-//            binding.clcOrdersOpen.notifyListSize(it.size)
-//            binding.btnAddProducts.showLoading(false)
-//        }
+        mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+            viewModel.replaceFragment(FragmentEnum.ORDER_DETAIL, item)
+        })
+
+        viewModel.myOrders.observe(viewLifecycleOwner) {
+            mainCardAdapter.submitList(it.toMutableBaseList())
+            clcMyOrders.notifyListSize(it.size)
+            btnNewOrder.showLoading(false)
+        }
     }
 }

@@ -60,4 +60,8 @@
     <string name="my_products">Meus Produtos</string>
     <string name="mineral_waters">Águas Minerais</string>
     <string name="delete">Apagar</string>
+    <string name="next">Avançar</string>
+    <string name="confirm_address">Confirmação de Endereço</string>
+    <string name="new_order">Novo Pedido</string>
+    <string name="items">Itens</string>
 </resources>

@@ -4,14 +4,12 @@ import android.os.Bundle
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.toolkit.R
-import com.vald3nir.toolkit.core.CoreActivity
+import com.vald3nir.toolkit.core.CoreFragmentActivity
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.databinding.ActivityEmptyBinding
-import com.vald3nir.toolkit.extensions.hideKeyboard
 import org.koin.android.ext.android.inject
-import org.koin.ext.getFullName
 
-class ActivityEmpty : CoreActivity() {
+class ActivityEmpty : CoreFragmentActivity() {
 
     companion object {
         const val FRAGMENT_ENUM_PARAM = "FRAGMENT_ENUM_PARAM"
@@ -29,16 +27,8 @@ class ActivityEmpty : CoreActivity() {
     }
 
     fun loadFragment(fragmentEnum: FragmentEnum, baseDTO: BaseDTO? = null) {
-        hideKeyboard()
-
         val fragment = screenNavigation.createFragment(fragmentEnum)
         fragment.putExtraDTO(baseDTO)
-
-        val fragmentName = fragment.let { it::class.getFullName() }
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
-        fragmentTransaction.addToBackStack(fragmentName)
-        fragmentTransaction.commitAllowingStateLoss()
+        loadFragment(R.id.fragment_container, fragment)
     }
 }

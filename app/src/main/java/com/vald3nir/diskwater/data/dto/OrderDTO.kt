@@ -3,6 +3,7 @@ package com.vald3nir.diskwater.data.dto
 import com.vald3nir.toolkit.data.dto.BaseDTO
 
 class OrderDTO(
+    var isNew: Boolean = true,
     var clientName: String? = null,
     var address: String? = null,
     var date: String? = null,
