@@ -47,6 +47,10 @@ class ProductDetailFragment : BaseFragment() {
         btnSaveProducts.setButtonClickListener { updateProduct() }
         edtName.afterTextChanged { onDataChange() }
         edtPrice.afterTextChanged { onDataChange() }
+        spProductCategory.setup(
+            textColorItemSelected = R.color.blue_strong,
+            list = listOf("Água Mineral", "Descartavéis"),
+        )
 
         viewModel.product.observe(viewLifecycleOwner) {
             edtName.setText(it.name)
@@ -86,6 +90,7 @@ class ProductDetailFragment : BaseFragment() {
     private fun FragmentProductDetailBinding.updateProduct() {
         btnSaveProducts.showLoading(true)
         viewModel.updateProduct(
+            category = spProductCategory.itemSelected,
             name = edtName.text.toString(),
             price = edtPrice.text.toString().toFloatValue(),
             onSuccess = {
@@ -115,3 +120,5 @@ class ProductDetailFragment : BaseFragment() {
         }
     }
 }
+
+

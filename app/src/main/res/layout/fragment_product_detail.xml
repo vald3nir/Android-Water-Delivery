@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background_gradient"
-    android:padding="5dp">
+    android:padding="@dimen/root_page_padding">
 
-    <com.vald3nir.toolkit.componets.HeaderNavigationComponent
+    <com.vald3nir.toolkit.componets.navigation.HeaderNavigationComponent
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingVertical="30dp"
+        android:paddingBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_save_products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +47,33 @@
                 android:layout_width="wrap_content"
                 android:padding="10dp"
                 android:text="@string/change_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/txt_category_label"
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:text="@string/category"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.vald3nir.toolkit.componets.customviews.CustomSpinner
+                    android:id="@+id/sp_product_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_category_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_name_layout"

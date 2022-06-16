@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Olho D\'Água</string>
     <string name="client">Cliente</string>
     <string name="salesman">Vendedor</string>
     <string name="real_time_consumption">Consumo em Tempo Real</string>
@@ -63,5 +62,6 @@
     <string name="next">Avançar</string>
     <string name="confirm_address">Confirmação de Endereço</string>
     <string name="new_order">Novo Pedido</string>
-    <string name="items">Itens</string>
+    <string name="items_order">Itens do Pedido</string>
+    <string name="category">Categoria</string>
 </resources>

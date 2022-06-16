@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background_gradient"
-    android:padding="20dp">
+    android:padding="@dimen/root_page_padding">
 
 
     <LinearLayout

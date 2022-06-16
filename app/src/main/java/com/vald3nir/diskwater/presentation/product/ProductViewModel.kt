@@ -52,6 +52,7 @@ class ProductViewModel(
     }
 
     fun updateProduct(
+        category: String,
         name: String,
         price: Float,
         onSuccess: () -> Unit,
@@ -61,6 +62,7 @@ class ProductViewModel(
             viewModelScope.launch {
                 _product.value.apply {
                     this?.isNew = false
+                    this?.category = category
                     this?.name = name
                     this?.price = price
                     productUseCase.updateProduct(this, onSuccess, onError)

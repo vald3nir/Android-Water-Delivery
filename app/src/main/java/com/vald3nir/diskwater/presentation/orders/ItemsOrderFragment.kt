@@ -36,8 +36,9 @@ class ItemsOrderFragment : BaseFragment() {
     private fun FragmentItemsOrderBinding.initViews() {
         toolbar.setupToolbar(
             activity = activity,
-            title = getString(R.string.items)
+            title = getString(R.string.items_order)
         )
+        btnNext.setButtonTitle(R.string.next)
     }
 
     private fun FragmentItemsOrderBinding.setupObservers() {
