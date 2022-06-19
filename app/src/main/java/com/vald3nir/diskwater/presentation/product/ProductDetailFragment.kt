@@ -49,7 +49,7 @@ class ProductDetailFragment : BaseFragment() {
         edtPrice.afterTextChanged { onDataChange() }
         spProductCategory.setup(
             textColorItemSelected = R.color.blue_strong,
-            list = listOf("Água Mineral", "Descartavéis"),
+            list = listOf("Água Mineral", "Descartáveis"),
         )
 
         viewModel.product.observe(viewLifecycleOwner) {

@@ -17,6 +17,7 @@ interface ProductRepository {
     )
 
     suspend fun listProducts(
+        category: String,
         onSuccess: (MutableList<ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit,
     )

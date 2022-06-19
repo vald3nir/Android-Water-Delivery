@@ -5,10 +5,12 @@ import android.content.Context
 import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.toolkit.data.repository.local.loadDataJson
 import com.vald3nir.toolkit.data.repository.local.saveDataJson
-import com.vald3nir.toolkit.data.repository.remote.signInWithEmailAndPassword
+import com.vald3nir.toolkit.data.repository.remote.firebase.FirebaseAuthenticator
 import com.vald3nir.toolkit.extensions.toDTO
 
 class AuthRepositoryImpl : AuthRepository {
+
+    private val authenticator = FirebaseAuthenticator()
 
     override suspend fun login(
         activity: Activity,
@@ -18,7 +20,7 @@ class AuthRepositoryImpl : AuthRepository {
     ) {
         val email: String = loginDTO.email ?: ""
         val password: String = loginDTO.password ?: ""
-        signInWithEmailAndPassword(activity, email, password, onSuccess, onError)
+        authenticator.signInWithEmailAndPassword(activity, email, password, onSuccess, onError)
     }
 
     override suspend fun saveLoginData(context: Context?, loginDTO: LoginDTO) {
