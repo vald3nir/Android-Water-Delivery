@@ -1,6 +1,7 @@
 package com.vald3nir.diskwater.domain.use_cases.product
 
 import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.toolkit.componets.lists.CustomListComponent
 
 interface ProductUseCase {
 
@@ -17,7 +18,14 @@ interface ProductUseCase {
     )
 
     suspend fun listProducts(
+        category: String,
         onSuccess: (MutableList<ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit,
     )
+
+    fun listProductCategories(): List<String>
+
+    fun listProductCategoriesTab(onCategorySelected: (category: String) -> Unit):
+            ArrayList<CustomListComponent.CustomListTab>
+
 }

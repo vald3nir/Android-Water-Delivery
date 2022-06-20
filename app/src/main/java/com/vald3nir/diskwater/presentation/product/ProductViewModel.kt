@@ -4,17 +4,12 @@ import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
-import com.vald3nir.diskwater.data.form.DataUserInputForm
 import com.vald3nir.diskwater.data.form.ProductInputForm
-import com.vald3nir.diskwater.databinding.ActivityLoginBinding
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
 import com.vald3nir.toolkit.extensions.toBase64
-import com.vald3nir.toolkit.validations.isEmailValid
-import com.vald3nir.toolkit.validations.isPasswordValid
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
@@ -31,13 +26,28 @@ class ProductViewModel(
     private val _product = MutableLiveData<ProductDTO>()
     val product: LiveData<ProductDTO> = _product
 
+    private var productCategorySelected = listProductCategories()[0]
+    fun listProductCategories() = productUseCase.listProductCategories()
+
+    val productCategories = productUseCase.listProductCategoriesTab() {
+        productCategorySelected = it
+        loadProducts()
+    }
+
+    fun resetCategories() {
+        productCategorySelected = listProductCategories()[0]
+    }
+
     fun loadProducts() {
         viewModelScope.launch {
-            productUseCase.listProducts(onSuccess = {
-                _products.postValue(it)
-            }, onError = {
-                _products.postValue(mutableListOf())
-            })
+            productUseCase.listProducts(
+                category = productCategorySelected,
+                onSuccess = {
+                    _products.postValue(it)
+                }, onError = {
+                    _products.postValue(mutableListOf())
+                }
+            )
         }
     }
 

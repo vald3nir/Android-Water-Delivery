@@ -13,7 +13,6 @@ import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
 import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
 import com.vald3nir.toolkit.componets.customviews.CustomSheetDialog
-import com.vald3nir.toolkit.componets.lists.CustomListComponent
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.extensions.setupLayoutManager
@@ -60,6 +59,7 @@ class ProductsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.setupObservers()
         binding.btnAddProducts.showLoading(true)
+        viewModel.resetCategories()
         viewModel.loadProducts()
     }
 
@@ -79,11 +79,7 @@ class ProductsFragment : BaseFragment() {
             showBackButton = true,
         )
         clcOrdersOpen.apply {
-            setTab(
-                CustomListComponent.CustomListTab(
-                    title = getString(R.string.mineral_waters)
-                )
-            )
+            setTabs(viewModel.productCategories)
             getRecyclerView().apply {
                 adapter = mainCardAdapter
                 setupLayoutManager()

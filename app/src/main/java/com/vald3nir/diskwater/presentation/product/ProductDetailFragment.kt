@@ -49,13 +49,14 @@ class ProductDetailFragment : BaseFragment() {
         edtPrice.afterTextChanged { onDataChange() }
         spProductCategory.setup(
             textColorItemSelected = R.color.blue_strong,
-            list = listOf("Água Mineral", "Descartáveis"),
+            list = viewModel.listProductCategories(),
         )
 
         viewModel.product.observe(viewLifecycleOwner) {
             edtName.setText(it.name)
             edtPrice.setText(it.price.toString())
             imvPhoto.loadImageBase64(it.imageBase64, R.drawable.generic_water)
+            spProductCategory.setSelection(item = it.category)
 
             btnSaveProducts.setButtonTitle(getString(if (it.isNew) R.string.register else R.string.update))
             toolbar.setupToolbar(

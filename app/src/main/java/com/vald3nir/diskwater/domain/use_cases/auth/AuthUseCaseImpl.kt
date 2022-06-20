@@ -4,19 +4,22 @@ import android.app.Activity
 import android.content.Context
 import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.diskwater.data.repository.auth.AuthRepository
-import com.vald3nir.toolkit.data.repository.remote.loadCurrentUser
+import com.vald3nir.toolkit.data.repository.remote.firebase.FirebaseAuthenticator
 
 class AuthUseCaseImpl(private val repository: AuthRepository) : AuthUseCase {
 
+    private val authenticator = FirebaseAuthenticator()
+
     override suspend fun disconnect() {
+        authenticator.disconnect()
     }
 
     override suspend fun getUserID(): String? {
-        return loadCurrentUser()?.uid
+        return authenticator.getUserID()
     }
 
     override suspend fun checkUserLogged(): Boolean {
-        return loadCurrentUser() != null
+        return authenticator.checkUserLogged()
     }
 
     override suspend fun login(
