@@ -8,12 +8,15 @@ import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.dto.OrderDTO
+import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
+import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
 import kotlinx.coroutines.launch
 
 class OrderViewModel(
     private val addressUseCase: AddressUseCase,
+    private val productUseCase: ProductUseCase,
 ) : BaseViewModel() {
 
     private val _myOrders = MutableLiveData<List<OrderDTO>>()
@@ -27,6 +30,17 @@ class OrderViewModel(
 
     private val _addressFields = MutableLiveData<AddressDTO>()
     val addressFields: LiveData<AddressDTO> = _addressFields
+
+    private val _products = MutableLiveData<MutableList<ProductDTO>>()
+    val products: LiveData<MutableList<ProductDTO>> = _products
+
+    private var productCategorySelected = listProductCategories()[0]
+    fun listProductCategories() = productUseCase.listProductCategories()
+
+    val productCategories = productUseCase.listProductCategoriesTab() {
+        productCategorySelected = it
+        loadProducts()
+    }
 
     fun loadData(baseFragment: BaseFragment) {
         var orderDTO = baseFragment.loadExtraDTO() as OrderDTO?
@@ -125,5 +139,22 @@ class OrderViewModel(
 
     private fun String?.isCEPValid(): Boolean {
         return this?.length == 8
+    }
+
+    fun resetCategories() {
+        productCategorySelected = listProductCategories()[0]
+    }
+
+    fun loadProducts() {
+        viewModelScope.launch {
+            productUseCase.listProducts(
+                category = productCategorySelected,
+                onSuccess = {
+                    _products.postValue(it)
+                }, onError = {
+                    _products.postValue(mutableListOf())
+                }
+            )
+        }
     }
 }

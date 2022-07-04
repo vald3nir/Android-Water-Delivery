@@ -70,6 +70,6 @@ class AppApplication : Application() {
         viewModel { RegisterViewModel(get(), get()) }
         viewModel { DashboardViewModel(get(), get()) }
         viewModel { ProductViewModel(get()) }
-        viewModel { OrderViewModel(get()) }
+        viewModel { OrderViewModel(get(), get()) }
     }
 }

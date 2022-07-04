@@ -6,10 +6,10 @@ import androidx.lifecycle.Observer
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseActivity
 import com.vald3nir.diskwater.databinding.ActivityLoginBinding
-import com.vald3nir.toolkit.extensions.actionDoneListener
-import com.vald3nir.toolkit.extensions.afterTextChanged
-import com.vald3nir.toolkit.extensions.format
-import com.vald3nir.toolkit.extensions.hideKeyboard
+import com.vald3nir.toolkit.utils.extensions.actionDoneListener
+import com.vald3nir.toolkit.utils.extensions.afterTextChanged
+import com.vald3nir.toolkit.utils.extensions.format
+import com.vald3nir.toolkit.utils.extensions.hideKeyboard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity() {

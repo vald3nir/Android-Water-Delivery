@@ -12,7 +12,7 @@ import com.vald3nir.diskwater.presentation.orders.*
 import com.vald3nir.diskwater.presentation.product.ProductDetailFragment
 import com.vald3nir.diskwater.presentation.product.ProductsFragment
 import com.vald3nir.diskwater.presentation.register.RegisterActivity
-import com.vald3nir.toolkit.extensions.hideKeyboard
+import com.vald3nir.toolkit.utils.extensions.hideKeyboard
 
 class ScreenNavigationImpl : ScreenNavigation {
 
@@ -42,7 +42,7 @@ class ScreenNavigationImpl : ScreenNavigation {
             // Orders
             FragmentEnum.MY_ORDERS -> MyOrdersFragment()
             FragmentEnum.CONFIRM_ADDRESS -> ConfirmAddressFragment()
-            FragmentEnum.ADD_ITEMS_ORDER -> ItemsOrderFragment()
+            FragmentEnum.ADD_ITEMS_ORDER -> ShoppingCartFragment()
 
             FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()
             FragmentEnum.PAYMENT -> PaymentMethodsFragment()

@@ -6,7 +6,7 @@ import com.vald3nir.diskwater.data.dto.LoginDTO
 import com.vald3nir.toolkit.data.repository.local.loadDataJson
 import com.vald3nir.toolkit.data.repository.local.saveDataJson
 import com.vald3nir.toolkit.data.repository.remote.firebase.FirebaseAuthenticator
-import com.vald3nir.toolkit.extensions.toDTO
+import com.vald3nir.toolkit.utils.extensions.toDTO
 
 class AuthRepositoryImpl : AuthRepository {
 

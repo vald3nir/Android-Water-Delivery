@@ -7,7 +7,7 @@ import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
-import com.vald3nir.toolkit.componets.lists.CustomListComponent
+import com.vald3nir.toolkit.core.componets.lists.CustomListComponent
 
 class DashboardViewModel(
     private val screenNavigation: ScreenNavigation,

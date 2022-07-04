@@ -9,10 +9,10 @@ import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.databinding.FragmentDashboardBinding
 import com.vald3nir.diskwater.databinding.OrderItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
-import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
-import com.vald3nir.toolkit.extensions.setupLayoutManager
-import com.vald3nir.toolkit.extensions.setupToolbar
-import com.vald3nir.toolkit.extensions.toMoney
+import com.vald3nir.toolkit.core.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.utils.extensions.setupLayoutManager
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardFragment : BaseFragment() {

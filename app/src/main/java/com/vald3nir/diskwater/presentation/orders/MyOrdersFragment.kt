@@ -11,11 +11,11 @@ import com.vald3nir.diskwater.databinding.FragmentMyOrdersBinding
 import com.vald3nir.diskwater.databinding.OrderItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.diskwater.domain.utils.toMutableBaseList
-import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.core.componets.adapters.CustomListAdapterDiffer
 import com.vald3nir.toolkit.data.dto.BaseDTO
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
-import com.vald3nir.toolkit.extensions.setupToolbar
-import com.vald3nir.toolkit.extensions.toMoney
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyOrdersFragment : BaseFragment() {

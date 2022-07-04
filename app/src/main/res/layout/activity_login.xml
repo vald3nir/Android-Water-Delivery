@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.vald3nir.toolkit.componets.customviews.CustomImageView
+            <com.vald3nir.toolkit.core.componets.customviews.CustomImageView
                 android:id="@+id/imv_logo"
                 android:layout_width="300dp"
                 android:layout_height="150dp"

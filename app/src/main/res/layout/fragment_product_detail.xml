@@ -7,7 +7,7 @@
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding">
 
-    <com.vald3nir.toolkit.componets.navigation.HeaderNavigationComponent
+    <com.vald3nir.toolkit.core.componets.navigation.HeaderNavigationComponent
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.vald3nir.toolkit.componets.customviews.CustomImageView
+            <com.vald3nir.toolkit.core.componets.customviews.CustomImageView
                 android:id="@+id/imv_photo"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
@@ -64,7 +64,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.vald3nir.toolkit.componets.customviews.CustomSpinner
+                <com.vald3nir.toolkit.core.componets.customviews.CustomSpinner
                     android:id="@+id/sp_product_category"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

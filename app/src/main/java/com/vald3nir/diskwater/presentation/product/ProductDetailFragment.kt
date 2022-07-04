@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.databinding.FragmentProductDetailBinding
-import com.vald3nir.toolkit.extensions.afterTextChanged
-import com.vald3nir.toolkit.extensions.setupToolbar
-import com.vald3nir.toolkit.extensions.toFloatValue
+import com.vald3nir.toolkit.utils.extensions.afterTextChanged
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.toFloatValue
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : BaseFragment() {
@@ -48,7 +48,7 @@ class ProductDetailFragment : BaseFragment() {
         edtName.afterTextChanged { onDataChange() }
         edtPrice.afterTextChanged { onDataChange() }
         spProductCategory.setup(
-            textColorItemSelected = R.color.blue_strong,
+            textColorItemSelected = R.color.white,
             list = viewModel.listProductCategories(),
         )
 

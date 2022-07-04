@@ -2,7 +2,7 @@ package com.vald3nir.diskwater.domain.use_cases.product
 
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.data.repository.product.ProductRepository
-import com.vald3nir.toolkit.componets.lists.CustomListComponent
+import com.vald3nir.toolkit.core.componets.lists.CustomListComponent
 
 class ProductUseCaseImpl(
     private val repository: ProductRepository,

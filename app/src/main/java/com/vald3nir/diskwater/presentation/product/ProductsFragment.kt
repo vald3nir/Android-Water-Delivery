@@ -10,14 +10,12 @@ import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.databinding.FragmentProductsBinding
 import com.vald3nir.diskwater.databinding.ProductItemViewBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
-import com.vald3nir.diskwater.domain.utils.toMutableBaseList
-import com.vald3nir.toolkit.componets.adapters.CustomListAdapterDiffer
-import com.vald3nir.toolkit.componets.customviews.CustomSheetDialog
-import com.vald3nir.toolkit.data.dto.BaseDTO
+import com.vald3nir.toolkit.core.componets.adapters.CustomListAdapterDiffer
+import com.vald3nir.toolkit.core.componets.customviews.CustomSheetDialog
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
-import com.vald3nir.toolkit.extensions.setupLayoutManager
-import com.vald3nir.toolkit.extensions.setupToolbar
-import com.vald3nir.toolkit.extensions.toMoney
+import com.vald3nir.toolkit.utils.extensions.setupLayoutManager
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductsFragment : BaseFragment() {
@@ -25,29 +23,24 @@ class ProductsFragment : BaseFragment() {
     private val viewModel: ProductViewModel by viewModel()
     lateinit var binding: FragmentProductsBinding
 
-    private val mainCardAdapter by lazy {
-        val adapter = CustomListAdapterDiffer(
-            bindingInflater = ProductItemViewBinding::inflate,
-            list = listOf(),
-            itemDiffUtil = baseDiffUtil(),
-            ::bindAdapter
-        )
-        adapter
-    }
+    private val mainCardAdapter = CustomListAdapterDiffer(
+        bindingInflater = ProductItemViewBinding::inflate,
+        list = listOf(),
+        itemDiffUtil = baseDiffUtil(),
+        onBind = { productDTO, itemViewBinding, _, _ ->
+            bindAdapter(itemViewBinding, productDTO)
+        }
+    )
 
     private fun bindAdapter(
-        baseDTO: BaseDTO,
         itemViewBinding: ProductItemViewBinding,
-        position: Int,
-        any: Any
+        productDTO: ProductDTO
     ) {
-        if (baseDTO is ProductDTO) {
-            itemViewBinding.apply {
-                txtName.text = baseDTO.name
-                txtPrice.text = baseDTO.price.toMoney()
-                imvPhoto.loadImageBase64(baseDTO.imageBase64, R.drawable.generic_water)
-                txtDelete.setOnClickListener { showDeleteProductDialog(baseDTO) }
-            }
+        itemViewBinding.apply {
+            txvName.text = productDTO.name
+            txvPrice.text = productDTO.price.toMoney()
+            imvPhoto.loadImageBase64(productDTO.imageBase64, R.drawable.generic_water)
+            txvDelete.setOnClickListener { showDeleteProductDialog(productDTO) }
         }
     }
 
@@ -99,7 +92,7 @@ class ProductsFragment : BaseFragment() {
         })
 
         viewModel.products.observe(viewLifecycleOwner) {
-            mainCardAdapter.submitList(it.toMutableBaseList())
+            mainCardAdapter.submitList(it)
             clcOrdersOpen.notifyListSize(it.size)
             btnAddProducts.showLoading(false)
         }

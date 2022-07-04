@@ -2,7 +2,7 @@ package com.vald3nir.diskwater.common
 
 import android.content.Intent
 import android.provider.MediaStore
-import com.vald3nir.toolkit.componets.customviews.CustomSheetDialog
+import com.vald3nir.toolkit.core.componets.customviews.CustomSheetDialog
 import com.vald3nir.toolkit.core.CoreFragment
 
 abstract class BaseFragment : CoreFragment() {

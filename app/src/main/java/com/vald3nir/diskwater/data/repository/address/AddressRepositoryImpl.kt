@@ -4,7 +4,7 @@ import android.content.Context
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.toolkit.data.repository.local.loadDataJson
 import com.vald3nir.toolkit.data.repository.local.saveDataJson
-import com.vald3nir.toolkit.extensions.toDTO
+import com.vald3nir.toolkit.utils.extensions.toDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -10,8 +10,8 @@ import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.databinding.FragmentConfirmAddressBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
-import com.vald3nir.toolkit.extensions.afterTextChanged
-import com.vald3nir.toolkit.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.afterTextChanged
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConfirmAddressFragment : BaseFragment() {

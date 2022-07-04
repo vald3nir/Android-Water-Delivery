@@ -3,7 +3,7 @@ package com.vald3nir.diskwater.common.componets
 import android.content.Context
 import android.util.AttributeSet
 import com.vald3nir.diskwater.R
-import com.vald3nir.toolkit.componets.customviews.CustomButton
+import com.vald3nir.toolkit.core.componets.customviews.CustomButton
 
 class BaseButton : CustomButton {
 

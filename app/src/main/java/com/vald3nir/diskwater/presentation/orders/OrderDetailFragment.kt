@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.databinding.FragmentOrderDetailBinding
-import com.vald3nir.toolkit.extensions.setupToolbar
+import com.vald3nir.toolkit.utils.extensions.setupToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OrderDetailFragment : BaseFragment() {

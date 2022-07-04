@@ -6,7 +6,7 @@
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding">
 
-    <com.vald3nir.toolkit.componets.navigation.HeaderNavigationComponent
+    <com.vald3nir.toolkit.core.componets.navigation.HeaderNavigationComponent
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:showBackButton="false" />
 
-    <com.vald3nir.toolkit.componets.lists.CustomListComponent
+    <com.vald3nir.toolkit.core.componets.lists.CustomListComponent
         android:id="@+id/clc_my_orders"
         android:layout_width="match_parent"
         android:layout_height="0dp"

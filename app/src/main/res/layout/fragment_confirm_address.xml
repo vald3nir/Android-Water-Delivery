@@ -7,7 +7,7 @@
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding">
 
-    <com.vald3nir.toolkit.componets.navigation.HeaderNavigationComponent
+    <com.vald3nir.toolkit.core.componets.navigation.HeaderNavigationComponent
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

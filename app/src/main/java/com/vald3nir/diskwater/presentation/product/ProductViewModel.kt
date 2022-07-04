@@ -9,7 +9,7 @@ import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.data.form.ProductInputForm
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
-import com.vald3nir.toolkit.extensions.toBase64
+import com.vald3nir.toolkit.utils.extensions.toBase64
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
