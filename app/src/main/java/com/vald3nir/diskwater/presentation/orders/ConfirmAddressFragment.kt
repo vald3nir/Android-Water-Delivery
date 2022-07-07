@@ -93,7 +93,7 @@ class ConfirmAddressFragment : BaseFragment() {
             district = edtDistrict.text.toString(),
             onSuccess = {
                 btnNext.showLoading(false)
-                viewModel.replaceFragment(FragmentEnum.ADD_ITEMS_ORDER)
+                viewModel.replaceFragment(FragmentEnum.SHOPPING_CART)
             },
             onError = {
                 btnNext.showLoading(false)

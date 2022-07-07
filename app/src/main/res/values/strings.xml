@@ -65,4 +65,5 @@
     <string name="items_order">Itens do Pedido</string>
     <string name="category">Categoria</string>
     <string name="quantity">Quantidade</string>
+    <string name="total_money">Total R$</string>
 </resources>

@@ -8,6 +8,7 @@ import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.common.BaseViewModel
 import com.vald3nir.diskwater.data.dto.AddressDTO
 import com.vald3nir.diskwater.data.dto.OrderDTO
+import com.vald3nir.diskwater.data.dto.OrderItemDTO
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
@@ -34,8 +35,13 @@ class OrderViewModel(
     private val _products = MutableLiveData<MutableList<ProductDTO>>()
     val products: LiveData<MutableList<ProductDTO>> = _products
 
+    private val _shoppingCartTotal = MutableLiveData<Float>()
+    val shoppingCartTotal: LiveData<Float> = _shoppingCartTotal
+
     private var productCategorySelected = listProductCategories()[0]
-    fun listProductCategories() = productUseCase.listProductCategories()
+    private fun listProductCategories() = productUseCase.listProductCategories()
+
+    private var shoppingCartMap = mutableMapOf<String, OrderItemDTO>()
 
     val productCategories = productUseCase.listProductCategoriesTab() {
         productCategorySelected = it
@@ -51,6 +57,31 @@ class OrderViewModel(
         }
         orderDTO.let { _order.postValue(it) }
     }
+
+    fun registerItem(productDTO: ProductDTO, quantity: Int) {
+        shoppingCartMap[productDTO.uid] = OrderItemDTO(
+            name = productDTO.name,
+            quantity = quantity,
+            unitValue = productDTO.price
+        )
+        calculateShoppingCartTotal()
+    }
+
+    fun getQuantity(productDTO: ProductDTO): String? {
+        return shoppingCartMap[productDTO.uid]?.quantity?.toString()
+    }
+
+    private fun calculateShoppingCartTotal() {
+        var total = 0.0f
+        for (key in shoppingCartMap.keys) {
+            val item = shoppingCartMap[key]
+            val quantity: Int = item?.quantity ?: 0
+            val unitValue: Float = item?.unitValue ?: 0.0f
+            total += (quantity * unitValue)
+        }
+        _shoppingCartTotal.postValue(total)
+    }
+
 
     fun loadLastOrders() {
         viewModelScope.launch {

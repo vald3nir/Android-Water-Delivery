@@ -4,6 +4,6 @@ import com.vald3nir.toolkit.data.dto.BaseDTO
 
 class OrderItemDTO(
     var name: String? = null,
-    var amount: Int = 0,
-    var value: Float = 0.0f,
+    var quantity: Int? = null,
+    var unitValue: Float? = null,
 ) : BaseDTO()

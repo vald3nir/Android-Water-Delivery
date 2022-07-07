@@ -39,14 +39,17 @@ class ShoppingCartFragment : BaseFragment() {
             txvTitle.text = productDTO.name
             txvPrice.text = productDTO.price.format()
             imvPhoto.loadImageBase64(productDTO.imageBase64, R.drawable.generic_water)
-            cspQuantity.setup(
-                list = createNumbersArray(start = 0, end = 10),
-                textLayout = R.layout.item_quantity_shopping_cart,
-                textColorItemSelected = R.color.black,
-                onItemSelected = {
-
-                }
-            )
+            cspQuantity.apply {
+                setup(
+                    list = createNumbersArray(start = 0, end = 10),
+                    textLayout = R.layout.item_quantity_shopping_cart,
+                    textColorItemSelected = R.color.black,
+                    onItemSelected = { size ->
+                        viewModel.registerItem(productDTO, size.toInt())
+                    }
+                )
+                setItemSelection(viewModel.getQuantity(productDTO))
+            }
         }
     }
 
@@ -89,6 +92,9 @@ class ShoppingCartFragment : BaseFragment() {
     }
 
     private fun FragmentShoppingCartBinding.setupObservers() {
+        viewModel.shoppingCartTotal.observe(viewLifecycleOwner) { value ->
+            txvTotalValue.text = value.format()
+        }
         viewModel.products.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it)
             clcShopping.notifyListSize(it.size)
