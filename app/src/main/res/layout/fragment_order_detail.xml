@@ -48,8 +48,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/order_address"
                     android:textColor="@color/black"
-                    app:drawableStartCompat="@drawable/ic_edit"
-                    app:drawableTint="@color/black" />
+                    app:drawableTint="@color/black"
+                    app:drawableEndCompat="@drawable/ic_edit" />
 
                 <TextView
                     android:id="@+id/txv_address_field"

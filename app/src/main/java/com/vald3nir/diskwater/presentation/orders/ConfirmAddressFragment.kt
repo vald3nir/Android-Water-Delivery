@@ -51,7 +51,6 @@ class ConfirmAddressFragment : BaseFragment() {
             clearErrors()
             viewModel.searchByCep(cep = it)
         })
-        btnNext.setButtonClickListener { updateAddress() }
     }
 
     private fun FragmentConfirmAddressBinding.initViews() {
@@ -60,7 +59,10 @@ class ConfirmAddressFragment : BaseFragment() {
             title = getString(R.string.confirm_address),
             showBackButton = true,
         )
-        btnNext.setButtonTitle(R.string.next)
+        btnNext.setup(
+            title = R.string.next,
+            clickListener = { updateAddress() }
+        )
     }
 
     private fun FragmentConfirmAddressBinding.fillAddress(addressFields: AddressDTO) {

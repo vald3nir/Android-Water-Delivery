@@ -36,11 +36,13 @@ class LoginActivity : BaseActivity() {
     private fun ActivityLoginBinding.initViews() {
         txvAppName.text = getTypeAppName()
         btnRegister.isVisible = viewModel.showRegisterButton
-        btnLogin.setButtonTitle(R.string.login)
+        btnLogin.setup(
+            title = R.string.login,
+            clickListener = { login() }
+        )
     }
 
     private fun ActivityLoginBinding.setupObservers() {
-        btnLogin.setButtonClickListener { login() }
         btnRegister.setOnClickListener { register() }
 
         viewModel.loginDTO.observe(this@LoginActivity) {

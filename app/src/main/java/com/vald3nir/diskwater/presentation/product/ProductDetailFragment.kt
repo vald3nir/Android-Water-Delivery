@@ -44,7 +44,6 @@ class ProductDetailFragment : BaseFragment() {
 
         imvPhoto.setOnClickListener { takePhoto() }
         txtChangeImage.setOnClickListener { takePhoto() }
-        btnSaveProducts.setButtonClickListener { updateProduct() }
         edtName.afterTextChanged { onDataChange() }
         edtPrice.afterTextChanged { onDataChange() }
         spProductCategory.setup(
@@ -58,7 +57,11 @@ class ProductDetailFragment : BaseFragment() {
             imvPhoto.loadImageBase64(it.imageBase64, R.drawable.generic_water)
             spProductCategory.setItemSelection(item = it.category)
 
-            btnSaveProducts.setButtonTitle(getString(if (it.isNew) R.string.register else R.string.update))
+            btnSaveProducts.setup(
+                title = if (it.isNew) R.string.register else R.string.update,
+                clickListener = { updateProduct() }
+            )
+
             toolbar.setupToolbar(
                 activity = activity,
                 showBackButton = true,

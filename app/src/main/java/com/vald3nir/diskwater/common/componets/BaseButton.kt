@@ -23,7 +23,17 @@ class BaseButton : CustomButton {
 
     private fun initComponent() {
         orientation = VERTICAL
-        setButtonTitleColor(R.color.blue)
-        setRootDrawable(R.drawable.button_white_layout)
+    }
+
+    fun setup(
+        title: Int,
+        clickListener: () -> Unit,
+    ) {
+        setup(
+            title = context.getString(title),
+            titleColor = R.color.blue,
+            rootDrawable = R.drawable.button_white_layout,
+            clickListener = clickListener,
+        )
     }
 }

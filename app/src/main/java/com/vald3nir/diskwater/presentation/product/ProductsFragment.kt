@@ -78,14 +78,13 @@ class ProductsFragment : BaseFragment() {
                 setupLayoutManager()
             }
         }
-        btnAddProducts.setButtonTitle(getString(R.string.add_product))
+        btnAddProducts.setup(
+            title = R.string.add_product,
+            clickListener = { viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL) }
+        )
     }
 
     private fun FragmentProductsBinding.setupObservers() {
-
-        btnAddProducts.setButtonClickListener {
-            viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL)
-        }
 
         mainCardAdapter.setOnItemClickListener(listener = { item, position ->
             viewModel.replaceFragment(FragmentEnum.PRODUCT_DETAIL, item)

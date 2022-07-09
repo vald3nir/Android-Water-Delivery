@@ -33,11 +33,13 @@ class RegisterActivity : BaseActivity() {
             activity = this@RegisterActivity,
             title = "${getString(R.string.register)} - ${getTypeAppName()}"
         )
-        btnRegister.setButtonTitle(R.string.register)
+        btnRegister.setup(
+            title = R.string.register,
+            clickListener = { registerNewUser() }
+        )
     }
 
     private fun ActivityRegisterBinding.setupObservers() {
-        btnRegister.setButtonClickListener { registerNewUser() }
         edtEmail.afterTextChanged { registerDataChanged() }
         edtPassword.afterTextChanged { registerDataChanged() }
         edtConfirmPassword.apply {

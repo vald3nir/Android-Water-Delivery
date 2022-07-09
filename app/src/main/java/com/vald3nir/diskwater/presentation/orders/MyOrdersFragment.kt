@@ -68,7 +68,12 @@ class MyOrdersFragment : BaseFragment() {
             title = getString(R.string.my_last_orders),
             showBackButton = false,
         )
-        btnNewOrder.setButtonTitle(R.string.new_order)
+        btnNewOrder.setup(
+            title = R.string.new_order,
+            clickListener = {
+                viewModel.replaceFragment(FragmentEnum.CONFIRM_ADDRESS)
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,10 +84,6 @@ class MyOrdersFragment : BaseFragment() {
     }
 
     private fun FragmentMyOrdersBinding.setupObservers() {
-
-        btnNewOrder.setButtonClickListener {
-            viewModel.replaceFragment(FragmentEnum.CONFIRM_ADDRESS)
-        }
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
             viewModel.replaceFragment(FragmentEnum.ORDER_DETAIL, item)

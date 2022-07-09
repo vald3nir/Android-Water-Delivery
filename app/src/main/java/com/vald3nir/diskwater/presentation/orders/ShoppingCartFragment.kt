@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.databinding.FragmentShoppingCartBinding
 import com.vald3nir.diskwater.databinding.ItemShoppingCartBinding
+import com.vald3nir.diskwater.domain.navigation.FragmentEnum
 import com.vald3nir.toolkit.core.componets.adapters.CustomListAdapterDiffer
 import com.vald3nir.toolkit.data.dto.baseDiffUtil
 import com.vald3nir.toolkit.utils.createNumbersArray
@@ -79,7 +81,10 @@ class ShoppingCartFragment : BaseFragment() {
             title = getString(R.string.items_order)
         )
         btnNext.apply {
-            setButtonTitle(R.string.next)
+            setup(
+                title = R.string.next,
+                clickListener = { viewModel.replaceFragment(FragmentEnum.ORDER_DETAIL) }
+            )
             showLoading(true)
         }
         clcShopping.apply {
@@ -94,6 +99,7 @@ class ShoppingCartFragment : BaseFragment() {
     private fun FragmentShoppingCartBinding.setupObservers() {
         viewModel.shoppingCartTotal.observe(viewLifecycleOwner) { value ->
             txvTotalValue.text = value.format()
+            btnNext.isVisible = value > 0
         }
         viewModel.products.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it)
