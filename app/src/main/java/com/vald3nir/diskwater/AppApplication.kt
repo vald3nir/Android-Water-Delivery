@@ -15,6 +15,8 @@ import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCaseImpl
+import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCase
+import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCaseImpl
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
@@ -47,19 +49,21 @@ class AppApplication : Application() {
 
         return module {
 
-            factory<AddressRepository> { AddressRepositoryImpl() }
-            factory<AddressUseCase> { AddressUseCaseImpl(get()) }
+            single<OrderUseCase> { OrderUseCaseImpl() }
 
-            factory<ProductUseCase> { ProductUseCaseImpl(get()) }
-            factory<ProductRepository> { ProductRepositoryImpl() }
+            single<AddressRepository> { AddressRepositoryImpl() }
+            single<AddressUseCase> { AddressUseCaseImpl(get()) }
 
-            factory<AuthRepository> { AuthRepositoryImpl() }
-            factory<AuthUseCase> { AuthUseCaseImpl(get()) }
+            single<ProductUseCase> { ProductUseCaseImpl(get()) }
+            single<ProductRepository> { ProductRepositoryImpl() }
 
-            factory<RegisterRepository> { RegisterRepositoryImpl() }
-            factory<RegisterUseCase> { RegisterUseCaseImpl(get()) }
+            single<AuthRepository> { AuthRepositoryImpl() }
+            single<AuthUseCase> { AuthUseCaseImpl(get()) }
 
-            factory<ScreenNavigation> { ScreenNavigationImpl() }
+            single<RegisterRepository> { RegisterRepositoryImpl() }
+            single<RegisterUseCase> { RegisterUseCaseImpl(get()) }
+
+            single<ScreenNavigation> { ScreenNavigationImpl() }
 
             setupViewModels()
         }
@@ -70,6 +74,6 @@ class AppApplication : Application() {
         viewModel { RegisterViewModel(get(), get()) }
         viewModel { DashboardViewModel(get(), get()) }
         viewModel { ProductViewModel(get()) }
-        viewModel { OrderViewModel(get(), get()) }
+        viewModel { OrderViewModel(get(), get(), get()) }
     }
 }

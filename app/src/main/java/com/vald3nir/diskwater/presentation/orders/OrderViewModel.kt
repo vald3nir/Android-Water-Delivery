@@ -12,10 +12,12 @@ import com.vald3nir.diskwater.data.dto.OrderItemDTO
 import com.vald3nir.diskwater.data.dto.ProductDTO
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
+import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCase
 import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
 import kotlinx.coroutines.launch
 
 class OrderViewModel(
+    private val orderUseCase: OrderUseCase,
     private val addressUseCase: AddressUseCase,
     private val productUseCase: ProductUseCase,
 ) : BaseViewModel() {
@@ -38,17 +40,19 @@ class OrderViewModel(
     private val _shoppingCartTotal = MutableLiveData<Float>()
     val shoppingCartTotal: LiveData<Float> = _shoppingCartTotal
 
+    private val _itemsOrder = MutableLiveData<MutableList<OrderItemDTO>>()
+    val itemsOrder: LiveData<MutableList<OrderItemDTO>> = _itemsOrder
+
     private var productCategorySelected = listProductCategories()[0]
     private fun listProductCategories() = productUseCase.listProductCategories()
 
-    private var shoppingCartMap = mutableMapOf<String, OrderItemDTO>()
 
     val productCategories = productUseCase.listProductCategoriesTab() {
         productCategorySelected = it
         loadProducts()
     }
 
-    fun loadData(baseFragment: BaseFragment) {
+    fun loadOrder(baseFragment: BaseFragment) {
         var orderDTO = baseFragment.loadExtraDTO() as OrderDTO?
         if (orderDTO == null) {
             orderDTO = OrderDTO()
@@ -58,30 +62,23 @@ class OrderViewModel(
         orderDTO.let { _order.postValue(it) }
     }
 
+    fun loadOrderDetail() {
+        viewModelScope.launch {
+            _itemsOrder.postValue(orderUseCase.loadItemsSelected())
+            _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
+        }
+    }
+
     fun registerItem(productDTO: ProductDTO, quantity: Int) {
-        shoppingCartMap[productDTO.uid] = OrderItemDTO(
-            name = productDTO.name,
-            quantity = quantity,
-            unitValue = productDTO.price
-        )
-        calculateShoppingCartTotal()
+        viewModelScope.launch {
+            orderUseCase.registerItem(productDTO, quantity)
+            _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
+        }
     }
 
     fun getQuantity(productDTO: ProductDTO): String? {
-        return shoppingCartMap[productDTO.uid]?.quantity?.toString()
+        return orderUseCase.getItemQuantity(productDTO)
     }
-
-    private fun calculateShoppingCartTotal() {
-        var total = 0.0f
-        for (key in shoppingCartMap.keys) {
-            val item = shoppingCartMap[key]
-            val quantity: Int = item?.quantity ?: 0
-            val unitValue: Float = item?.unitValue ?: 0.0f
-            total += (quantity * unitValue)
-        }
-        _shoppingCartTotal.postValue(total)
-    }
-
 
     fun loadLastOrders() {
         viewModelScope.launch {
