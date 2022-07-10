@@ -6,10 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.common.BaseViewModel
-import com.vald3nir.diskwater.data.dto.AddressDTO
-import com.vald3nir.diskwater.data.dto.OrderDTO
-import com.vald3nir.diskwater.data.dto.OrderItemDTO
-import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.diskwater.data.dto.*
 import com.vald3nir.diskwater.data.form.AddressInputForm
 import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
 import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCase
@@ -63,17 +60,13 @@ class OrderViewModel(
     }
 
     fun loadOrderDetail() {
-        viewModelScope.launch {
-            _itemsOrder.postValue(orderUseCase.loadItemsSelected())
-            _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
-        }
+        _itemsOrder.postValue(orderUseCase.loadItemsSelected())
+        _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
     }
 
     fun registerItem(productDTO: ProductDTO, quantity: Int) {
-        viewModelScope.launch {
-            orderUseCase.registerItem(productDTO, quantity)
-            _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
-        }
+        orderUseCase.registerItem(productDTO, quantity)
+        _shoppingCartTotal.postValue(orderUseCase.calculateShoppingCartTotal())
     }
 
     fun getQuantity(productDTO: ProductDTO): String? {
@@ -105,6 +98,7 @@ class OrderViewModel(
                             this?.cep = cep
                             this?.street = it?.street
                             this?.district = it?.district
+                            this?.city = it?.city
                         }
                         _addressFields.postValue(addressFields.value)
                     },
@@ -184,5 +178,13 @@ class OrderViewModel(
                 }
             )
         }
+    }
+
+    fun loadPaymentType(): MutableList<PaymentType> {
+        return orderUseCase.loadPaymentType()
+    }
+
+    fun registerPaymentType(paymentType: PaymentType) {
+        orderUseCase.registerPaymentType(paymentType)
     }
 }

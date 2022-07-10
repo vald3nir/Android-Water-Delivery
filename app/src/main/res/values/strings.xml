@@ -60,6 +60,7 @@
     <string name="mineral_waters">Águas Minerais</string>
     <string name="delete">Apagar</string>
     <string name="next">Avançar</string>
+    <string name="finish">Finalisar</string>
     <string name="confirm_address">Confirmação de Endereço</string>
     <string name="new_order">Novo Pedido</string>
     <string name="items_order">Itens do Pedido</string>

@@ -38,14 +38,12 @@ class ScreenNavigationImpl : ScreenNavigation {
 
     override fun createFragment(fragmentEnum: FragmentEnum): BaseFragment {
         return when (fragmentEnum) {
-
-            // Orders
             FragmentEnum.MY_ORDERS -> MyOrdersFragment()
             FragmentEnum.CONFIRM_ADDRESS -> ConfirmAddressFragment()
             FragmentEnum.SHOPPING_CART -> ShoppingCartFragment()
             FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()
-
-            FragmentEnum.PAYMENT -> PaymentMethodsFragment()
+            FragmentEnum.PAYMENT -> PaymentFragment()
+            FragmentEnum.ORDER_SUCCESS -> OrderSuccessFragment()
             FragmentEnum.DASHBOARD -> DashboardFragment()
             FragmentEnum.PRODUCTS -> ProductsFragment()
             FragmentEnum.PRODUCT_DETAIL -> ProductDetailFragment()

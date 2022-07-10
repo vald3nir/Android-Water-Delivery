@@ -80,7 +80,7 @@ class OrderDetailFragment : BaseFragment() {
             setup(
                 title = R.string.next,
                 clickListener = {
-//                    viewModel.replaceFragment(FragmentEnum.ORDER_DETAIL)
+                    viewModel.replaceFragment(FragmentEnum.PAYMENT)
                 }
             )
             showLoading(true)

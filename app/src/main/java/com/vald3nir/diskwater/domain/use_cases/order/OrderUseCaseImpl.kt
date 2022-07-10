@@ -1,13 +1,27 @@
 package com.vald3nir.diskwater.domain.use_cases.order
 
 import com.vald3nir.diskwater.data.dto.OrderItemDTO
+import com.vald3nir.diskwater.data.dto.PaymentType
 import com.vald3nir.diskwater.data.dto.ProductDTO
 
 class OrderUseCaseImpl : OrderUseCase {
 
     private var shoppingCartMap = mutableMapOf<String, OrderItemDTO>()
+    private var paymentType = PaymentType.MONEY
 
-    override suspend fun registerItem(productDTO: ProductDTO, quantity: Int) {
+    override fun registerPaymentType(paymentType: PaymentType) {
+        this.paymentType = paymentType
+    }
+
+    override fun loadPaymentType(): MutableList<PaymentType> {
+        return mutableListOf(
+            PaymentType.MONEY,
+            PaymentType.PIX,
+            PaymentType.CARD,
+        )
+    }
+
+    override fun registerItem(productDTO: ProductDTO, quantity: Int) {
         shoppingCartMap[productDTO.uid] = OrderItemDTO(
             name = productDTO.name,
             quantity = quantity,
@@ -19,7 +33,7 @@ class OrderUseCaseImpl : OrderUseCase {
         return shoppingCartMap[productDTO.uid]?.quantity?.toString()
     }
 
-    override suspend fun calculateShoppingCartTotal(): Float {
+    override fun calculateShoppingCartTotal(): Float {
         var total = 0.0f
         for (key in shoppingCartMap.keys) {
             val item = shoppingCartMap[key]
@@ -30,7 +44,7 @@ class OrderUseCaseImpl : OrderUseCase {
         return total
     }
 
-    override suspend fun loadItemsSelected(): MutableList<OrderItemDTO> {
+    override fun loadItemsSelected(): MutableList<OrderItemDTO> {
         val items = mutableListOf<OrderItemDTO>()
         shoppingCartMap.map {
             if ((it.value.quantity ?: 0) > 0) {

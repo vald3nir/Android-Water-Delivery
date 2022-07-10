@@ -25,6 +25,17 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_next"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
+        <TextView
+            android:id="@+id/txv_address_label"
+            style="@style/TittleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_address"
+            android:textColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_address"
             android:layout_width="match_parent"
@@ -33,32 +44,18 @@
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/txv_address_label">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/txv_address_detail"
+                style="@style/TittleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_cell"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txv_address_label"
-                    style="@style/TittleStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/order_address"
-                    android:textColor="@color/blue"
-                    app:drawableEndCompat="@drawable/ic_edit"
-                    app:drawableTint="@color/black" />
-
-                <TextView
-                    android:id="@+id/txv_address_detail"
-                    style="@style/TittleStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    tools:text="Cel. Mozart Gondim, 1320 - São Gerardo. Fortaleza - CE, 60320-250" />
-            </LinearLayout>
+                android:textColor="@color/black"
+                app:drawableEndCompat="@drawable/ic_edit"
+                app:drawableTint="@color/black"
+                tools:text="Cel. Mozart Gondim, 1320 - São Gerardo. Fortaleza - CE, 60320-250" />
 
         </androidx.cardview.widget.CardView>
 

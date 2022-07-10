@@ -14,7 +14,13 @@ class AddressDTO(
 ) : BaseDTO() {
 
     override fun toString(): String {
-        return "$street, Nº $number, Complemento: $complement, $district"
+        var string = ""
+        street?.let { string += "$it, " }
+        number?.let { string += "$it, " }
+        complement?.let { string += "$it, " }
+        district?.let { string += "$it, " }
+//        city?.let { string += " $it, " }
+        cep?.let { string += it }
+        return string
     }
-
 }

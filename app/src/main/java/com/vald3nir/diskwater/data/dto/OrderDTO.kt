@@ -8,5 +8,6 @@ class OrderDTO(
     var address: String? = null,
     var date: String? = null,
     var items: List<OrderItemDTO>? = null,
-    var total: Float = 0.0f
+    var total: Float = 0.0f,
+    var paymentType: PaymentType = PaymentType.MONEY,
 ) : BaseDTO()
