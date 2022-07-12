@@ -12,7 +12,7 @@ class ProductRepositoryImpl : ProductRepository {
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
-        firebaseClient.updateData(
+        firebaseClient.insertOrUpdateData(
             rootPath = "produtos",
             document = "categoria",
             collection = "${product.category}",

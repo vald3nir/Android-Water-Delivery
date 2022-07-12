@@ -4,6 +4,7 @@ import com.vald3nir.toolkit.data.dto.BaseDTO
 
 class ClientDTO(
     var name: String? = null,
+    var userID: String? = null,
     var photo: String? = null,
     var telephone: String? = null,
     var email: String? = null,

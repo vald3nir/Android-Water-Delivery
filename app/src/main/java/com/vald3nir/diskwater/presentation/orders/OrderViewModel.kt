@@ -37,6 +37,9 @@ class OrderViewModel(
     private val _shoppingCartTotal = MutableLiveData<Float>()
     val shoppingCartTotal: LiveData<Float> = _shoppingCartTotal
 
+    private val _paymentType = MutableLiveData<MutableList<PaymentType>>()
+    val paymentType: LiveData<MutableList<PaymentType>> = _paymentType
+
     private val _itemsOrder = MutableLiveData<MutableList<OrderItemDTO>>()
     val itemsOrder: LiveData<MutableList<OrderItemDTO>> = _itemsOrder
 
@@ -180,11 +183,7 @@ class OrderViewModel(
         }
     }
 
-    fun loadPaymentType(): MutableList<PaymentType> {
-        return orderUseCase.loadPaymentType()
-    }
-
-    fun registerPaymentType(paymentType: PaymentType) {
-        orderUseCase.registerPaymentType(paymentType)
+    fun addPaymentType(paymentType: PaymentType) {
+        orderUseCase.addPaymentType(paymentType)
     }
 }

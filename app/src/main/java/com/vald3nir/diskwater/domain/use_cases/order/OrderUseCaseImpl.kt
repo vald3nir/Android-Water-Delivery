@@ -1,24 +1,20 @@
 package com.vald3nir.diskwater.domain.use_cases.order
 
+import com.vald3nir.diskwater.data.dto.OrderDTO
 import com.vald3nir.diskwater.data.dto.OrderItemDTO
 import com.vald3nir.diskwater.data.dto.PaymentType
 import com.vald3nir.diskwater.data.dto.ProductDTO
+import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 
-class OrderUseCaseImpl : OrderUseCase {
+class OrderUseCaseImpl (
+    private val authUseCase: AuthUseCase
+        ): OrderUseCase {
 
     private var shoppingCartMap = mutableMapOf<String, OrderItemDTO>()
     private var paymentType = PaymentType.MONEY
 
-    override fun registerPaymentType(paymentType: PaymentType) {
+    override fun addPaymentType(paymentType: PaymentType) {
         this.paymentType = paymentType
-    }
-
-    override fun loadPaymentType(): MutableList<PaymentType> {
-        return mutableListOf(
-            PaymentType.MONEY,
-            PaymentType.PIX,
-            PaymentType.CARD,
-        )
     }
 
     override fun registerItem(productDTO: ProductDTO, quantity: Int) {
@@ -52,5 +48,18 @@ class OrderUseCaseImpl : OrderUseCase {
             }
         }
         return items
+    }
+
+    override suspend fun requestOrder(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit) {
+
+        val order = OrderDTO(
+            clientName = null,
+            address = null,
+            date = null,
+            items = null,
+            total = 0.0f,
+            paymentType = paymentType,
+        )
+
     }
 }

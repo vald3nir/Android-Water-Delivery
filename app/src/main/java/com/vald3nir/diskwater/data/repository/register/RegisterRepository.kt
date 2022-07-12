@@ -1,6 +1,7 @@
 package com.vald3nir.diskwater.data.repository.register
 
 import android.app.Activity
+import com.vald3nir.diskwater.data.dto.ClientDTO
 
 interface RegisterRepository {
 
@@ -12,10 +13,9 @@ interface RegisterRepository {
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun registerUserType(
+    suspend fun registerClient(
         activity: Activity,
-        userID: String,
-        isSalesman: Boolean,
+        clientDTO: ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
     )

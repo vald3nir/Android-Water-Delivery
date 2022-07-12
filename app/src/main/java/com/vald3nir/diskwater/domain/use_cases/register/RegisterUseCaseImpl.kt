@@ -1,10 +1,12 @@
 package com.vald3nir.diskwater.domain.use_cases.register
 
 import android.app.Activity
-import com.vald3nir.toolkit.core.ViewModelController
+import com.vald3nir.diskwater.data.dto.ClientDTO
 import com.vald3nir.diskwater.data.repository.register.RegisterRepository
 
-class RegisterUseCaseImpl(private val repository: RegisterRepository) : RegisterUseCase {
+class RegisterUseCaseImpl(
+    private val repository: RegisterRepository
+) : RegisterUseCase {
 
     override suspend fun registerNewUser(
         activity: Activity?,
@@ -24,18 +26,16 @@ class RegisterUseCaseImpl(private val repository: RegisterRepository) : Register
         }
     }
 
-    override suspend fun registerUserType(
+    override suspend fun registerClient(
         activity: Activity?,
-        userID: String,
-        isSalesman: Boolean,
+        clientDTO: ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
         activity?.let {
-            repository.registerUserType(
+            repository.registerClient(
                 activity = it,
-                isSalesman = isSalesman,
-                userID = userID,
+                clientDTO = clientDTO,
                 onSuccess = onSuccess,
                 onError = onError
             )

@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseFragment
 import com.vald3nir.diskwater.data.dto.OrderItemDTO
+import com.vald3nir.diskwater.data.dto.PaymentType
 import com.vald3nir.diskwater.databinding.FragmentOrderDetailBinding
 import com.vald3nir.diskwater.databinding.ItemOrderDetailBinding
 import com.vald3nir.diskwater.domain.navigation.FragmentEnum
@@ -80,14 +81,31 @@ class OrderDetailFragment : BaseFragment() {
             setup(
                 title = R.string.next,
                 clickListener = {
-                    viewModel.replaceFragment(FragmentEnum.PAYMENT)
+                    requestOrder()
                 }
             )
             showLoading(true)
         }
     }
 
+    private fun requestOrder() {
+        viewModel.replaceFragment(FragmentEnum.ORDER_SUCCESS)
+    }
+
     private fun FragmentOrderDetailBinding.setupObservers() {
+        rbPaymentsTypes.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rb_money -> {
+                    viewModel.addPaymentType(PaymentType.MONEY)
+                }
+                R.id.rb_pix -> {
+                    viewModel.addPaymentType(PaymentType.PIX)
+                }
+                R.id.rb_card -> {
+                    viewModel.addPaymentType(PaymentType.CARD)
+                }
+            }
+        }
 
         cardAddress.setOnClickListener {
             viewModel.replaceFragment(FragmentEnum.CONFIRM_ADDRESS)

@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.diskwater.R
 import com.vald3nir.diskwater.common.BaseViewModel
+import com.vald3nir.diskwater.data.dto.ClientDTO
 import com.vald3nir.diskwater.data.form.DataUserInputForm
 import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
 import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
-import com.vald3nir.diskwater.domain.utils.isAppSalesman
 import com.vald3nir.toolkit.utils.validations.isEmailValid
 import com.vald3nir.toolkit.utils.validations.isPasswordValid
 import kotlinx.coroutines.launch
@@ -42,10 +42,16 @@ class RegisterViewModel(
 
     private fun registerUserType() {
         viewModelScope.launch {
-            registerUseCase.registerUserType(
+            registerUseCase.registerClient(
                 activity = requireActivityContext(),
-                userID = authUseCase.getUserID().orEmpty(),
-                isSalesman = isAppSalesman(),
+                clientDTO = ClientDTO(
+                    name = null,
+                    userID = authUseCase.getUserID().orEmpty(),
+                    photo = null,
+                    telephone = null,
+                    email = null,
+                    address = null,
+                ),
                 onSuccess = { finish() },
                 onError = { showError(it) }
             )

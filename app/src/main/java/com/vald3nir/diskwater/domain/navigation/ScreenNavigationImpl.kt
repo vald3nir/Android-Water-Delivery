@@ -42,7 +42,6 @@ class ScreenNavigationImpl : ScreenNavigation {
             FragmentEnum.CONFIRM_ADDRESS -> ConfirmAddressFragment()
             FragmentEnum.SHOPPING_CART -> ShoppingCartFragment()
             FragmentEnum.ORDER_DETAIL -> OrderDetailFragment()
-            FragmentEnum.PAYMENT -> PaymentFragment()
             FragmentEnum.ORDER_SUCCESS -> OrderSuccessFragment()
             FragmentEnum.DASHBOARD -> DashboardFragment()
             FragmentEnum.PRODUCTS -> ProductsFragment()

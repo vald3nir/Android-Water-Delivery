@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 rootProject.name = "disk water"
 include ':app'
 include ':ToolKit'
+include ':features:users'

@@ -5,7 +5,6 @@ enum class FragmentEnum {
     CONFIRM_ADDRESS,
     SHOPPING_CART,
     ORDER_DETAIL,
-    PAYMENT,
     ORDER_SUCCESS,
     DASHBOARD,
     PRODUCTS,

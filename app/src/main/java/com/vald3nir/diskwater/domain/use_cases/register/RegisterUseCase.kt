@@ -1,6 +1,7 @@
 package com.vald3nir.diskwater.domain.use_cases.register
 
 import android.app.Activity
+import com.vald3nir.diskwater.data.dto.ClientDTO
 
 interface RegisterUseCase {
 
@@ -12,10 +13,9 @@ interface RegisterUseCase {
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun registerUserType(
+    suspend fun registerClient(
         activity: Activity?,
-        userID: String,
-        isSalesman: Boolean,
+        clientDTO: ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     )

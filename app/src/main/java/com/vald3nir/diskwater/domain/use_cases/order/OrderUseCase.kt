@@ -5,10 +5,10 @@ import com.vald3nir.diskwater.data.dto.PaymentType
 import com.vald3nir.diskwater.data.dto.ProductDTO
 
 interface OrderUseCase {
-    fun registerPaymentType(paymentType: PaymentType)
-    fun loadPaymentType(): MutableList<PaymentType>
+    fun addPaymentType(paymentType: PaymentType)
     fun registerItem(productDTO: ProductDTO, quantity: Int)
     fun getItemQuantity(productDTO: ProductDTO): String?
     fun calculateShoppingCartTotal(): Float
     fun loadItemsSelected(): MutableList<OrderItemDTO>
+    suspend fun requestOrder(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit)
 }

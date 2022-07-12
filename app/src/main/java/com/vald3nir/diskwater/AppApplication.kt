@@ -49,7 +49,7 @@ class AppApplication : Application() {
 
         return module {
 
-            single<OrderUseCase> { OrderUseCaseImpl() }
+            single<OrderUseCase> { OrderUseCaseImpl(get()) }
 
             single<AddressRepository> { AddressRepositoryImpl() }
             single<AddressUseCase> { AddressUseCaseImpl(get()) }
