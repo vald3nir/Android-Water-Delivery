@@ -1,0 +1,9 @@
+<resources>
+    <string name="orders">Pedidos</string>
+    <string name="products">Produtos</string>
+    <string name="update">Atualizar</string>
+    <string name="register">Cadastrar</string>
+    <string name="add_product">Cadastrar Produto</string>
+    <string name="update_product">Alterar Produto</string>
+    <string name="unnamed_product">Produto sem nome informado!</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="client">Cliente</string>
+    <string name="salesman">Vendedor</string>
+    <string name="invalid_email">Email não é válido</string>
+    <string name="invalid_password">A Senha deve ser maior que 5 caracteres</string>
+    <string name="passwords_not_equals">As senhas não são iguais</string>
+    <string name="login">Login</string>
+    <string name="register">Cadastrar</string>
+</resources>

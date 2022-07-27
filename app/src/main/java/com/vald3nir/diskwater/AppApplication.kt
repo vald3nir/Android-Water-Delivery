@@ -1,34 +1,12 @@
 package com.vald3nir.diskwater
 
 import android.app.Application
-import com.vald3nir.diskwater.data.repository.address.AddressRepository
-import com.vald3nir.diskwater.data.repository.address.AddressRepositoryImpl
-import com.vald3nir.diskwater.data.repository.auth.AuthRepository
-import com.vald3nir.diskwater.data.repository.auth.AuthRepositoryImpl
-import com.vald3nir.diskwater.data.repository.product.ProductRepository
-import com.vald3nir.diskwater.data.repository.product.ProductRepositoryImpl
-import com.vald3nir.diskwater.data.repository.register.RegisterRepository
-import com.vald3nir.diskwater.data.repository.register.RegisterRepositoryImpl
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigation
-import com.vald3nir.diskwater.domain.navigation.ScreenNavigationImpl
-import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCase
-import com.vald3nir.diskwater.domain.use_cases.address.AddressUseCaseImpl
-import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCase
-import com.vald3nir.diskwater.domain.use_cases.auth.AuthUseCaseImpl
-import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCase
-import com.vald3nir.diskwater.domain.use_cases.order.OrderUseCaseImpl
-import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCase
-import com.vald3nir.diskwater.domain.use_cases.product.ProductUseCaseImpl
-import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCase
-import com.vald3nir.diskwater.domain.use_cases.register.RegisterUseCaseImpl
-import com.vald3nir.diskwater.presentation.dashboard.DashboardViewModel
-import com.vald3nir.diskwater.presentation.login.LoginViewModel
-import com.vald3nir.diskwater.presentation.orders.OrderViewModel
-import com.vald3nir.diskwater.presentation.product.ProductViewModel
-import com.vald3nir.diskwater.presentation.register.RegisterViewModel
+import com.vald3nir.commom.domain.navigation.FeaturesNavigation
+import com.vald3nir.dashboard.di.getDashboardModule
+import com.vald3nir.login.di.getLoginModule
+import com.vald3nir.sales.di.getSalesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
@@ -38,42 +16,27 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@AppApplication)
-            modules(getModules())
+            modules(
+                listOf(
+                    appModule(),
+                    getDashboardModule(),
+                    getSalesModule(),
+                    getLoginModule(
+                        context = applicationContext,
+                        isClientApp = isAppClient()
+                    ),
+                )
+            )
         }
     }
 
-    private fun getModules(): Module {
-
+    private fun appModule(): Module {
         return module {
-
-            single<OrderUseCase> { OrderUseCaseImpl(get()) }
-
-            single<AddressRepository> { AddressRepositoryImpl() }
-            single<AddressUseCase> { AddressUseCaseImpl(get()) }
-
-            single<ProductUseCase> { ProductUseCaseImpl(get()) }
-            single<ProductRepository> { ProductRepositoryImpl() }
-
-            single<AuthRepository> { AuthRepositoryImpl() }
-            single<AuthUseCase> { AuthUseCaseImpl(get()) }
-
-            single<RegisterRepository> { RegisterRepositoryImpl() }
-            single<RegisterUseCase> { RegisterUseCaseImpl(get()) }
-
-            single<ScreenNavigation> { ScreenNavigationImpl() }
-
-            setupViewModels()
+            single<FeaturesNavigation> { FeaturesNavigationImpl() }
         }
-    }
-
-    private fun Module.setupViewModels() {
-        viewModel { LoginViewModel(get(), get()) }
-        viewModel { RegisterViewModel(get(), get()) }
-        viewModel { DashboardViewModel(get(), get()) }
-        viewModel { ProductViewModel(get()) }
-        viewModel { OrderViewModel(get(), get(), get()) }
     }
 }

@@ -3,8 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
-        jcenter()
     }
 }
 dependencyResolutionManagement {
@@ -12,11 +10,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
-        mavenCentral()
     }
 }
-rootProject.name = "disk water"
+rootProject.name = "diskwater"
 include ':app'
-include ':ToolKit'
-include ':features:users'
+include ':commom'
+include ':features:login'
+include ':features:dashboard'
+include ':features:sales'
+include ':toolkit:core-ui'
+include ':toolkit:repository'
+include ':toolkit:utils'

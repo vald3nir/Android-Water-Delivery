@@ -1,0 +1,23 @@
+<resources>
+    <string name="cep">CEP</string>
+    <string name="state">Estado</string>
+    <string name="city">Cidade</string>
+    <string name="street">Rua</string>
+    <string name="complement">Complemento</string>
+    <string name="district">Bairro</string>
+    <string name="number">Número</string>
+    <string name="order_address">Endereço do Pedido</string>
+    <string name="cep_invalid">CEP inválido</string>
+    <string name="street_invalid">Rua inválida</string>
+    <string name="district_invalid">Bairro inválido</string>
+    <string name="number_invalid">Número inválido</string>
+    <string name="address_successfully_updated">Endereço atualizado com sucesso!</string>
+    <string name="new_order">Novo Pedido</string>
+    <string name="items_order">Itens do Pedido</string>
+    <string name="category">Categoria</string>
+    <string name="quantity">Quantidade</string>
+    <string name="total_money">Total R$</string>
+    <string name="finish">Finalizar</string>
+    <string name="my_orders">Meus pedidos</string>
+    <string name="order_detail">Detalhe do Pedido</string>
+</resources>

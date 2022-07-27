@@ -1,30 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
-    id 'com.google.firebase.appdistribution'
 }
 
 android {
     compileSdk 32
-    viewBinding {
-        enabled = true
-    }
+
     defaultConfig {
         applicationId "com.vald3nir.diskwater"
-        minSdk 23
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        multiDexEnabled = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    packagingOptions {
-        resources {
-            pickFirsts += ['META-INF/INDEX.LIST', 'META-INF/LICENSE', 'META-INF/io.netty.versions.properties']
-        }
     }
     buildTypes {
         release {
@@ -39,77 +29,34 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
     flavorDimensions "version"
     productFlavors {
         client {
             dimension "version"
             applicationIdSuffix ".client"
             versionNameSuffix "-client"
-            firebaseAppDistribution {
-                releaseNotes = "Versão dos clientes"
-                testers = "vald3nir@gmail.com"
-            }
         }
         salesman {
             dimension "version"
             applicationIdSuffix ".salesman"
             versionNameSuffix "-salesman"
-            firebaseAppDistribution {
-                releaseNotes = "Versão do vendedor"
-                testers = "vald3nir@gmail.com"
-            }
         }
     }
 }
 
 dependencies {
 
-    // Modules
-    implementation project(path: ':ToolKit')
+    // modules
+    implementation project(path: ':commom')
+    implementation project(path: ':features:login')
+    implementation project(path: ':features:sales')
+    implementation project(path: ':features:dashboard')
 
-//    // Firebase
-//    implementation platform('com.google.firebase:firebase-bom:30.1.0')
-//    implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
-//    implementation 'com.google.firebase:firebase-firestore-ktx'
-//    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
-//    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
-//    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
-
-    // Android X
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
-    implementation 'androidx.annotation:annotation:1.4.0'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
 
-    // Material Design
-    implementation 'com.google.android.material:material:1.6.1'
-
-    // Databinding
-    kapt "com.android.databinding:compiler:3.1.4"
-
-    // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2'
-
-    // Koin (dependency injection framework)
-    implementation "io.insert-koin:koin-androidx-ext:2.2.3"
-    implementation "io.insert-koin:koin-androidx-viewmodel:2.2.3"
-
-    // Multidex
-    implementation "androidx.multidex:multidex:2.0.1"
-
-    // GSON
-    implementation 'com.google.code.gson:gson:2.9.0'
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

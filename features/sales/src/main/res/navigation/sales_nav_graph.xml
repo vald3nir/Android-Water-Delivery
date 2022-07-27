@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sales_nav_graph"
+    app:startDestination="@id/navigation_shopping">
+
+    <fragment
+        android:id="@+id/navigation_my_orders"
+        android:name="com.vald3nir.sales.presentation.MyOrdersFragment"
+        android:label="@string/my_orders"
+        tools:layout="@layout/fragment_my_orders">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_shopping"
+        android:name="com.vald3nir.sales.presentation.ShoppingCartFragment"
+        android:label="Shopping"
+        tools:layout="@layout/fragment_shopping_cart">
+        <action
+            android:id="@+id/action_navigation_shopping_to_navigation_confirm_address2"
+            app:destination="@id/navigation_confirm_address" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_confirm_address"
+        android:name="com.vald3nir.sales.presentation.ConfirmAddressFragment"
+        android:label="@string/confirm_address"
+        tools:layout="@layout/fragment_confirm_address">
+        <action
+            android:id="@+id/action_navigation_confirm_address_to_navigation_order_detail2"
+            app:destination="@id/navigation_order_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_order_detail"
+        android:name="com.vald3nir.sales.presentation.OrderDetailFragment"
+        android:label="@string/order_detail"
+        tools:layout="@layout/fragment_order_detail">
+        <action
+            android:id="@+id/action_navigation_order_detail_to_navigation_order_success2"
+            app:destination="@id/navigation_order_success" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_order_success"
+        android:name="com.vald3nir.sales.presentation.OrderSuccessFragment"
+        android:label="Success"
+        tools:layout="@layout/fragment_order_success" />
+
+</navigation>

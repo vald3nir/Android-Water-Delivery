@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "670408711665",
+    "firebase_url": "https://diskwater-afb43-default-rtdb.firebaseio.com",
+    "project_id": "diskwater-afb43",
+    "storage_bucket": "diskwater-afb43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670408711665:android:23f12d2b381b166c8db850",
+        "android_client_info": {
+          "package_name": "com.vald3nir.diskwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe3sn4DiN2zm9XYqvw_ltvgkn-pDEtvVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670408711665:android:1388cd99ef3320cf8db850",
+        "android_client_info": {
+          "package_name": "com.vald3nir.diskwater.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe3sn4DiN2zm9XYqvw_ltvgkn-pDEtvVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670408711665:android:38ac299584de83de8db850",
+        "android_client_info": {
+          "package_name": "com.vald3nir.diskwater.salesman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe3sn4DiN2zm9XYqvw_ltvgkn-pDEtvVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670408711665-p26cok506de5923uq70og7bnav74163a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
