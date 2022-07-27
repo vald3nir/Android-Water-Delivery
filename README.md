@@ -2,6 +2,6 @@
 
  Aplicativo de entrega de água mineral e similares
 
-## Mockups
+## Snapshots
 
 ### Login
