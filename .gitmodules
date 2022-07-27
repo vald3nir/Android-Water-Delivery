@@ -1,3 +1,6 @@
 [submodule "ToolKit"]
 	path = ToolKit
 	url = https://github.com/vald3nir/Android-ToolKit.git
+[submodule "toolkit"]
+	path = toolkit
+	url = https://github.com/vald3nir/Android-ToolKit.git
