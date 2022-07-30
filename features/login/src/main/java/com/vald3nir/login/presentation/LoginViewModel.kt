@@ -10,6 +10,7 @@ import com.vald3nir.login.R
 import com.vald3nir.login.domain.form.DataUserInputForm
 import com.vald3nir.login.domain.usecases.AuthUseCase
 import com.vald3nir.utils.validations.isEmailValid
+import com.vald3nir.utils.validations.isNameValid
 import com.vald3nir.utils.validations.isPasswordValid
 import kotlinx.coroutines.launch
 
@@ -91,35 +92,47 @@ class LoginViewModel(
     }
 
     fun registerNewUser(
+        name: String,
         email: String,
         password: String,
         confirmPassword: String,
         onError: (e: Exception?) -> Unit
     ) {
-        if (checkRegisterData(email, password, confirmPassword)) {
+        if (checkRegisterData(
+                name = name,
+                email = email,
+                password = password,
+                confirmPassword = confirmPassword
+            )
+        ) {
             viewModelScope.launch {
                 authUseCase.registerNewUser(
                     activity = requireActivityContext(),
                     email = email,
                     password = password,
-                    onSuccess = { registerUserType() },
+                    onSuccess = {
+                        registerUserType(
+                            name = name,
+                            email = email,
+                        )
+                    },
                     onError = { onError.invoke(it) }
                 )
             }
         }
     }
 
-    private fun registerUserType() {
+    private fun registerUserType(
+        name: String,
+        email: String,
+    ) {
         viewModelScope.launch {
             authUseCase.registerClient(
                 activity = requireActivityContext(),
                 clientDTO = ClientDTO(
-                    name = null,
+                    name = name,
                     userID = authUseCase.getUserID().orEmpty(),
-                    photo = null,
-                    telephone = null,
-                    email = null,
-                    address = null,
+                    email = email,
                 ),
                 onSuccess = { onBackPressed() },
                 onError = { showError(it) }
@@ -128,6 +141,7 @@ class LoginViewModel(
     }
 
     fun checkRegisterData(
+        name: String,
         email: String,
         password: String,
         confirmPassword: String
@@ -135,6 +149,11 @@ class LoginViewModel(
 
         var isValid = true
         val dataUserInputForm = DataUserInputForm()
+
+        if (!isNameValid(name)) {
+            isValid = false
+            dataUserInputForm.nameError = getString(R.string.invalid_name)
+        }
 
         if (!isEmailValid(email)) {
             isValid = false

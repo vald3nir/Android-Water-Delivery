@@ -61,6 +61,7 @@ class RegisterFragment : BaseFragment() {
 
         viewModel.registerFormState.observe(viewLifecycleOwner) {
             val loginState = it
+            edtNameLayout.error = loginState.nameError
             edtEmailLayout.error = loginState.emailError
             edtPasswordLayout.error = loginState.passwordError
             edtConfirmPasswordLayout.error = loginState.confirmPasswordError
@@ -69,6 +70,7 @@ class RegisterFragment : BaseFragment() {
     }
 
     private fun FragmentRegisterBinding.clearError() {
+        edtNameLayout.error = null
         edtEmailLayout.error = null
         edtPasswordLayout.error = null
         edtConfirmPasswordLayout.error = null
@@ -77,9 +79,10 @@ class RegisterFragment : BaseFragment() {
     private fun FragmentRegisterBinding.registerDataChanged() {
         clearError()
         viewModel.checkRegisterData(
-            edtEmail.text.toString(),
-            edtPassword.text.toString(),
-            edtConfirmPassword.text.toString()
+            name = edtName.text.toString(),
+            email = edtEmail.text.toString(),
+            password = edtPassword.text.toString(),
+            confirmPassword = edtConfirmPassword.text.toString()
         )
     }
 
@@ -87,6 +90,7 @@ class RegisterFragment : BaseFragment() {
         hideKeyboard()
         btnRegister.showLoading(true)
         viewModel.registerNewUser(
+            name = edtName.text.toString(),
             email = edtEmail.text.toString(),
             password = edtPassword.text.toString(),
             confirmPassword = edtConfirmPassword.text.toString()

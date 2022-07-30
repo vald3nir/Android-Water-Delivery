@@ -11,6 +11,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
     <string name="prompt_confirm_password">Confirmar senha</string>
+    <string name="confirm_your_password">Confirme sua senha</string>
     <string name="invalid_email">Email não é válido</string>
     <string name="invalid_password">A Senha deve ser maior que 5 caracteres</string>
     <string name="passwords_not_equals">As senhas não são iguais</string>

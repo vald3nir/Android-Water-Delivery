@@ -10,8 +10,9 @@ import com.vald3nir.repository.loadDataJson
 import com.vald3nir.repository.saveDataJson
 import com.vald3nir.repository.toDTO
 
-class AuthRepositoryImpl : AuthRepository {
-
+class AuthRepositoryImpl(
+    private val userType: String
+) : AuthRepository {
     private val authenticator = FirebaseAuthenticator()
 
     override suspend fun login(
@@ -63,19 +64,11 @@ class AuthRepositoryImpl : AuthRepository {
     ) {
         FirebaseClient().insertOrUpdateData(
             rootPath = "usuários",
-            document = "clientes",
-            collection = "clientes",
+            document = "usuários",
+            collection = userType,
             baseDTO = clientDTO,
             onSuccess,
             onError
         )
-//        Firebase.firestore.collection(path).document(path).collection(path).add(data)
-//            .addOnCompleteListener(activity) {
-//                if (it.isSuccessful) {
-//                    onSuccess.invoke()
-//                } else {
-//                    onError.invoke(it.exception)
-//                }
-//            }
     }
 }

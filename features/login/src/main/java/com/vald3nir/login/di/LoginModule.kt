@@ -17,13 +17,14 @@ fun getLoginModule(
 ): Module {
     return module {
 
-        single<AuthRepository> { AuthRepositoryImpl() }
+        val clientType = context.getString(if (isClientApp) R.string.client else R.string.salesman)
 
+        single<AuthRepository> { AuthRepositoryImpl(clientType) }
         single<AuthUseCase> { AuthUseCaseImpl(get()) }
 
         viewModel {
             LoginViewModel(
-                titleScreen = context.getString(if (isClientApp) R.string.client else R.string.salesman),
+                titleScreen = clientType,
                 showRegisterButton = isClientApp,
                 authUseCase = get()
             )
