@@ -83,10 +83,12 @@ class OrderDetailFragment : BaseFragment() {
     }
 
     private fun requestOrder() {
-
     }
 
     private fun FragmentOrderDetailBinding.setupObservers() {
+
+        cardAddress.setOnClickListener { onBackPressed() }
+
         rbPaymentsTypes.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_money -> {
@@ -99,10 +101,6 @@ class OrderDetailFragment : BaseFragment() {
                     viewModel.addPaymentType(PaymentType.CARD)
                 }
             }
-        }
-
-        cardAddress.setOnClickListener {
-
         }
 
         viewModel.shoppingCartTotal.observe(viewLifecycleOwner) { value ->

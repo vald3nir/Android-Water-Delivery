@@ -1,20 +1,26 @@
 package com.vald3nir.sales.presentation
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.ActivitySalesBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SalesActivity : AppCompatActivity() {
+class SalesActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySalesBinding
+    private val viewModel: SalesViewModel by viewModel()
+
+    override fun registerViewModel() {
+        viewModel.registerController(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

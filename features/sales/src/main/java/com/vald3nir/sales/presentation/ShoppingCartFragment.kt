@@ -78,7 +78,7 @@ class ShoppingCartFragment : BaseFragment() {
             setup(
                 title = R.string.next,
                 clickListener = {
-
+                    navigationToFragment(R.id.action_navigation_shopping_to_navigation_confirm_address)
                 }
             )
             showLoading(true)

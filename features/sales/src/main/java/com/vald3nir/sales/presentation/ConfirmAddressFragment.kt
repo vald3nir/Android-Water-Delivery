@@ -54,7 +54,10 @@ class ConfirmAddressFragment : BaseFragment() {
     private fun FragmentConfirmAddressBinding.initViews() {
         btnNext.setup(
             title = R.string.next,
-            clickListener = { updateAddress() }
+            clickListener = {
+                updateAddress()
+                navigationToFragment(R.id.action_navigation_confirm_address_to_navigation_order_detail)
+            }
         )
     }
 

@@ -11,7 +11,6 @@ import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.dashboard.databinding.OrderItemViewBinding
 import com.vald3nir.repository.BaseDTO
 import com.vald3nir.repository.baseDiffUtil
-import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentMyOrdersBinding
 import com.vald3nir.utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -61,31 +60,22 @@ class MyOrdersFragment : BaseFragment() {
     }
 
     private fun FragmentMyOrdersBinding.initViews() {
-        btnNewOrder.setup(
-            title = R.string.new_order,
-            clickListener = {
-
-            }
-        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.binding.setupObservers()
-        this.binding.btnNewOrder.showLoading(true)
         this.viewModel.loadLastOrders()
     }
 
     private fun FragmentMyOrdersBinding.setupObservers() {
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
-
         })
 
         viewModel.myOrders.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it.toMutableBaseList())
             clcMyOrders.notifyListSize(it.size)
-            btnNewOrder.showLoading(false)
         }
     }
 }
