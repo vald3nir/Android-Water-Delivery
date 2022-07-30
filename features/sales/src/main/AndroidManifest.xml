@@ -3,8 +3,13 @@
     package="com.vald3nir.sales">
 
     <application>
+
         <activity
-            android:name=".presentation.SalesActivity"
+            android:name=".presentation.home.MyOrdersActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.create.CreateOrderActivity"
             android:exported="false" />
     </application>
 

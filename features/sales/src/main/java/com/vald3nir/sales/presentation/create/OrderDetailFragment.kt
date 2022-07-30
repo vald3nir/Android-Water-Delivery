@@ -1,4 +1,4 @@
-package com.vald3nir.sales.presentation
+package com.vald3nir.sales.presentation.create
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,6 +15,7 @@ import com.vald3nir.repository.baseDiffUtil
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentOrderDetailBinding
 import com.vald3nir.sales.databinding.ItemOrderDetailBinding
+import com.vald3nir.sales.presentation.SalesViewModel
 import com.vald3nir.utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -73,7 +74,7 @@ class OrderDetailFragment : BaseFragment() {
         }
         btnNext.apply {
             setup(
-                title = R.string.next,
+                title = R.string.finish,
                 clickListener = {
                     requestOrder()
                 }
@@ -83,6 +84,7 @@ class OrderDetailFragment : BaseFragment() {
     }
 
     private fun requestOrder() {
+        activity?.finish()
     }
 
     private fun FragmentOrderDetailBinding.setupObservers() {

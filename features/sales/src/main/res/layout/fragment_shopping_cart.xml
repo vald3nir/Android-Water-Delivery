@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding"
-    tools:context=".presentation.ShoppingCartFragment">
+    tools:context=".presentation.create.ShoppingCartFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"

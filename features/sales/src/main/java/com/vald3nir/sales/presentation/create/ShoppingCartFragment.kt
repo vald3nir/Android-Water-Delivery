@@ -1,4 +1,4 @@
-package com.vald3nir.sales.presentation
+package com.vald3nir.sales.presentation.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import com.vald3nir.repository.baseDiffUtil
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentShoppingCartBinding
 import com.vald3nir.sales.databinding.ItemShoppingCartBinding
+import com.vald3nir.sales.presentation.SalesViewModel
 import com.vald3nir.utils.createNumbersArray
 import com.vald3nir.utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel

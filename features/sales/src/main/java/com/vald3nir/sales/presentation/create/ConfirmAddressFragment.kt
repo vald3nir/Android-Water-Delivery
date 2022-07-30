@@ -1,4 +1,4 @@
-package com.vald3nir.sales.presentation
+package com.vald3nir.sales.presentation.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentConfirmAddressBinding
 import com.vald3nir.sales.domain.form.AddressInputForm
+import com.vald3nir.sales.presentation.SalesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConfirmAddressFragment : BaseFragment() {

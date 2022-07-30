@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding"
-    tools:context=".presentation.MyOrdersFragment">
+    tools:context=".presentation.home.MyOrdersFragment">
 
     <com.vald3nir.core_ui.components.CustomListComponent
         android:id="@+id/clc_my_orders"

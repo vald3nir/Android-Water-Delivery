@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background_gradient"
     android:padding="@dimen/root_page_padding"
-    tools:context=".presentation.OrderDetailFragment">
+    tools:context=".presentation.create.OrderDetailFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

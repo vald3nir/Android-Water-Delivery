@@ -6,7 +6,7 @@ import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.core_ui.extensions.hideKeyboard
 import com.vald3nir.dashboard.presentation.DashboardActivity
 import com.vald3nir.login.presentation.LoginActivity
-import com.vald3nir.sales.presentation.SalesActivity
+import com.vald3nir.sales.presentation.home.MyOrdersActivity
 
 class FeaturesNavigationImpl : FeaturesNavigation {
 
@@ -51,6 +51,6 @@ class FeaturesNavigationImpl : FeaturesNavigation {
     }
 
     override fun redirectToSales(activity: BaseActivity?) {
-        activity?.startNewActivity(SalesActivity::class.java)
+        activity?.startNewActivity(MyOrdersActivity::class.java)
     }
 }

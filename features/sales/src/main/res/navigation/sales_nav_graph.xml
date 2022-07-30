@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_my_orders"
-        android:name="com.vald3nir.sales.presentation.MyOrdersFragment"
+        android:name="com.vald3nir.sales.presentation.home.MyOrdersFragment"
         android:label="@string/my_orders"
         tools:layout="@layout/fragment_my_orders">
 
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/navigation_shopping"
-        android:name="com.vald3nir.sales.presentation.ShoppingCartFragment"
+        android:name="com.vald3nir.sales.presentation.create.ShoppingCartFragment"
         android:label="Shopping"
         tools:layout="@layout/fragment_shopping_cart">
         <action
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_confirm_address"
-        android:name="com.vald3nir.sales.presentation.ConfirmAddressFragment"
+        android:name="com.vald3nir.sales.presentation.create.ConfirmAddressFragment"
         android:label="@string/confirm_address"
         tools:layout="@layout/fragment_confirm_address">
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_order_detail"
-        android:name="com.vald3nir.sales.presentation.OrderDetailFragment"
+        android:name="com.vald3nir.sales.presentation.create.OrderDetailFragment"
         android:label="@string/order_detail"
         tools:layout="@layout/fragment_order_detail">
 

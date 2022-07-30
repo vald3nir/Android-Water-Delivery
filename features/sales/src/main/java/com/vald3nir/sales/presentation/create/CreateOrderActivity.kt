@@ -1,21 +1,20 @@
-package com.vald3nir.sales.presentation
+package com.vald3nir.sales.presentation.create
 
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.sales.R
-import com.vald3nir.sales.databinding.ActivitySalesBinding
+import com.vald3nir.sales.databinding.ActivityCreateOrderBinding
+import com.vald3nir.sales.presentation.SalesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SalesActivity : BaseActivity() {
+class CreateOrderActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivitySalesBinding
+    private lateinit var binding: ActivityCreateOrderBinding
     private val viewModel: SalesViewModel by viewModel()
 
     override fun registerViewModel() {
@@ -25,10 +24,9 @@ class SalesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySalesBinding.inflate(layoutInflater)
+        binding = ActivityCreateOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
         val navController =
             findNavController(R.id.nav_host_fragment_content_sales)
         appBarConfiguration = AppBarConfiguration(
@@ -37,7 +35,6 @@ class SalesActivity : BaseActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
