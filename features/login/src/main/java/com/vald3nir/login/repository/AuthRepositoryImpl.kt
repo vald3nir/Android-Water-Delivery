@@ -65,7 +65,7 @@ class AuthRepositoryImpl(
         FirebaseClient().insertOrUpdateData(
             rootPath = "usuários",
             document = "usuários",
-            collection = userType,
+            collection = "Cliente",
             baseDTO = clientDTO,
             onSuccess,
             onError

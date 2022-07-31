@@ -33,7 +33,6 @@
                 android:textColor="@color/blue" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -46,8 +45,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/background_cell"
                     android:textColor="@color/black"
-                    app:drawableEndCompat="@drawable/ic_edit"
-                    app:drawableTint="@color/black"
                     tools:text="Cel. Mozart Gondim, 1320 - São Gerardo. Fortaleza - CE, 60320-250" />
 
             </androidx.cardview.widget.CardView>

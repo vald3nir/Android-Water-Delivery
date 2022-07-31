@@ -13,15 +13,14 @@ import com.vald3nir.repository.baseDiffUtil
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentShoppingCartBinding
 import com.vald3nir.sales.databinding.ItemShoppingCartBinding
-import com.vald3nir.sales.presentation.SalesViewModel
 import com.vald3nir.utils.createNumbersArray
 import com.vald3nir.utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ShoppingCartFragment : BaseFragment() {
 
-    private val viewModel: SalesViewModel by viewModel()
-    lateinit var binding: FragmentShoppingCartBinding
+    private val viewModel: CreateOrderViewModel by viewModel()
+    private lateinit var binding: FragmentShoppingCartBinding
 
     private val mainCardAdapter = CustomDifferAdapter(
         bindingInflater = ItemShoppingCartBinding::inflate,
@@ -94,9 +93,11 @@ class ShoppingCartFragment : BaseFragment() {
     }
 
     private fun FragmentShoppingCartBinding.setupObservers() {
-        viewModel.shoppingCartTotal.observe(viewLifecycleOwner) { value ->
-            txvTotalValue.text = value.format()
-            btnNext.isVisible = value > 0
+        viewModel.order.observe(viewLifecycleOwner) { order ->
+            order.total.let { value ->
+                txvTotalValue.text = value.format()
+                btnNext.isVisible = value > 0
+            }
         }
         viewModel.products.observe(viewLifecycleOwner) {
             mainCardAdapter.submitList(it)

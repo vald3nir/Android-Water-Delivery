@@ -8,5 +8,4 @@ data class ClientDTO(
     var photo: String? = null,
     var telephone: String? = null,
     var email: String? = null,
-    var address: AddressDTO? = null,
 ) : BaseDTO()

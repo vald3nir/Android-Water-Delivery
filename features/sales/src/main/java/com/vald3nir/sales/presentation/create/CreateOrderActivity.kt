@@ -8,14 +8,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.ActivityCreateOrderBinding
-import com.vald3nir.sales.presentation.SalesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateOrderActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityCreateOrderBinding
-    private val viewModel: SalesViewModel by viewModel()
+    private val viewModel: CreateOrderViewModel by viewModel()
 
     override fun registerViewModel() {
         viewModel.registerController(this)

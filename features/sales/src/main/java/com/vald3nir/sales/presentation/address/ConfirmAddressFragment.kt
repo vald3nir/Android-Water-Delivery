@@ -1,4 +1,4 @@
-package com.vald3nir.sales.presentation.create
+package com.vald3nir.sales.presentation.address
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,11 @@ import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentConfirmAddressBinding
 import com.vald3nir.sales.domain.form.AddressInputForm
-import com.vald3nir.sales.presentation.SalesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConfirmAddressFragment : BaseFragment() {
 
-    private val viewModel: SalesViewModel by viewModel()
+    private val viewModel: AddressViewModel by viewModel()
     lateinit var binding: FragmentConfirmAddressBinding
 
     override fun registerViewModel() {
@@ -64,10 +63,10 @@ class ConfirmAddressFragment : BaseFragment() {
 
     private fun FragmentConfirmAddressBinding.fillAddress(addressFields: AddressDTO) {
         edtCep.setText(addressFields.cep)
-        edtStreet.setText(addressFields.street)
+        edtStreet.setText(addressFields.logradouro)
         edtNumber.setText(addressFields.number)
         edtComplement.setText(addressFields.complement)
-        edtDistrict.setText(addressFields.district)
+        edtDistrict.setText(addressFields.bairro)
     }
 
     private fun FragmentConfirmAddressBinding.clearErrors() {
@@ -92,7 +91,6 @@ class ConfirmAddressFragment : BaseFragment() {
             district = edtDistrict.text.toString(),
             onSuccess = {
                 btnNext.showLoading(false)
-
             },
             onError = {
                 btnNext.showLoading(false)

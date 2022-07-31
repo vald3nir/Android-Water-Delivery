@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_confirm_address"
-        android:name="com.vald3nir.sales.presentation.create.ConfirmAddressFragment"
+        android:name="com.vald3nir.sales.presentation.address.ConfirmAddressFragment"
         android:label="@string/confirm_address"
         tools:layout="@layout/fragment_confirm_address">
         <action

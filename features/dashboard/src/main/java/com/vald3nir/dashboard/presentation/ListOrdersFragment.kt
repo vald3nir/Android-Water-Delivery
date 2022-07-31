@@ -35,9 +35,9 @@ class ListOrdersFragment : BaseFragment() {
         any: Any
     ) {
         itemViewBinding.apply {
-            txtTitle.text = order.clientName
+            txtTitle.text = order.client?.name
             txtValue.text = order.total.toMoney()
-            txtSubtitle.text = order.address
+            txtSubtitle.text = order.address.toString()
         }
     }
 

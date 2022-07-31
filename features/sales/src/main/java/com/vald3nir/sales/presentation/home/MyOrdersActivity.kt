@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.sales.databinding.ActivityMyOrdersBinding
-import com.vald3nir.sales.presentation.SalesViewModel
 import com.vald3nir.sales.presentation.create.CreateOrderActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyOrdersActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMyOrdersBinding
-    private val viewModel: SalesViewModel by viewModel()
+    private val viewModel: MyOrdersViewModel by viewModel()
 
     override fun registerViewModel() {
         viewModel.registerController(this)

@@ -1,13 +1,12 @@
 package com.vald3nir.commom.domain.dtos
 
-import com.google.gson.annotations.SerializedName
 import com.vald3nir.repository.BaseDTO
 
 data class AddressDTO(
-    @SerializedName("estado") var state: String? = null,
-    @SerializedName("cidade") var city: String? = null,
-    @SerializedName("bairro") var district: String? = null,
-    @SerializedName("logradouro") var street: String? = null,
+    var estado: String? = null,
+    var cidade: String? = null,
+    var bairro: String? = null,
+    var logradouro: String? = null,
     var number: String? = null,
     var complement: String? = null,
     var cep: String? = null,
@@ -15,12 +14,12 @@ data class AddressDTO(
 
     override fun toString(): String {
         var string = ""
-        street?.let { string += "$it, " }
-        number?.let { string += "$it, " }
-        complement?.let { string += "$it, " }
-        district?.let { string += "$it, " }
-//        city?.let { string += " $it, " }
-        cep?.let { string += it }
+        logradouro?.let { if (it.isNotBlank()) string += "$it, " }
+        number?.let { if (it.isNotBlank()) string += "$it, " }
+        complement?.let { if (it.isNotBlank()) string += "$it, " }
+        bairro?.let { if (it.isNotBlank()) string += "$it, " }
+        cidade?.let { if (it.isNotBlank()) string += " $it, " }
+        cep?.let { if (it.isNotBlank()) string += it }
         return string
     }
 }

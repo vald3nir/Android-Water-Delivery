@@ -1,17 +1,25 @@
 package com.vald3nir.sales.domain.use_cases
 
-import com.vald3nir.commom.domain.dtos.OrderDTO
-import com.vald3nir.commom.domain.dtos.OrderItemDTO
-import com.vald3nir.commom.domain.dtos.PaymentType
-import com.vald3nir.commom.domain.dtos.ProductDTO
+import com.vald3nir.commom.domain.dtos.*
+import com.vald3nir.sales.repository.OrderRepository
 
-class OrderUseCaseImpl : OrderUseCase {
+class OrderUseCaseImpl(
+    private val repository: OrderRepository
+) : OrderUseCase {
 
     private var shoppingCartMap = mutableMapOf<String, OrderItemDTO>()
-    private var paymentType = PaymentType.MONEY
+    private var currentOrder = OrderDTO()
 
     override fun addPaymentType(paymentType: PaymentType) {
-        this.paymentType = paymentType
+        this.currentOrder.paymentType = paymentType
+    }
+
+    override fun loadCurrentOrder(): OrderDTO {
+        return currentOrder
+    }
+
+    override fun putAddress(address: AddressDTO) {
+        currentOrder.address = address
     }
 
     override fun registerItem(productDTO: ProductDTO, quantity: Int) {
@@ -20,13 +28,21 @@ class OrderUseCaseImpl : OrderUseCase {
             quantity = quantity,
             unitValue = productDTO.price
         )
+        currentOrder.total = calculateShoppingCartTotal()
+        currentOrder.items = loadItemsSelected()
     }
 
-    override fun getItemQuantity(productDTO: ProductDTO): String? {
-        return shoppingCartMap[productDTO.uid]?.quantity?.toString()
+    private fun loadItemsSelected(): MutableList<OrderItemDTO> {
+        val items = mutableListOf<OrderItemDTO>()
+        shoppingCartMap.map {
+            if ((it.value.quantity ?: 0) > 0) {
+                items.add(it.value)
+            }
+        }
+        return items
     }
 
-    override fun calculateShoppingCartTotal(): Float {
+    private fun calculateShoppingCartTotal(): Float {
         var total = 0.0f
         for (key in shoppingCartMap.keys) {
             val item = shoppingCartMap[key]
@@ -37,26 +53,15 @@ class OrderUseCaseImpl : OrderUseCase {
         return total
     }
 
-    override fun loadItemsSelected(): MutableList<OrderItemDTO> {
-        val items = mutableListOf<OrderItemDTO>()
-        shoppingCartMap.map {
-            if ((it.value.quantity ?: 0) > 0) {
-                items.add(it.value)
-            }
-        }
-        return items
+    override fun getItemQuantity(productDTO: ProductDTO): String? {
+        return shoppingCartMap[productDTO.uid]?.quantity?.toString()
     }
 
     override suspend fun requestOrder(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit) {
-
-        val order = OrderDTO(
-            clientName = null,
-            address = null,
-            date = null,
-            items = null,
-            total = 0.0f,
-            paymentType = paymentType,
-        )
-
+        repository.requestOrder(currentOrder, onSuccess = {
+            currentOrder = OrderDTO()
+            shoppingCartMap = mutableMapOf()
+            onSuccess.invoke()
+        }, onError)
     }
 }

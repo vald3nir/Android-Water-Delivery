@@ -15,14 +15,13 @@ import com.vald3nir.repository.baseDiffUtil
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentOrderDetailBinding
 import com.vald3nir.sales.databinding.ItemOrderDetailBinding
-import com.vald3nir.sales.presentation.SalesViewModel
 import com.vald3nir.utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OrderDetailFragment : BaseFragment() {
 
-    private val viewModel: SalesViewModel by viewModel()
-    lateinit var binding: FragmentOrderDetailBinding
+    private val viewModel: CreateOrderViewModel by viewModel()
+    private lateinit var binding: FragmentOrderDetailBinding
 
     private val mainCardAdapter = CustomDifferAdapter(
         bindingInflater = ItemOrderDetailBinding::inflate,
@@ -60,8 +59,7 @@ class OrderDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.initViews()
         binding.setupObservers()
-        viewModel.loadAddress()
-        viewModel.loadOrderDetail()
+        viewModel.loadCurrentOrder()
     }
 
     private fun FragmentOrderDetailBinding.initViews() {
@@ -84,12 +82,24 @@ class OrderDetailFragment : BaseFragment() {
     }
 
     private fun requestOrder() {
-        activity?.finish()
+        viewModel.requestOrder(onSuccess = { activity?.finish() }, onError)
+    }
+
+    private fun FragmentOrderDetailBinding.selectCurrentPaymentsType(type: PaymentType) {
+        when (type) {
+            PaymentType.MONEY -> {
+                rbMoney.isChecked = true
+            }
+            PaymentType.PIX -> {
+                rbPix.isChecked = true
+            }
+            PaymentType.CARD -> {
+                rbCard.isChecked = true
+            }
+        }
     }
 
     private fun FragmentOrderDetailBinding.setupObservers() {
-
-        cardAddress.setOnClickListener { onBackPressed() }
 
         rbPaymentsTypes.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -105,19 +115,22 @@ class OrderDetailFragment : BaseFragment() {
             }
         }
 
-        viewModel.shoppingCartTotal.observe(viewLifecycleOwner) { value ->
-            txvTotalValue.text = value.format()
-            btnNext.isVisible = value > 0
-        }
-
-        viewModel.addressFields.observe(viewLifecycleOwner) {
-            txvAddressDetail.text = it.toString()
-        }
-
-        viewModel.itemsOrder.observe(viewLifecycleOwner) {
-            mainCardAdapter.submitList(it)
-            clcOrderDetail.notifyListSize(it.size)
-            btnNext.showLoading(false)
+        viewModel.order.observe(viewLifecycleOwner) { order ->
+            order.apply {
+                address.let {
+                    txvAddressDetail.text = it.toString()
+                }
+                total.let { value ->
+                    txvTotalValue.text = value.format()
+                    btnNext.isVisible = value > 0
+                }
+                items.let {
+                    mainCardAdapter.submitList(it.toMutableList())
+                    clcOrderDetail.notifyListSize(it.size)
+                    btnNext.showLoading(false)
+                }
+                selectCurrentPaymentsType(order.paymentType)
+            }
         }
     }
 }
