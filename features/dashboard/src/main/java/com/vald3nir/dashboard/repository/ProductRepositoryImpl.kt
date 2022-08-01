@@ -13,8 +13,8 @@ class ProductRepositoryImpl : ProductRepository {
         onError: (e: Exception?) -> Unit
     ) {
         firebaseClient.insertOrUpdateData(
-            rootPath = "produtos",
-            document = "categoria",
+            rootPath = "debug",
+            document = "produtos",
             collection = "${product.category}",
             baseDTO = product,
             onSuccess,
@@ -28,8 +28,8 @@ class ProductRepositoryImpl : ProductRepository {
         onError: (e: Exception?) -> Unit
     ) {
         firebaseClient.deleteData(
-            rootPath = "produtos",
-            document = "categoria",
+            rootPath = "debug",
+            document = "produtos",
             collection = "${product.category}",
             baseDTO = product,
             onSuccess, onError
@@ -42,8 +42,8 @@ class ProductRepositoryImpl : ProductRepository {
         onError: (e: Exception?) -> Unit
     ) {
         firebaseClient.loadCollection(
-            rootPath = "produtos",
-            document = "categoria",
+            rootPath = "debug",
+            document = "produtos",
             collection = category,
             type = ProductDTO::class.java,
             onSuccess,

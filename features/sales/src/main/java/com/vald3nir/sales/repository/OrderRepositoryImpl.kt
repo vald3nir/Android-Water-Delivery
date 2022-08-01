@@ -18,9 +18,9 @@ class OrderRepositoryImpl : OrderRepository {
     ) {
 
         firebaseClient.loadCollection(
-            rootPath = "usuários",
+            rootPath = "debug",
             document = "usuários",
-            collection = "Cliente",
+            collection = "usuários",
             type = ClientDTO::class.java,
             onSuccess = { users ->
                 val userID = firebaseAuthenticator.getUserID()
@@ -34,8 +34,8 @@ class OrderRepositoryImpl : OrderRepository {
                     }:${cal.get(Calendar.MINUTE)}"
 
                 firebaseClient.insertOrUpdateData(
-                    rootPath = "orders",
-                    document = orderDTO.client?.uid.toString(),
+                    rootPath = "debug",
+                    document = "orders",
                     collection = "orders",
                     baseDTO = orderDTO,
                     onSuccess,

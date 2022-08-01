@@ -8,6 +8,16 @@ class ProductUseCaseImpl(
     private val repository: ProductRepository,
 ) : ProductUseCase {
 
+    private var product: ProductDTO? = null
+
+    override fun saveInMemory(item: ProductDTO?) {
+        product = item
+    }
+
+    override fun loadInMemory(): ProductDTO? {
+        return product
+    }
+
     override suspend fun updateProduct(
         product: ProductDTO?,
         onSuccess: () -> Unit,

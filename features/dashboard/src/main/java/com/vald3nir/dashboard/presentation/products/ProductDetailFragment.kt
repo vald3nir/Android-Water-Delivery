@@ -31,7 +31,7 @@ class ProductDetailFragment : BaseFragment() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    navigationToFragment(R.id.action_navigation_products_detail_to_products)
+                    navigationToFragment(R.id.action_navigation_product_detail_to_navigation_products)
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -48,11 +48,7 @@ class ProductDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.setupObservers()
-        viewModel.loadData(this)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
+        viewModel.loadData()
     }
 
     @SuppressLint("SetTextI18n")
@@ -130,5 +126,10 @@ class ProductDetailFragment : BaseFragment() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             updateProductImage(data?.extras?.get("data") as Bitmap)
         }
+    }
+
+    override fun onDestroy() {
+        viewModel.saveInMemory(null)
+        super.onDestroy()
     }
 }

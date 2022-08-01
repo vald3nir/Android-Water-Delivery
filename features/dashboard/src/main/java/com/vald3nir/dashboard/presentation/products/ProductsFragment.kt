@@ -74,6 +74,8 @@ class ProductsFragment : BaseFragment() {
 
     private fun FragmentProductsBinding.setupObservers() {
         mainCardAdapter.setOnItemClickListener(listener = { item, position ->
+            viewModel.saveInMemory(item)
+            navigationToFragment(R.id.action_navigation_products_to_product_detail)
         })
 
         viewModel.products.observe(viewLifecycleOwner) {

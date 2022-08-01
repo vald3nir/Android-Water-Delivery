@@ -51,8 +51,8 @@ class ProductViewModel(
         }
     }
 
-    fun loadData(baseFragment: BaseFragment) {
-        var productDTO = baseFragment.loadExtraDTO() as ProductDTO?
+    fun loadData() {
+        var productDTO = productUseCase.loadInMemory()
         if (productDTO == null) {
             productDTO = ProductDTO()
         } else {
@@ -120,5 +120,9 @@ class ProductViewModel(
         if (!productFormIsValid) {
             _productForm.value = inputForm
         }
+    }
+
+    fun saveInMemory(item: ProductDTO?) {
+        productUseCase.saveInMemory(item)
     }
 }

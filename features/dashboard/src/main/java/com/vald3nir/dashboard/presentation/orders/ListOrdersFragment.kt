@@ -1,4 +1,4 @@
-package com.vald3nir.dashboard.presentation
+package com.vald3nir.dashboard.presentation.orders
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import com.vald3nir.commom.domain.dtos.OrderDTO
 import com.vald3nir.commom.presentation.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
+import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentListOrdersBinding
 import com.vald3nir.dashboard.databinding.OrderItemViewBinding
 import com.vald3nir.utils.extensions.toMoney
@@ -29,15 +30,15 @@ class ListOrdersFragment : BaseFragment() {
     }
 
     private fun bindAdapter(
-        order: OrderDTO,
+        orderDTO: OrderDTO,
         itemViewBinding: OrderItemViewBinding,
         position: Int,
         any: Any
     ) {
         itemViewBinding.apply {
-            txtTitle.text = order.client?.name
-            txtValue.text = order.total.toMoney()
-            txtSubtitle.text = order.address.toString()
+            txtTitle.text = "Pedido ${orderDTO.date}"
+            txtSubtitle.text = orderDTO.address.toString()
+            txtValue.text = "${orderDTO.paymentType.title} - ${orderDTO.total.toMoney()}"
         }
     }
 
@@ -55,8 +56,14 @@ class ListOrdersFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.initViews()
-        binding.setupObservers()
+        binding.apply {
+            initViews()
+            setupObservers()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.loadOrders()
     }
 
@@ -73,10 +80,12 @@ class ListOrdersFragment : BaseFragment() {
     private fun FragmentListOrdersBinding.setupObservers() {
 
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+            viewModel.saveOrderInMemory(item)
+            navigationToFragment(R.id.action_navigation_list_orders_to_clientOrderDetailFragment)
         })
 
         viewModel.ordersSelected.observe(viewLifecycleOwner) {
-            mainCardAdapter.submitList(it)
+            mainCardAdapter.submitList(it.toMutableList())
             clcOrdersOpen.notifyListSize(it.size)
         }
     }

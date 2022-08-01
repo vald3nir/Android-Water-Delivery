@@ -5,6 +5,9 @@ import com.vald3nir.core_ui.components.CustomListComponent
 
 interface ProductUseCase {
 
+    fun saveInMemory(item: ProductDTO?)
+    fun loadInMemory(): ProductDTO?
+
     suspend fun updateProduct(
         product: ProductDTO?,
         onSuccess: () -> Unit,

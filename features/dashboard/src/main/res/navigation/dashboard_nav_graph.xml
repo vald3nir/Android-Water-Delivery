@@ -7,9 +7,23 @@
 
     <fragment
         android:id="@+id/navigation_list_orders"
-        android:name="com.vald3nir.dashboard.presentation.ListOrdersFragment"
+        android:name="com.vald3nir.dashboard.presentation.orders.ListOrdersFragment"
         android:label="@string/orders"
-        tools:layout="@layout/fragment_list_orders" />
+        tools:layout="@layout/fragment_list_orders">
+        <action
+            android:id="@+id/action_navigation_list_orders_to_clientOrderDetailFragment"
+            app:destination="@id/clientOrderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/clientOrderDetailFragment"
+        android:name="com.vald3nir.dashboard.presentation.orders.ClientOrderDetailFragment"
+        android:label="ClientOrderDetailFragment"
+        tools:layout="@layout/fragment_client_order_detail" >
+        <action
+            android:id="@+id/action_clientOrderDetailFragment_to_navigation_list_orders"
+            app:destination="@id/navigation_list_orders" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_products"
@@ -27,13 +41,10 @@
         android:id="@+id/navigation_product_detail"
         android:name="com.vald3nir.dashboard.presentation.products.ProductDetailFragment"
         android:label="@string/products"
-        tools:layout="@layout/fragment_product_detail">
-
+        tools:layout="@layout/fragment_product_detail" >
         <action
-            android:id="@+id/action_navigation_products_detail_to_products"
+            android:id="@+id/action_navigation_product_detail_to_navigation_products"
             app:destination="@id/navigation_products" />
-
     </fragment>
-
 
 </navigation>

@@ -10,17 +10,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vald3nir.commom.presentation.view.BaseActivity
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.ActivityDashboardBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardActivity : BaseActivity() {
 
-    private val viewModel: DashboardViewModel by viewModel()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityDashboardBinding
 
-    override fun registerViewModel() {
-        viewModel.registerController(this)
-    }
+    override fun registerViewModel() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +25,8 @@ class DashboardActivity : BaseActivity() {
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_dashboard)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_list_orders, R.id.navigation_products))
+        appBarConfiguration =
+            AppBarConfiguration(setOf(R.id.navigation_list_orders, R.id.navigation_products))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
