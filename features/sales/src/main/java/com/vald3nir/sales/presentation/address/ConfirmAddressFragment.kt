@@ -56,7 +56,7 @@ class ConfirmAddressFragment : BaseFragment() {
             title = R.string.next,
             clickListener = {
                 updateAddress()
-                navigationToFragment(R.id.action_navigation_confirm_address_to_navigation_order_detail)
+                navigationToFragment(R.id.action_navigation_confirm_address_to_navigation_confirm_order)
             }
         )
     }

@@ -22,9 +22,16 @@ class MyOrdersViewModel(
     private val _myOrders = MutableLiveData<List<OrderDTO>>()
     val myOrders: LiveData<List<OrderDTO>> = _myOrders
 
+    private val _order = MutableLiveData<OrderDTO>()
+    val order: LiveData<OrderDTO> = _order
+
     private var ordersOpen = arrayListOf<OrderDTO>()
     private var ordersProgress = arrayListOf<OrderDTO>()
     private var ordersClose = arrayListOf<OrderDTO>()
+
+    fun loadOrder() {
+        _order.postValue(orderUseCase.loadCurrentOrder())
+    }
 
     fun loadLastOrders() {
         viewModelScope.launch {
@@ -75,5 +82,13 @@ class MyOrdersViewModel(
                 OrderStatus.CLOSE -> ordersClose.add(it)
             }
         }
+    }
+
+    fun cacheOrder(order: OrderDTO) {
+        orderUseCase.saveOrderInMemory(order)
+    }
+
+    fun clearCacheOrder() {
+        orderUseCase.saveOrderInMemory(OrderDTO())
     }
 }

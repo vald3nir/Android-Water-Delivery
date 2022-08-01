@@ -14,6 +14,7 @@ import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.databinding.OrderItemViewBinding
 import com.vald3nir.repository.BaseDTO
 import com.vald3nir.repository.baseDiffUtil
+import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentMyOrdersBinding
 import com.vald3nir.utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -98,6 +99,8 @@ class MyOrdersFragment : BaseFragment() {
 
     private fun FragmentMyOrdersBinding.setupObservers() {
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
+            viewModel.cacheOrder(item as OrderDTO) // Valdenir ajusta tipo correto
+            navigationToFragment(R.id.action_navigation_my_orders_to_navigation_order_detail)
         })
 
         viewModel.myOrders.observe(viewLifecycleOwner) {

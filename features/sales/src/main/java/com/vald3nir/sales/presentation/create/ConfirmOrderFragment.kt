@@ -13,15 +13,15 @@ import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.repository.baseDiffUtil
 import com.vald3nir.sales.R
-import com.vald3nir.sales.databinding.FragmentOrderDetailBinding
+import com.vald3nir.sales.databinding.FragmentConfirmOrderBinding
 import com.vald3nir.sales.databinding.ItemOrderDetailBinding
 import com.vald3nir.utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class OrderDetailFragment : BaseFragment() {
+class ConfirmOrderFragment : BaseFragment() {
 
     private val viewModel: CreateOrderViewModel by viewModel()
-    private lateinit var binding: FragmentOrderDetailBinding
+    private lateinit var binding: FragmentConfirmOrderBinding
 
     private val mainCardAdapter = CustomDifferAdapter(
         bindingInflater = ItemOrderDetailBinding::inflate,
@@ -51,7 +51,7 @@ class OrderDetailFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOrderDetailBinding.inflate(inflater, container, false)
+        binding = FragmentConfirmOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,7 +62,7 @@ class OrderDetailFragment : BaseFragment() {
         viewModel.loadCurrentOrder()
     }
 
-    private fun FragmentOrderDetailBinding.initViews() {
+    private fun FragmentConfirmOrderBinding.initViews() {
         clcOrderDetail.apply {
             setTab("Itens do Pedido")
             getRecyclerView().apply {
@@ -85,7 +85,7 @@ class OrderDetailFragment : BaseFragment() {
         viewModel.requestOrder(onSuccess = { activity?.finish() }, onError)
     }
 
-    private fun FragmentOrderDetailBinding.selectCurrentPaymentsType(type: PaymentType) {
+    private fun FragmentConfirmOrderBinding.selectCurrentPaymentsType(type: PaymentType) {
         when (type) {
             PaymentType.MONEY -> {
                 rbMoney.isChecked = true
@@ -99,7 +99,7 @@ class OrderDetailFragment : BaseFragment() {
         }
     }
 
-    private fun FragmentOrderDetailBinding.setupObservers() {
+    private fun FragmentConfirmOrderBinding.setupObservers() {
 
         rbPaymentsTypes.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {

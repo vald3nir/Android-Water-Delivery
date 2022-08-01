@@ -11,5 +11,6 @@ interface OrderUseCase {
     fun putAddress(address: AddressDTO)
     fun getItemQuantity(productDTO: ProductDTO): String?
     fun loadCurrentOrder(): OrderDTO
+    fun saveOrderInMemory(order: OrderDTO)
     suspend fun requestOrder(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit)
 }

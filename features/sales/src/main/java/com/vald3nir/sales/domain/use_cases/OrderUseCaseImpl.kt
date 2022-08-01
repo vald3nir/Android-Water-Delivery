@@ -18,6 +18,10 @@ class OrderUseCaseImpl(
         return currentOrder
     }
 
+    override fun saveOrderInMemory(order: OrderDTO) {
+        currentOrder = order
+    }
+
     override fun putAddress(address: AddressDTO) {
         currentOrder.address = address
     }
@@ -25,6 +29,7 @@ class OrderUseCaseImpl(
     override fun registerItem(productDTO: ProductDTO, quantity: Int) {
         shoppingCartMap[productDTO.uid] = OrderItemDTO(
             name = productDTO.name,
+            productID = productDTO.uid,
             quantity = quantity,
             unitValue = productDTO.price
         )
