@@ -6,8 +6,8 @@ import com.vald3nir.commom.domain.dtos.ClientDTO
 import com.vald3nir.commom.domain.dtos.LoginDTO
 import com.vald3nir.repository.firebase.FirebaseAuthenticator
 import com.vald3nir.repository.firebase.FirebaseClient
-import com.vald3nir.repository.loadDataJson
-import com.vald3nir.repository.saveDataJson
+import com.vald3nir.repository.storage.loadDataString
+import com.vald3nir.repository.storage.saveDataString
 import com.vald3nir.repository.toDTO
 
 class AuthRepositoryImpl(
@@ -28,14 +28,14 @@ class AuthRepositoryImpl(
 
     override suspend fun saveLoginData(context: Context?, loginDTO: LoginDTO) {
         if (loginDTO.rememberLogin) {
-            context?.saveDataJson("Login", loginDTO.toJson())
+            context?.saveDataString("Login", loginDTO.toJson())
         } else {
-            context?.saveDataJson("Login", null)
+            context?.saveDataString("Login", null)
         }
     }
 
     override suspend fun loadLoginData(context: Context?): LoginDTO {
-        val json = context?.loadDataJson("Login")
+        val json = context?.loadDataString("Login")
         return json.toDTO(LoginDTO::class.java)
     }
 
