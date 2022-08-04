@@ -34,8 +34,8 @@ dependencies {
     api project(path: ':toolkit:utils')
 
     // coroutines
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     // koin (dependency injection framework)
     api "io.insert-koin:koin-androidx-ext:2.2.3"
