@@ -7,7 +7,6 @@ plugins {
 
 android {
     compileSdk 32
-
     defaultConfig {
         applicationId "com.vald3nir.diskwater"
         minSdk 21
@@ -28,6 +27,23 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+    signingConfigs {
+        debug {
+            storeFile file('..\\ToolKit\\key\\store_file.jks')
+            storePassword 'android'
+            keyAlias 'key'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file('..\\ToolKit\\key\\store_file.jks')
+            storePassword 'android'
+            keyAlias 'key'
+            keyPassword 'android'
+        }
     }
     flavorDimensions "version"
     productFlavors {
