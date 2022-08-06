@@ -2,8 +2,8 @@ package com.vald3nir.sales.repository
 
 import android.content.Context
 import com.vald3nir.commom.domain.dtos.AddressDTO
-import com.vald3nir.repository.loadDataJson
-import com.vald3nir.repository.saveDataJson
+import com.vald3nir.repository.storage.loadDataString
+import com.vald3nir.repository.storage.saveDataString
 import com.vald3nir.repository.toDTO
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,12 +43,12 @@ class AddressRepositoryImpl : AddressRepository {
     }
 
     override suspend fun loadAddress(context: Context?): AddressDTO {
-        val json: String? = context?.loadDataJson("Address")
+        val json: String? = context?.loadDataString("Address")
         return if (json.isNullOrBlank()) AddressDTO()
         else json.toDTO(AddressDTO::class.java)
     }
 
     override suspend fun updateAddress(context: Context?, address: AddressDTO?) {
-        context?.saveDataJson("Address", address?.toJson())
+        context?.saveDataString("Address", address?.toJson())
     }
 }
