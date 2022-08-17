@@ -9,9 +9,9 @@ import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.login.R
 import com.vald3nir.login.domain.form.DataUserInputForm
 import com.vald3nir.login.domain.usecases.AuthUseCase
-import com.vald3nir.utils.validations.isEmailValid
-import com.vald3nir.utils.validations.isNameValid
-import com.vald3nir.utils.validations.isPasswordValid
+import com.vald3nir.core_utils.validations.isEmailValid
+import com.vald3nir.core_utils.validations.isNameValid
+import com.vald3nir.core_utils.validations.isPasswordValid
 import kotlinx.coroutines.launch
 
 class LoginViewModel(

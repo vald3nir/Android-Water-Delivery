@@ -1,7 +1,7 @@
 package com.vald3nir.dashboard.repository
 
 import com.vald3nir.commom.domain.dtos.ProductDTO
-import com.vald3nir.repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.firebase.FirebaseClient
 
 class ProductRepositoryImpl : ProductRepository {
 

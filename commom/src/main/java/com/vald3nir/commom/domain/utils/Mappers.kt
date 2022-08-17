@@ -1,6 +1,6 @@
 package com.vald3nir.commom.domain.utils
 
-import com.vald3nir.repository.BaseDTO
+import com.vald3nir.core_repository.BaseDTO
 
 //fun <T> MutableList<T>?.toMutableBaseList(): MutableList<BaseDTO> {
 //    val baseList: MutableList<BaseDTO> = mutableListOf()

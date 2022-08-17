@@ -5,11 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.commom.domain.dtos.ProductDTO
-import com.vald3nir.commom.presentation.view.BaseFragment
 import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.dashboard.domain.ProductUseCase
 import com.vald3nir.dashboard.domain.forms.ProductInputForm
-import com.vald3nir.utils.extensions.toBase64
+import com.vald3nir.core_utils.extensions.toBase64
 import kotlinx.coroutines.launch
 
 class ProductViewModel(

@@ -5,7 +5,7 @@ import android.content.Context
 import com.vald3nir.commom.domain.dtos.ClientDTO
 import com.vald3nir.commom.domain.dtos.LoginDTO
 import com.vald3nir.login.repository.AuthRepository
-import com.vald3nir.repository.firebase.FirebaseAuthenticator
+import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
 
 class AuthUseCaseImpl(
     private val repository: AuthRepository,

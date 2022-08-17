@@ -12,8 +12,8 @@ import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentProductsBinding
 import com.vald3nir.dashboard.databinding.ProductItemViewBinding
-import com.vald3nir.repository.baseDiffUtil
-import com.vald3nir.utils.extensions.toMoney
+import com.vald3nir.core_repository.baseDiffUtil
+import com.vald3nir.core_utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductsFragment : BaseFragment() {

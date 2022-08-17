@@ -15,8 +15,8 @@ import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentClientOrderDetailBinding
 import com.vald3nir.dashboard.databinding.ItemOrderDetailBinding
-import com.vald3nir.repository.baseDiffUtil
-import com.vald3nir.utils.extensions.format
+import com.vald3nir.core_repository.baseDiffUtil
+import com.vald3nir.core_utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClientOrderDetailFragment : BaseFragment() {

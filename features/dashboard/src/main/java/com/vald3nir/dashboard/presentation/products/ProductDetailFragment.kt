@@ -14,7 +14,7 @@ import com.vald3nir.commom.presentation.view.BaseFragment
 import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentProductDetailBinding
-import com.vald3nir.utils.extensions.toFloatValue
+import com.vald3nir.core_utils.extensions.toFloatValue
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : BaseFragment() {

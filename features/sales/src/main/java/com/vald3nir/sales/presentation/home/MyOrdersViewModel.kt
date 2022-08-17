@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.vald3nir.commom.domain.dtos.OrderDTO
 import com.vald3nir.commom.domain.dtos.OrderStatus
 import com.vald3nir.commom.presentation.view.BaseViewModel
-import com.vald3nir.repository.firebase.FirebaseAuthenticator
-import com.vald3nir.repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
+import com.vald3nir.core_repository.firebase.FirebaseClient
 import com.vald3nir.sales.domain.use_cases.OrderUseCase
 import kotlinx.coroutines.launch
 

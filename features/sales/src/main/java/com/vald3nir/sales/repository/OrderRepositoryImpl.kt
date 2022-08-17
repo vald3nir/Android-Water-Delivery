@@ -2,8 +2,8 @@ package com.vald3nir.sales.repository
 
 import com.vald3nir.commom.domain.dtos.ClientDTO
 import com.vald3nir.commom.domain.dtos.OrderDTO
-import com.vald3nir.repository.firebase.FirebaseAuthenticator
-import com.vald3nir.repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
+import com.vald3nir.core_repository.firebase.FirebaseClient
 import java.util.*
 
 class OrderRepositoryImpl : OrderRepository {

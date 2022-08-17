@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.Context
 import com.vald3nir.commom.domain.dtos.ClientDTO
 import com.vald3nir.commom.domain.dtos.LoginDTO
-import com.vald3nir.repository.firebase.FirebaseAuthenticator
-import com.vald3nir.repository.firebase.FirebaseClient
-import com.vald3nir.repository.storage.loadDataString
-import com.vald3nir.repository.storage.saveDataString
-import com.vald3nir.repository.toDTO
+import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
+import com.vald3nir.core_repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.storage.loadDataString
+import com.vald3nir.core_repository.storage.saveDataString
+import com.vald3nir.core_repository.toDTO
 
 class AuthRepositoryImpl(
     private val userType: String

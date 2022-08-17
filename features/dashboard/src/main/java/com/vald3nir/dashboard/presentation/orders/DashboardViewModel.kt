@@ -9,7 +9,7 @@ import com.vald3nir.commom.domain.dtos.OrderStatus
 import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.core_ui.components.CustomListComponent
 import com.vald3nir.dashboard.domain.OrderManagerUseCase
-import com.vald3nir.repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.firebase.FirebaseClient
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(

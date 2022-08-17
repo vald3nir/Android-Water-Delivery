@@ -12,11 +12,11 @@ import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.components.CustomListComponent
 import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.databinding.OrderItemViewBinding
-import com.vald3nir.repository.BaseDTO
-import com.vald3nir.repository.baseDiffUtil
+import com.vald3nir.core_repository.BaseDTO
+import com.vald3nir.core_repository.baseDiffUtil
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentMyOrdersBinding
-import com.vald3nir.utils.extensions.toMoney
+import com.vald3nir.core_utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyOrdersFragment : BaseFragment() {

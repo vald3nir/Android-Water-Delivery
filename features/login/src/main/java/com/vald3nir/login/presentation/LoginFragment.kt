@@ -12,7 +12,7 @@ import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.core_ui.extensions.hideKeyboard
 import com.vald3nir.login.R
 import com.vald3nir.login.databinding.FragmentLoginBinding
-import com.vald3nir.utils.extensions.format
+import com.vald3nir.core_utils.extensions.format
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {

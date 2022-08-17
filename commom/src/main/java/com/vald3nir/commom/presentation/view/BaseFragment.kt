@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import com.vald3nir.core_ui.CoreFragment
 import com.vald3nir.core_ui.components.CustomSheetDialog
-import com.vald3nir.repository.BaseDTO
+import com.vald3nir.core_repository.BaseDTO
 
 abstract class BaseFragment : CoreFragment() {
 

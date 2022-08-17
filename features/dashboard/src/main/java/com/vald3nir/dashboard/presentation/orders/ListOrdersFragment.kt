@@ -11,7 +11,7 @@ import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentListOrdersBinding
 import com.vald3nir.dashboard.databinding.OrderItemViewBinding
-import com.vald3nir.utils.extensions.toMoney
+import com.vald3nir.core_utils.extensions.toMoney
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListOrdersFragment : BaseFragment() {

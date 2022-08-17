@@ -2,7 +2,7 @@ package com.vald3nir.dashboard.domain
 
 import com.vald3nir.commom.domain.dtos.OrderDTO
 import com.vald3nir.commom.domain.dtos.OrderStatus
-import com.vald3nir.repository.firebase.FirebaseClient
+import com.vald3nir.core_repository.firebase.FirebaseClient
 
 class OrderManagerUseCaseImpl() : OrderManagerUseCase {
 

@@ -1,6 +1,6 @@
 package com.vald3nir.commom.domain.dtos
 
-import com.vald3nir.repository.BaseDTO
+import com.vald3nir.core_repository.BaseDTO
 
 data class LoginDTO(
     var email: String?,

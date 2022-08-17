@@ -30,8 +30,8 @@ dependencies {
 
     // modules
     api project(path: ':toolkit:core-ui')
-    api project(path: ':toolkit:repository')
-    api project(path: ':toolkit:utils')
+    api project(path: ':toolkit:core-repository')
+    api project(path: ':toolkit:core-utils')
 
     // coroutines
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'

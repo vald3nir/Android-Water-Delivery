@@ -2,9 +2,9 @@ package com.vald3nir.sales.repository
 
 import android.content.Context
 import com.vald3nir.commom.domain.dtos.AddressDTO
-import com.vald3nir.repository.storage.loadDataString
-import com.vald3nir.repository.storage.saveDataString
-import com.vald3nir.repository.toDTO
+import com.vald3nir.core_repository.storage.loadDataString
+import com.vald3nir.core_repository.storage.saveDataString
+import com.vald3nir.core_repository.toDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
