@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.repository.dtos.ProductDTO
-import com.vald3nir.commom.presentation.view.BaseFragment
+import com.vald3nir.base_ui.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.components.CustomSheetDialog
 import com.vald3nir.core_ui.extensions.setupLayoutManager
@@ -32,7 +31,7 @@ class ProductsFragment : BaseFragment() {
 
     private fun bindAdapter(
         itemViewBinding: ProductItemViewBinding,
-        productDTO: com.vald3nir.repository.dtos.ProductDTO
+        productDTO: com.vald3nir.base_repository.dtos.ProductDTO
     ) {
         itemViewBinding.apply {
             txvName.text = productDTO.name
@@ -89,7 +88,7 @@ class ProductsFragment : BaseFragment() {
     }
 
 
-    private fun showDeleteProductDialog(productDTO: com.vald3nir.repository.dtos.ProductDTO) {
+    private fun showDeleteProductDialog(productDTO: com.vald3nir.base_repository.dtos.ProductDTO) {
         val items: List<CustomSheetDialog.CustomItemSheet> = listOf(
             CustomSheetDialog.CustomItemSheet(
                 icon = R.drawable.ic_delete,

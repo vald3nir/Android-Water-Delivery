@@ -64,7 +64,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.vald3nir.commom.presentation.components.BaseButton
+    <com.vald3nir.base_ui.components.BaseButton
         android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

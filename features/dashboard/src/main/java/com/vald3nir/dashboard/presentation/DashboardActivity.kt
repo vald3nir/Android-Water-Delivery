@@ -7,7 +7,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.vald3nir.commom.presentation.view.BaseActivity
+import com.vald3nir.base_ui.view.BaseActivity
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.ActivityDashboardBinding
 

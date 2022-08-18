@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.vald3nir.commom.presentation.view.BaseActivity
+import com.vald3nir.base_ui.view.BaseActivity
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.ActivityMyOrdersBinding
 import com.vald3nir.sales.presentation.create.CreateOrderActivity

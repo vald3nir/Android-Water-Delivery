@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.vald3nir.repository.dtos.ProductDTO
-import com.vald3nir.commom.presentation.view.BaseFragment
+import com.vald3nir.base_ui.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.core_repository.baseDiffUtil
@@ -33,7 +32,7 @@ class ShoppingCartFragment : BaseFragment() {
 
     private fun bindAdapter(
         itemViewBinding: ItemShoppingCartBinding,
-        productDTO: com.vald3nir.repository.dtos.ProductDTO
+        productDTO: com.vald3nir.base_repository.dtos.ProductDTO
     ) {
         itemViewBinding.apply {
             txvTitle.text = productDTO.name

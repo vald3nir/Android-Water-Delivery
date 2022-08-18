@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.repository.dtos.OrderDTO
-import com.vald3nir.repository.dtos.OrderStatus
-import com.vald3nir.commom.domain.utils.toMutableBaseList
-import com.vald3nir.commom.presentation.view.BaseFragment
+import com.vald3nir.base_ui.domain.utils.toMutableBaseList
+import com.vald3nir.base_ui.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.components.CustomListComponent
 import com.vald3nir.core_ui.extensions.setupLayoutManager
@@ -39,7 +37,7 @@ class MyOrdersFragment : BaseFragment() {
         position: Int,
         any: Any
     ) {
-        if (baseDTO is com.vald3nir.repository.dtos.OrderDTO) {
+        if (baseDTO is com.vald3nir.base_repository.dtos.OrderDTO) {
             itemViewBinding.apply {
                 itemViewBinding.apply {
                     txtTitle.text = "Pedido ${baseDTO.date}"
@@ -81,13 +79,13 @@ class MyOrdersFragment : BaseFragment() {
                 listOf(
                     CustomListComponent.CustomListTab(
                         title = "Pedido em aberto",
-                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.repository.dtos.OrderStatus.OPEN) }),
+                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.base_repository.dtos.OrderStatus.OPEN) }),
                     CustomListComponent.CustomListTab(
                         title = "Pedido em andamento",
-                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.repository.dtos.OrderStatus.PROGRESS) }),
+                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.base_repository.dtos.OrderStatus.PROGRESS) }),
                     CustomListComponent.CustomListTab(
                         title = "Pedido fechados",
-                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.repository.dtos.OrderStatus.CLOSE) }),
+                        onTabSelectedListener = { viewModel.filterListByStatus(com.vald3nir.base_repository.dtos.OrderStatus.CLOSE) }),
                 )
             )
             getRecyclerView().apply {
@@ -99,7 +97,7 @@ class MyOrdersFragment : BaseFragment() {
 
     private fun FragmentMyOrdersBinding.setupObservers() {
         mainCardAdapter.setOnItemClickListener(listener = { item, pos ->
-            viewModel.cacheOrder(item as com.vald3nir.repository.dtos.OrderDTO) // Valdenir ajusta tipo correto
+            viewModel.cacheOrder(item as com.vald3nir.base_repository.dtos.OrderDTO) // Valdenir ajusta tipo correto
             navigationToFragment(R.id.action_navigation_my_orders_to_navigation_order_detail)
         })
 

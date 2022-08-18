@@ -1,8 +1,8 @@
 package com.vald3nir.diskwater
 
 import android.content.Intent
-import com.vald3nir.commom.domain.navigation.FeaturesNavigation
-import com.vald3nir.commom.presentation.view.BaseActivity
+import com.vald3nir.base_ui.navigation.FeaturesNavigation
+import com.vald3nir.base_ui.view.BaseActivity
 import com.vald3nir.core_ui.extensions.hideKeyboard
 import com.vald3nir.dashboard.presentation.DashboardActivity
 import com.vald3nir.login.presentation.LoginActivity
