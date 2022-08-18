@@ -24,17 +24,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
 
-    // Modules
-    implementation project(path: ':commom')
-    implementation project(path: ':repository')
-    implementation project(path: ':features:dashboard')
+    // modules
+    api project(path: ':toolkit:core-repository')
+
+    // koin (dependency injection framework)
+    api "io.insert-koin:koin-androidx-ext:2.2.3"
+    api "io.insert-koin:koin-androidx-viewmodel:2.2.3"
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

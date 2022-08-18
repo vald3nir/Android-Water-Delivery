@@ -4,6 +4,7 @@ import android.app.Application
 import com.vald3nir.commom.domain.navigation.FeaturesNavigation
 import com.vald3nir.dashboard.di.getDashboardModule
 import com.vald3nir.login.di.getLoginModule
+import com.vald3nir.repository.di.getRepositoryModule
 import com.vald3nir.sales.di.getSalesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -23,6 +24,7 @@ class AppApplication : Application() {
             modules(
                 listOf(
                     appModule(),
+                    getRepositoryModule(),
                     getDashboardModule(),
                     getSalesModule(),
                     getLoginModule(

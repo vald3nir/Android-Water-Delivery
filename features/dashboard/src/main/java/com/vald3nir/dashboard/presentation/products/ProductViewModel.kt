@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.commom.domain.dtos.ProductDTO
+import com.vald3nir.repository.dtos.ProductDTO
 import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.dashboard.domain.ProductUseCase
 import com.vald3nir.dashboard.domain.forms.ProductInputForm
@@ -19,11 +19,11 @@ class ProductViewModel(
     private val _productForm = MutableLiveData<ProductInputForm>()
     val productForm: LiveData<ProductInputForm> = _productForm
 
-    private val _products = MutableLiveData<MutableList<ProductDTO>>()
-    val products: LiveData<MutableList<ProductDTO>> = _products
+    private val _products = MutableLiveData<MutableList<com.vald3nir.repository.dtos.ProductDTO>>()
+    val products: LiveData<MutableList<com.vald3nir.repository.dtos.ProductDTO>> = _products
 
-    private val _product = MutableLiveData<ProductDTO>()
-    val product: LiveData<ProductDTO> = _product
+    private val _product = MutableLiveData<com.vald3nir.repository.dtos.ProductDTO>()
+    val product: LiveData<com.vald3nir.repository.dtos.ProductDTO> = _product
 
     private var productCategorySelected = listProductCategories()[0]
     fun listProductCategories() = productUseCase.listProductCategories()
@@ -53,7 +53,7 @@ class ProductViewModel(
     fun loadData() {
         var productDTO = productUseCase.loadInMemory()
         if (productDTO == null) {
-            productDTO = ProductDTO()
+            productDTO = com.vald3nir.repository.dtos.ProductDTO()
         } else {
             productDTO.isNew = false
         }
@@ -89,7 +89,7 @@ class ProductViewModel(
         }
     }
 
-    fun deleteProduct(productDTO: ProductDTO) {
+    fun deleteProduct(productDTO: com.vald3nir.repository.dtos.ProductDTO) {
         viewModelScope.launch {
             productUseCase.deleteProduct(
                 productDTO,
@@ -121,7 +121,7 @@ class ProductViewModel(
         }
     }
 
-    fun saveInMemory(item: ProductDTO?) {
+    fun saveInMemory(item: com.vald3nir.repository.dtos.ProductDTO?) {
         productUseCase.saveInMemory(item)
     }
 }

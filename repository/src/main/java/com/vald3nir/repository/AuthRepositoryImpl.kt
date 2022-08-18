@@ -1,23 +1,19 @@
-package com.vald3nir.login.repository
+package com.vald3nir.repository
 
 import android.app.Activity
 import android.content.Context
-import com.vald3nir.commom.domain.dtos.ClientDTO
-import com.vald3nir.commom.domain.dtos.LoginDTO
 import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
 import com.vald3nir.core_repository.firebase.FirebaseClient
 import com.vald3nir.core_repository.storage.loadDataString
 import com.vald3nir.core_repository.storage.saveDataString
 import com.vald3nir.core_repository.toDTO
 
-class AuthRepositoryImpl(
-    private val userType: String
-) : AuthRepository {
+class AuthRepositoryImpl : AuthRepository {
     private val authenticator = FirebaseAuthenticator()
 
     override suspend fun login(
         activity: Activity,
-        loginDTO: LoginDTO,
+        loginDTO: com.vald3nir.repository.dtos.LoginDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
@@ -26,7 +22,10 @@ class AuthRepositoryImpl(
         authenticator.signInWithEmailAndPassword(activity, email, password, onSuccess, onError)
     }
 
-    override suspend fun saveLoginData(context: Context?, loginDTO: LoginDTO) {
+    override suspend fun saveLoginData(
+        context: Context?,
+        loginDTO: com.vald3nir.repository.dtos.LoginDTO
+    ) {
         if (loginDTO.rememberLogin) {
             context?.saveDataString("Login", loginDTO.toJson())
         } else {
@@ -34,9 +33,9 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun loadLoginData(context: Context?): LoginDTO {
+    override suspend fun loadLoginData(context: Context?): com.vald3nir.repository.dtos.LoginDTO {
         val json = context?.loadDataString("Login")
-        return json.toDTO(LoginDTO::class.java)
+        return json.toDTO(com.vald3nir.repository.dtos.LoginDTO::class.java)
     }
 
     override suspend fun registerNewUser(
@@ -58,7 +57,7 @@ class AuthRepositoryImpl(
 
     override suspend fun registerClient(
         activity: Activity,
-        clientDTO: ClientDTO,
+        clientDTO: com.vald3nir.repository.dtos.ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {

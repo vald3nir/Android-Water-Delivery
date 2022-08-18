@@ -1,6 +1,6 @@
-package com.vald3nir.sales.repository
+package com.vald3nir.repository
 
-import com.vald3nir.commom.domain.dtos.OrderDTO
+import com.vald3nir.repository.dtos.OrderDTO
 
 interface OrderRepository {
 

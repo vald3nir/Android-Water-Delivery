@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.commom.domain.dtos.OrderItemDTO
+import com.vald3nir.repository.dtos.OrderItemDTO
 import com.vald3nir.commom.presentation.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
@@ -31,7 +31,7 @@ class OrderDetailFragment : BaseFragment() {
     @SuppressLint("SetTextI18n")
     private fun bindAdapter(
         itemViewBinding: ItemOrderDetailBinding,
-        orderItemDTO: OrderItemDTO
+        orderItemDTO: com.vald3nir.repository.dtos.OrderItemDTO
     ) {
         itemViewBinding.apply {
             txvTitle.text = orderItemDTO.name

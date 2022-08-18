@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.Nullable
-import com.vald3nir.commom.domain.dtos.OrderItemDTO
-import com.vald3nir.commom.domain.dtos.OrderStatus
+import com.vald3nir.repository.dtos.OrderItemDTO
+import com.vald3nir.repository.dtos.OrderStatus
 import com.vald3nir.commom.presentation.view.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
@@ -35,7 +35,7 @@ class ClientOrderDetailFragment : BaseFragment() {
     @SuppressLint("SetTextI18n")
     private fun bindAdapter(
         itemViewBinding: ItemOrderDetailBinding,
-        orderItemDTO: OrderItemDTO
+        orderItemDTO: com.vald3nir.repository.dtos.OrderItemDTO
     ) {
         itemViewBinding.apply {
             txvTitle.text = orderItemDTO.name
@@ -90,13 +90,13 @@ class ClientOrderDetailFragment : BaseFragment() {
         rbOrderStatus.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_open -> {
-                    viewModel.updateOrderStatus(OrderStatus.OPEN)
+                    viewModel.updateOrderStatus(com.vald3nir.repository.dtos.OrderStatus.OPEN)
                 }
                 R.id.rb_progress -> {
-                    viewModel.updateOrderStatus(OrderStatus.PROGRESS)
+                    viewModel.updateOrderStatus(com.vald3nir.repository.dtos.OrderStatus.PROGRESS)
                 }
                 R.id.rb_closed -> {
-                    viewModel.updateOrderStatus(OrderStatus.CLOSE)
+                    viewModel.updateOrderStatus(com.vald3nir.repository.dtos.OrderStatus.CLOSE)
                 }
             }
         }
@@ -117,13 +117,13 @@ class ClientOrderDetailFragment : BaseFragment() {
                 txvPaymentType.text = order.paymentType.title
 
                 when (order.status) {
-                    OrderStatus.OPEN -> {
+                    com.vald3nir.repository.dtos.OrderStatus.OPEN -> {
                         rbOpen.isChecked = true
                     }
-                    OrderStatus.CLOSE -> {
+                    com.vald3nir.repository.dtos.OrderStatus.CLOSE -> {
                         rbClosed.isChecked = true
                     }
-                    OrderStatus.PROGRESS -> {
+                    com.vald3nir.repository.dtos.OrderStatus.PROGRESS -> {
                         rbProgress.isChecked = true
                     }
                 }

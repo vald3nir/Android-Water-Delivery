@@ -1,7 +1,6 @@
-package com.vald3nir.sales.repository
+package com.vald3nir.repository
 
 import android.content.Context
-import com.vald3nir.commom.domain.dtos.AddressDTO
 import com.vald3nir.core_repository.storage.loadDataString
 import com.vald3nir.core_repository.storage.saveDataString
 import com.vald3nir.core_repository.toDTO
@@ -17,7 +16,7 @@ class AddressRepositoryImpl : AddressRepository {
 
     interface AddressAPI {
         @GET("/v1/cep/{cep}")
-        fun getAddressByCEP(@Path("cep") cep: String?): Call<AddressDTO>
+        fun getAddressByCEP(@Path("cep") cep: String?): Call<com.vald3nir.repository.dtos.AddressDTO>
     }
 
     private val retrofit = Retrofit.Builder()
@@ -27,28 +26,28 @@ class AddressRepositoryImpl : AddressRepository {
 
     override suspend fun searchAddressByCEP(
         cep: String,
-        onSuccess: (AddressDTO?) -> Unit,
+        onSuccess: (com.vald3nir.repository.dtos.AddressDTO?) -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
         val service: AddressAPI = retrofit.create(AddressAPI::class.java)
-        service.getAddressByCEP(cep).enqueue(object : Callback<AddressDTO> {
-            override fun onResponse(call: Call<AddressDTO>, response: Response<AddressDTO>) {
+        service.getAddressByCEP(cep).enqueue(object : Callback<com.vald3nir.repository.dtos.AddressDTO> {
+            override fun onResponse(call: Call<com.vald3nir.repository.dtos.AddressDTO>, response: Response<com.vald3nir.repository.dtos.AddressDTO>) {
                 onSuccess.invoke(response.body())
             }
 
-            override fun onFailure(call: Call<AddressDTO>, t: Throwable) {
+            override fun onFailure(call: Call<com.vald3nir.repository.dtos.AddressDTO>, t: Throwable) {
                 onError.invoke(Exception(t.message))
             }
         })
     }
 
-    override suspend fun loadAddress(context: Context?): AddressDTO {
+    override suspend fun loadAddress(context: Context?): com.vald3nir.repository.dtos.AddressDTO {
         val json: String? = context?.loadDataString("Address")
-        return if (json.isNullOrBlank()) AddressDTO()
-        else json.toDTO(AddressDTO::class.java)
+        return if (json.isNullOrBlank()) com.vald3nir.repository.dtos.AddressDTO()
+        else json.toDTO(com.vald3nir.repository.dtos.AddressDTO::class.java)
     }
 
-    override suspend fun updateAddress(context: Context?, address: AddressDTO?) {
+    override suspend fun updateAddress(context: Context?, address: com.vald3nir.repository.dtos.AddressDTO?) {
         context?.saveDataString("Address", address?.toJson())
     }
 }

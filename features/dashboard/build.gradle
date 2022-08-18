@@ -33,6 +33,7 @@ dependencies {
 
     // Modules
     implementation project(path: ':commom')
+    implementation project(path: ':repository')
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

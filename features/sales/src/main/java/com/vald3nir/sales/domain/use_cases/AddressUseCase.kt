@@ -1,18 +1,18 @@
 package com.vald3nir.sales.domain.use_cases
 
 import android.content.Context
-import com.vald3nir.commom.domain.dtos.AddressDTO
+import com.vald3nir.repository.dtos.AddressDTO
 
 interface AddressUseCase {
 
     suspend fun searchAddressByCEP(
         cep: String,
-        onSuccess: (AddressDTO?) -> Unit,
+        onSuccess: (com.vald3nir.repository.dtos.AddressDTO?) -> Unit,
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun loadAddress(context: Context?): AddressDTO
+    suspend fun loadAddress(context: Context?): com.vald3nir.repository.dtos.AddressDTO
 
-    suspend fun updateAddress(context: Context?, address: AddressDTO?)
+    suspend fun updateAddress(context: Context?, address: com.vald3nir.repository.dtos.AddressDTO?)
 
 }

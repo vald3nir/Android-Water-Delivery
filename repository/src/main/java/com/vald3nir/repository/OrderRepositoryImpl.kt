@@ -1,7 +1,5 @@
-package com.vald3nir.sales.repository
+package com.vald3nir.repository
 
-import com.vald3nir.commom.domain.dtos.ClientDTO
-import com.vald3nir.commom.domain.dtos.OrderDTO
 import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
 import com.vald3nir.core_repository.firebase.FirebaseClient
 import java.util.*
@@ -12,7 +10,7 @@ class OrderRepositoryImpl : OrderRepository {
     private val firebaseAuthenticator = FirebaseAuthenticator()
 
     override suspend fun requestOrder(
-        orderDTO: OrderDTO,
+        orderDTO: com.vald3nir.repository.dtos.OrderDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
@@ -21,7 +19,7 @@ class OrderRepositoryImpl : OrderRepository {
             rootPath = "debug",
             document = "usuários",
             collection = "usuários",
-            type = ClientDTO::class.java,
+            type = com.vald3nir.repository.dtos.ClientDTO::class.java,
             onSuccess = { users ->
                 val userID = firebaseAuthenticator.getUserID()
 

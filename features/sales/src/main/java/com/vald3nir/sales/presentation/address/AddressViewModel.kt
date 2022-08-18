@@ -3,7 +3,7 @@ package com.vald3nir.sales.presentation.address
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.commom.domain.dtos.AddressDTO
+import com.vald3nir.repository.dtos.AddressDTO
 import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.sales.R
 import com.vald3nir.sales.domain.form.AddressInputForm
@@ -19,8 +19,8 @@ class AddressViewModel(
     private val _addressInputForm = MutableLiveData<AddressInputForm>()
     val addressInputForm: LiveData<AddressInputForm> = _addressInputForm
 
-    private val _addressFields = MutableLiveData<AddressDTO>()
-    val addressFields: LiveData<AddressDTO> = _addressFields
+    private val _addressFields = MutableLiveData<com.vald3nir.repository.dtos.AddressDTO>()
+    val addressFields: LiveData<com.vald3nir.repository.dtos.AddressDTO> = _addressFields
 
     fun loadAddress() {
         viewModelScope.launch {
@@ -81,7 +81,7 @@ class AddressViewModel(
         }
     }
 
-    private fun validateAddress(addressDTO: AddressDTO): Boolean {
+    private fun validateAddress(addressDTO: com.vald3nir.repository.dtos.AddressDTO): Boolean {
         val inputForm = AddressInputForm()
         var isAddressValid = true
 

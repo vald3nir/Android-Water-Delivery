@@ -3,8 +3,8 @@ package com.vald3nir.login.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.commom.domain.dtos.ClientDTO
-import com.vald3nir.commom.domain.dtos.LoginDTO
+import com.vald3nir.repository.dtos.ClientDTO
+import com.vald3nir.repository.dtos.LoginDTO
 import com.vald3nir.commom.presentation.view.BaseViewModel
 import com.vald3nir.login.R
 import com.vald3nir.login.domain.form.DataUserInputForm
@@ -26,8 +26,8 @@ class LoginViewModel(
     private val _registerForm = MutableLiveData<DataUserInputForm>()
     val registerFormState: LiveData<DataUserInputForm> = _registerForm
 
-    private val _loginDTO = MutableLiveData<LoginDTO?>()
-    val loginDTO: LiveData<LoginDTO?> = _loginDTO
+    private val _loginDTO = MutableLiveData<com.vald3nir.repository.dtos.LoginDTO?>()
+    val loginDTO: LiveData<com.vald3nir.repository.dtos.LoginDTO?> = _loginDTO
 
     fun loadLoginData() {
         viewModelScope.launch {
@@ -45,7 +45,7 @@ class LoginViewModel(
         viewModelScope.launch {
             if (checkLoginData(email, password)) {
 
-                val loginDTO = LoginDTO(
+                val loginDTO = com.vald3nir.repository.dtos.LoginDTO(
                     email = email,
                     password = password,
                     rememberLogin = rememberLogin
@@ -63,7 +63,7 @@ class LoginViewModel(
         }
     }
 
-    private fun saveLoginData(loginDTO: LoginDTO) {
+    private fun saveLoginData(loginDTO: com.vald3nir.repository.dtos.LoginDTO) {
         viewModelScope.launch {
             authUseCase.saveLoginData(requireActivityContext(), loginDTO)
             finishWithResult()
@@ -129,7 +129,7 @@ class LoginViewModel(
         viewModelScope.launch {
             authUseCase.registerClient(
                 activity = requireActivityContext(),
-                clientDTO = ClientDTO(
+                clientDTO = com.vald3nir.repository.dtos.ClientDTO(
                     name = name,
                     userID = authUseCase.getUserID().orEmpty(),
                     email = email,

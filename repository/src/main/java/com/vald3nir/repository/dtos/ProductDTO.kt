@@ -1,4 +1,4 @@
-package com.vald3nir.commom.domain.dtos
+package com.vald3nir.repository.dtos
 
 import com.vald3nir.core_repository.BaseDTO
 

@@ -1,9 +1,8 @@
-package com.vald3nir.login.repository
+package com.vald3nir.repository
 
 import android.app.Activity
 import android.content.Context
-import com.vald3nir.commom.domain.dtos.ClientDTO
-import com.vald3nir.commom.domain.dtos.LoginDTO
+import com.vald3nir.repository.dtos.LoginDTO
 
 interface AuthRepository {
 
@@ -28,7 +27,7 @@ interface AuthRepository {
 
     suspend fun registerClient(
         activity: Activity,
-        clientDTO: ClientDTO,
+        clientDTO: com.vald3nir.repository.dtos.ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
     )

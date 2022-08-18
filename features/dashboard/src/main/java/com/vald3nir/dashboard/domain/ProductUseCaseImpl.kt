@@ -1,25 +1,24 @@
 package com.vald3nir.dashboard.domain
 
-import com.vald3nir.commom.domain.dtos.ProductDTO
 import com.vald3nir.core_ui.components.CustomListComponent
-import com.vald3nir.dashboard.repository.ProductRepository
+import com.vald3nir.repository.ProductRepository
 
 class ProductUseCaseImpl(
     private val repository: ProductRepository,
 ) : ProductUseCase {
 
-    private var product: ProductDTO? = null
+    private var product: com.vald3nir.repository.dtos.ProductDTO? = null
 
-    override fun saveInMemory(item: ProductDTO?) {
+    override fun saveInMemory(item: com.vald3nir.repository.dtos.ProductDTO?) {
         product = item
     }
 
-    override fun loadInMemory(): ProductDTO? {
+    override fun loadInMemory(): com.vald3nir.repository.dtos.ProductDTO? {
         return product
     }
 
     override suspend fun updateProduct(
-        product: ProductDTO?,
+        product: com.vald3nir.repository.dtos.ProductDTO?,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
@@ -31,7 +30,7 @@ class ProductUseCaseImpl(
     }
 
     override suspend fun deleteProduct(
-        product: ProductDTO?,
+        product: com.vald3nir.repository.dtos.ProductDTO?,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
@@ -44,7 +43,7 @@ class ProductUseCaseImpl(
 
     override suspend fun listProducts(
         category: String,
-        onSuccess: (MutableList<ProductDTO>) -> Unit,
+        onSuccess: (MutableList<com.vald3nir.repository.dtos.ProductDTO>) -> Unit,
         onError: (e: Exception?) -> Unit
     ) {
         repository.listProducts(category, onSuccess, onError)

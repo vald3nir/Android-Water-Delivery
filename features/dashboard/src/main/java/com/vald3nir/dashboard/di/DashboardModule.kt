@@ -6,20 +6,14 @@ import com.vald3nir.dashboard.domain.ProductUseCase
 import com.vald3nir.dashboard.domain.ProductUseCaseImpl
 import com.vald3nir.dashboard.presentation.orders.DashboardViewModel
 import com.vald3nir.dashboard.presentation.products.ProductViewModel
-import com.vald3nir.dashboard.repository.ProductRepository
-import com.vald3nir.dashboard.repository.ProductRepositoryImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.module.Module
 import org.koin.dsl.module
 
-fun getDashboardModule(): Module {
-    return module {
+fun getDashboardModule() = module {
 
-        single<OrderManagerUseCase> { OrderManagerUseCaseImpl() }
-        single<ProductUseCase> { ProductUseCaseImpl(get()) }
-        single<ProductRepository> { ProductRepositoryImpl() }
+    single<OrderManagerUseCase> { OrderManagerUseCaseImpl() }
+    single<ProductUseCase> { ProductUseCaseImpl(get()) }
 
-        viewModel { DashboardViewModel(get()) }
-        viewModel { ProductViewModel(get()) }
-    }
+    viewModel { DashboardViewModel(get()) }
+    viewModel { ProductViewModel(get()) }
 }

@@ -1,7 +1,7 @@
-package com.vald3nir.sales.repository
+package com.vald3nir.repository
 
 import android.content.Context
-import com.vald3nir.commom.domain.dtos.AddressDTO
+import com.vald3nir.repository.dtos.AddressDTO
 
 interface AddressRepository {
 

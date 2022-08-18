@@ -64,6 +64,7 @@ dependencies {
 
     // modules
     implementation project(path: ':commom')
+    implementation project(path: ':repository')
     implementation project(path: ':features:login')
     implementation project(path: ':features:sales')
     implementation project(path: ':features:dashboard')

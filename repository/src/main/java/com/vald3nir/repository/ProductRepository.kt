@@ -1,6 +1,6 @@
-package com.vald3nir.dashboard.repository
+package com.vald3nir.repository
 
-import com.vald3nir.commom.domain.dtos.ProductDTO
+import com.vald3nir.repository.dtos.ProductDTO
 
 interface ProductRepository {
 
