@@ -32,8 +32,8 @@ android {
 dependencies {
 
     // Modules
-    implementation project(path: ':commom')
-    implementation project(path: ':repository')
+    implementation project(path: ':base-ui')
+    implementation project(path: ':base-repository')
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

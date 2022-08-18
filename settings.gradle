@@ -19,8 +19,8 @@ include ':features:login'
 include ':features:dashboard'
 include ':features:sales'
 
-include ':commom'
-include ':repository'
+include ':base-ui'
+include ':base-repository'
 
 include ':toolkit:core-ui'
 include ':toolkit:core-repository'
