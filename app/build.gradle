@@ -6,11 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.vald3nir.diskwater'
+    compileSdk 33
     defaultConfig {
         applicationId "com.vald3nir.diskwater"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -70,8 +71,8 @@ dependencies {
     implementation project(path: ':features:dashboard')
 
     // Firebase
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.12'
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
 
     // Tests
     testImplementation 'junit:junit:4.13.2'
