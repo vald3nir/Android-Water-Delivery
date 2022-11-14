@@ -1,62 +1,56 @@
 <mxfile host="65bd71144e">
     <diagram id="2yzTeWbuNOJMP9-i5i0q" name="Página-1">
-        <mxGraphModel dx="1156" dy="478" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1374" dy="790" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="25" style="edgeStyle=none;html=1;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="2" target="6" edge="1">
+                <mxCell id="73" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" edge="1" parent="1" source="75" target="79">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="App" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="240.5" y="188" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" style="edgeStyle=none;html=1;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="10" target="15" edge="1">
+                <mxCell id="84" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="75" target="80">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" style="edgeStyle=none;html=1;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="10" target="14" edge="1">
+                <mxCell id="75" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp;Module Features:&lt;br&gt;&lt;br&gt;&amp;nbsp;- Screens&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;&amp;nbsp;- Use Case Interface&lt;br&gt;&lt;/span&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;&amp;nbsp;EX: Login, Dashboard etc.&lt;/span&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="269" y="349.63" width="165" height="101.37" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" edge="1" parent="1" source="79" target="75">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="Base-UI" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="176" y="425" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="19" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="6" target="10" edge="1">
+                <mxCell id="85" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="79" target="80">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Core-Repository" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="545" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="14" value="Core-Utils" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="243" y="545" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="15" value="Core-UI" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="111" y="545" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="16" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp;Toolkit&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="92.5" y="512" width="421" height="109" as="geometry"/>
-                </mxCell>
-                <mxCell id="23" style="edgeStyle=none;html=1;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="22" target="13" edge="1">
+                <mxCell id="87" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="79" target="69">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="22" target="14">
+                <mxCell id="79" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp;Module Core:&lt;br&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;&amp;nbsp;- Base Screen&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&amp;nbsp;- Repository Interface&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&amp;nbsp;- DTO's&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="521" y="347.13" width="153" height="106.37" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="80" target="75">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="Base-Repository" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="332" y="425" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="24" style="edgeStyle=none;html=1;labelBackgroundColor=#000000;fontColor=#000000;strokeColor=#000000;" parent="1" source="6" target="22" edge="1">
+                <mxCell id="83" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="80" target="79">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Login" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="243" y="311" width="120" height="60" as="geometry"/>
+                <mxCell id="80" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp;App:&lt;br&gt;&lt;br&gt;&amp;nbsp;- Screen navigation&lt;br&gt;&amp;nbsp;- Interface implementation&amp;nbsp;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="222" width="165" height="77.88" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="Dasboard" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="374" y="311" width="120" height="60" as="geometry"/>
+                <mxCell id="86" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="269" y="488" width="405" height="116" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="Sales" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
-                    <mxGeometry x="112" y="311" width="120" height="60" as="geometry"/>
+                <mxCell id="65" value="Core-Repository" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="86">
+                    <mxGeometry x="274.5" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp; &amp;nbsp;Features&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="90" y="277" width="421" height="109" as="geometry"/>
+                <mxCell id="66" value="Core-Utils" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="86">
+                    <mxGeometry x="10.5" y="38" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="Core-UI" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="86">
+                    <mxGeometry x="142.5" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="&lt;font color=&quot;#000000&quot;&gt;&amp;nbsp;Toolkit&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#080808;align=left;verticalAlign=top;" vertex="1" parent="86">
+                    <mxGeometry width="405" height="116" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" style="edgeStyle=none;html=1;strokeColor=#000000;" edge="1" parent="1" source="69" target="79">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
