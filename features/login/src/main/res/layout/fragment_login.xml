@@ -80,7 +80,7 @@
                     android:textColor="@color/white"
                     android:theme="@style/checkbox_theme" />
 
-                <com.vald3nir.base_ui.components.BaseButton
+                <com.vald3nir.core.presentation.components.BaseButton
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

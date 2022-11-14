@@ -1,32 +1,32 @@
 package com.vald3nir.sales.domain.use_cases
 
-import com.vald3nir.base_repository.OrderRepository
+import com.vald3nir.core.repository.OrderRepository
 
 class OrderUseCaseImpl(
     private val repository: OrderRepository
 ) : OrderUseCase {
 
-    private var shoppingCartMap = mutableMapOf<String, com.vald3nir.base_repository.dtos.OrderItemDTO>()
-    private var currentOrder = com.vald3nir.base_repository.dtos.OrderDTO()
+    private var shoppingCartMap = mutableMapOf<String, com.vald3nir.core.repository.dtos.OrderItemDTO>()
+    private var currentOrder = com.vald3nir.core.repository.dtos.OrderDTO()
 
-    override fun addPaymentType(paymentType: com.vald3nir.base_repository.dtos.PaymentType) {
+    override fun addPaymentType(paymentType: com.vald3nir.core.repository.dtos.PaymentType) {
         this.currentOrder.paymentType = paymentType
     }
 
-    override fun loadCurrentOrder(): com.vald3nir.base_repository.dtos.OrderDTO {
+    override fun loadCurrentOrder(): com.vald3nir.core.repository.dtos.OrderDTO {
         return currentOrder
     }
 
-    override fun saveOrderInMemory(order: com.vald3nir.base_repository.dtos.OrderDTO) {
+    override fun saveOrderInMemory(order: com.vald3nir.core.repository.dtos.OrderDTO) {
         currentOrder = order
     }
 
-    override fun putAddress(address: com.vald3nir.base_repository.dtos.AddressDTO) {
+    override fun putAddress(address: com.vald3nir.core.repository.dtos.AddressDTO) {
         currentOrder.address = address
     }
 
-    override fun registerItem(productDTO: com.vald3nir.base_repository.dtos.ProductDTO, quantity: Int) {
-        shoppingCartMap[productDTO.uid] = com.vald3nir.base_repository.dtos.OrderItemDTO(
+    override fun registerItem(productDTO: com.vald3nir.core.repository.dtos.ProductDTO, quantity: Int) {
+        shoppingCartMap[productDTO.uid] = com.vald3nir.core.repository.dtos.OrderItemDTO(
             name = productDTO.name,
             productID = productDTO.uid,
             quantity = quantity,
@@ -36,8 +36,8 @@ class OrderUseCaseImpl(
         currentOrder.items = loadItemsSelected()
     }
 
-    private fun loadItemsSelected(): MutableList<com.vald3nir.base_repository.dtos.OrderItemDTO> {
-        val items = mutableListOf<com.vald3nir.base_repository.dtos.OrderItemDTO>()
+    private fun loadItemsSelected(): MutableList<com.vald3nir.core.repository.dtos.OrderItemDTO> {
+        val items = mutableListOf<com.vald3nir.core.repository.dtos.OrderItemDTO>()
         shoppingCartMap.map {
             if ((it.value.quantity ?: 0) > 0) {
                 items.add(it.value)
@@ -57,13 +57,13 @@ class OrderUseCaseImpl(
         return total
     }
 
-    override fun getItemQuantity(productDTO: com.vald3nir.base_repository.dtos.ProductDTO): String? {
+    override fun getItemQuantity(productDTO: com.vald3nir.core.repository.dtos.ProductDTO): String? {
         return shoppingCartMap[productDTO.uid]?.quantity?.toString()
     }
 
     override suspend fun requestOrder(onSuccess: () -> Unit, onError: (e: Exception?) -> Unit) {
         repository.requestOrder(currentOrder, onSuccess = {
-            currentOrder = com.vald3nir.base_repository.dtos.OrderDTO()
+            currentOrder = com.vald3nir.core.repository.dtos.OrderDTO()
             shoppingCartMap = mutableMapOf()
             onSuccess.invoke()
         }, onError)

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.vald3nir.base_ui.view.BaseFragment
+import com.vald3nir.core.presentation.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.core_repository.baseDiffUtil
@@ -33,7 +33,7 @@ class ConfirmOrderFragment : BaseFragment() {
     @SuppressLint("SetTextI18n")
     private fun bindAdapter(
         itemViewBinding: ItemOrderDetailBinding,
-        orderItemDTO: com.vald3nir.base_repository.dtos.OrderItemDTO
+        orderItemDTO: com.vald3nir.core.repository.dtos.OrderItemDTO
     ) {
         itemViewBinding.apply {
             txvTitle.text = orderItemDTO.name
@@ -83,15 +83,15 @@ class ConfirmOrderFragment : BaseFragment() {
         viewModel.requestOrder(onSuccess = { activity?.finish() }, onError)
     }
 
-    private fun FragmentConfirmOrderBinding.selectCurrentPaymentsType(type: com.vald3nir.base_repository.dtos.PaymentType) {
+    private fun FragmentConfirmOrderBinding.selectCurrentPaymentsType(type: com.vald3nir.core.repository.dtos.PaymentType) {
         when (type) {
-            com.vald3nir.base_repository.dtos.PaymentType.MONEY -> {
+            com.vald3nir.core.repository.dtos.PaymentType.MONEY -> {
                 rbMoney.isChecked = true
             }
-            com.vald3nir.base_repository.dtos.PaymentType.PIX -> {
+            com.vald3nir.core.repository.dtos.PaymentType.PIX -> {
                 rbPix.isChecked = true
             }
-            com.vald3nir.base_repository.dtos.PaymentType.CARD -> {
+            com.vald3nir.core.repository.dtos.PaymentType.CARD -> {
                 rbCard.isChecked = true
             }
         }
@@ -102,13 +102,13 @@ class ConfirmOrderFragment : BaseFragment() {
         rbPaymentsTypes.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_money -> {
-                    viewModel.addPaymentType(com.vald3nir.base_repository.dtos.PaymentType.MONEY)
+                    viewModel.addPaymentType(com.vald3nir.core.repository.dtos.PaymentType.MONEY)
                 }
                 R.id.rb_pix -> {
-                    viewModel.addPaymentType(com.vald3nir.base_repository.dtos.PaymentType.PIX)
+                    viewModel.addPaymentType(com.vald3nir.core.repository.dtos.PaymentType.PIX)
                 }
                 R.id.rb_card -> {
-                    viewModel.addPaymentType(com.vald3nir.base_repository.dtos.PaymentType.CARD)
+                    viewModel.addPaymentType(com.vald3nir.core.repository.dtos.PaymentType.CARD)
                 }
             }
         }

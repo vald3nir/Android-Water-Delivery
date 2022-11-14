@@ -5,7 +5,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.vald3nir.base_ui.view.BaseActivity
+import com.vald3nir.core.presentation.BaseActivity
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.ActivityCreateOrderBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel

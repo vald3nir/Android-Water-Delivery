@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import com.vald3nir.base_ui.view.BaseFragment
+import com.vald3nir.core.presentation.BaseFragment
 import com.vald3nir.core_ui.extensions.actionDoneListener
 import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.core_ui.extensions.hideKeyboard

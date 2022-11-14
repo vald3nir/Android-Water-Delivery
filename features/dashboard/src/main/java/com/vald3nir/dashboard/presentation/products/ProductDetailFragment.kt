@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.Nullable
-import com.vald3nir.base_ui.view.BaseFragment
+import com.vald3nir.core.presentation.BaseFragment
 import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.dashboard.R
 import com.vald3nir.dashboard.databinding.FragmentProductDetailBinding

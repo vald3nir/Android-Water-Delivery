@@ -3,7 +3,7 @@ package com.vald3nir.login.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.base_ui.view.BaseViewModel
+import com.vald3nir.core.presentation.BaseViewModel
 import com.vald3nir.login.R
 import com.vald3nir.login.domain.form.DataUserInputForm
 import com.vald3nir.login.domain.usecases.AuthUseCase
@@ -24,8 +24,8 @@ class LoginViewModel(
     private val _registerForm = MutableLiveData<DataUserInputForm>()
     val registerFormState: LiveData<DataUserInputForm> = _registerForm
 
-    private val _loginDTO = MutableLiveData<com.vald3nir.base_repository.dtos.LoginDTO?>()
-    val loginDTO: LiveData<com.vald3nir.base_repository.dtos.LoginDTO?> = _loginDTO
+    private val _loginDTO = MutableLiveData<com.vald3nir.core.repository.dtos.LoginDTO?>()
+    val loginDTO: LiveData<com.vald3nir.core.repository.dtos.LoginDTO?> = _loginDTO
 
     fun loadLoginData() {
         viewModelScope.launch {
@@ -43,7 +43,7 @@ class LoginViewModel(
         viewModelScope.launch {
             if (checkLoginData(email, password)) {
 
-                val loginDTO = com.vald3nir.base_repository.dtos.LoginDTO(
+                val loginDTO = com.vald3nir.core.repository.dtos.LoginDTO(
                     email = email,
                     password = password,
                     rememberLogin = rememberLogin
@@ -61,7 +61,7 @@ class LoginViewModel(
         }
     }
 
-    private fun saveLoginData(loginDTO: com.vald3nir.base_repository.dtos.LoginDTO) {
+    private fun saveLoginData(loginDTO: com.vald3nir.core.repository.dtos.LoginDTO) {
         viewModelScope.launch {
             authUseCase.saveLoginData(requireActivityContext(), loginDTO)
             finishWithResult()
@@ -127,7 +127,7 @@ class LoginViewModel(
         viewModelScope.launch {
             authUseCase.registerClient(
                 activity = requireActivityContext(),
-                clientDTO = com.vald3nir.base_repository.dtos.ClientDTO(
+                clientDTO = com.vald3nir.core.repository.dtos.ClientDTO(
                     name = name,
                     userID = authUseCase.getUserID().orEmpty(),
                     email = email,

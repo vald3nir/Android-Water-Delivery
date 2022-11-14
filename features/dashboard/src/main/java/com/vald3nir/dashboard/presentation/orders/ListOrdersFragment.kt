@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.base_ui.view.BaseFragment
+import com.vald3nir.core.presentation.BaseFragment
 import com.vald3nir.core_ui.components.CustomDifferAdapter
 import com.vald3nir.core_ui.extensions.setupLayoutManager
 import com.vald3nir.dashboard.R
@@ -29,7 +29,7 @@ class ListOrdersFragment : BaseFragment() {
     }
 
     private fun bindAdapter(
-        orderDTO: com.vald3nir.base_repository.dtos.OrderDTO,
+        orderDTO: com.vald3nir.core.repository.dtos.OrderDTO,
         itemViewBinding: OrderItemViewBinding,
         position: Int,
         any: Any

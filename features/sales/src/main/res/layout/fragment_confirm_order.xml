@@ -151,7 +151,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.vald3nir.base_ui.components.BaseButton
+    <com.vald3nir.core.presentation.components.BaseButton
         android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -2,7 +2,7 @@ package com.vald3nir.login.domain.usecases
 
 import android.app.Activity
 import android.content.Context
-import com.vald3nir.base_repository.AuthRepository
+import com.vald3nir.core.repository.AuthRepository
 import com.vald3nir.core_repository.firebase.FirebaseAuthenticator
 
 class AuthUseCaseImpl(
@@ -25,7 +25,7 @@ class AuthUseCaseImpl(
 
     override suspend fun login(
         activity: Activity?,
-        loginDTO: com.vald3nir.base_repository.dtos.LoginDTO,
+        loginDTO: com.vald3nir.core.repository.dtos.LoginDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit,
     ) {
@@ -41,11 +41,11 @@ class AuthUseCaseImpl(
         }
     }
 
-    override suspend fun loadLoginData(context: Context?): com.vald3nir.base_repository.dtos.LoginDTO? {
+    override suspend fun loadLoginData(context: Context?): com.vald3nir.core.repository.dtos.LoginDTO? {
         return repository.loadLoginData(context)
     }
 
-    override suspend fun saveLoginData(context: Context?, loginDTO: com.vald3nir.base_repository.dtos.LoginDTO) {
+    override suspend fun saveLoginData(context: Context?, loginDTO: com.vald3nir.core.repository.dtos.LoginDTO) {
         repository.saveLoginData(context, loginDTO)
     }
 
@@ -69,7 +69,7 @@ class AuthUseCaseImpl(
 
     override suspend fun registerClient(
         activity: Activity?,
-        clientDTO: com.vald3nir.base_repository.dtos.ClientDTO,
+        clientDTO: com.vald3nir.core.repository.dtos.ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     ) {

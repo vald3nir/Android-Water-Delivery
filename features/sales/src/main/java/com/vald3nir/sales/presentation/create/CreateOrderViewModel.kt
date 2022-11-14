@@ -3,7 +3,7 @@ package com.vald3nir.sales.presentation.create
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.base_ui.view.BaseViewModel
+import com.vald3nir.core.presentation.BaseViewModel
 import com.vald3nir.dashboard.domain.ProductUseCase
 import com.vald3nir.sales.domain.use_cases.OrderUseCase
 import kotlinx.coroutines.launch
@@ -13,11 +13,11 @@ class CreateOrderViewModel(
     private val productUseCase: ProductUseCase,
 ) : BaseViewModel() {
 
-    private val _order = MutableLiveData<com.vald3nir.base_repository.dtos.OrderDTO>()
-    val order: LiveData<com.vald3nir.base_repository.dtos.OrderDTO> = _order
+    private val _order = MutableLiveData<com.vald3nir.core.repository.dtos.OrderDTO>()
+    val order: LiveData<com.vald3nir.core.repository.dtos.OrderDTO> = _order
 
-    private val _products = MutableLiveData<MutableList<com.vald3nir.base_repository.dtos.ProductDTO>>()
-    val products: LiveData<MutableList<com.vald3nir.base_repository.dtos.ProductDTO>> = _products
+    private val _products = MutableLiveData<MutableList<com.vald3nir.core.repository.dtos.ProductDTO>>()
+    val products: LiveData<MutableList<com.vald3nir.core.repository.dtos.ProductDTO>> = _products
 
     private var productCategorySelected = listProductCategories()[0]
     private fun listProductCategories() = productUseCase.listProductCategories()
@@ -31,12 +31,12 @@ class CreateOrderViewModel(
         _order.postValue(orderUseCase.loadCurrentOrder())
     }
 
-    fun registerItem(productDTO: com.vald3nir.base_repository.dtos.ProductDTO, quantity: Int) {
+    fun registerItem(productDTO: com.vald3nir.core.repository.dtos.ProductDTO, quantity: Int) {
         orderUseCase.registerItem(productDTO, quantity)
         loadCurrentOrder()
     }
 
-    fun getQuantity(productDTO: com.vald3nir.base_repository.dtos.ProductDTO): String? {
+    fun getQuantity(productDTO: com.vald3nir.core.repository.dtos.ProductDTO): String? {
         return orderUseCase.getItemQuantity(productDTO)
     }
 
@@ -57,7 +57,7 @@ class CreateOrderViewModel(
         }
     }
 
-    fun addPaymentType(paymentType: com.vald3nir.base_repository.dtos.PaymentType) {
+    fun addPaymentType(paymentType: com.vald3nir.core.repository.dtos.PaymentType) {
         orderUseCase.addPaymentType(paymentType)
     }
 

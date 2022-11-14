@@ -2,7 +2,7 @@ package com.vald3nir.login.domain.usecases
 
 import android.app.Activity
 import android.content.Context
-import com.vald3nir.base_repository.dtos.LoginDTO
+import com.vald3nir.core.repository.dtos.LoginDTO
 
 interface AuthUseCase {
 
@@ -19,9 +19,9 @@ interface AuthUseCase {
         onError: (e: Exception?) -> Unit,
     )
 
-    suspend fun loadLoginData(context: Context?): com.vald3nir.base_repository.dtos.LoginDTO?
+    suspend fun loadLoginData(context: Context?): com.vald3nir.core.repository.dtos.LoginDTO?
 
-    suspend fun saveLoginData(context: Context?, loginDTO: com.vald3nir.base_repository.dtos.LoginDTO)
+    suspend fun saveLoginData(context: Context?, loginDTO: com.vald3nir.core.repository.dtos.LoginDTO)
 
     suspend fun registerNewUser(
         activity: Activity?,
@@ -33,7 +33,7 @@ interface AuthUseCase {
 
     suspend fun registerClient(
         activity: Activity?,
-        clientDTO: com.vald3nir.base_repository.dtos.ClientDTO,
+        clientDTO: com.vald3nir.core.repository.dtos.ClientDTO,
         onSuccess: () -> Unit,
         onError: (e: Exception?) -> Unit
     )

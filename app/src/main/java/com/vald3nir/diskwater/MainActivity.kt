@@ -1,8 +1,8 @@
 package com.vald3nir.diskwater
 
 import android.os.Bundle
-import com.vald3nir.base_ui.navigation.FeaturesNavigation
-import com.vald3nir.base_ui.view.BaseActivity
+import com.vald3nir.core.presentation.BaseActivity
+import com.vald3nir.core.presentation.FeaturesNavigation
 import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity() {

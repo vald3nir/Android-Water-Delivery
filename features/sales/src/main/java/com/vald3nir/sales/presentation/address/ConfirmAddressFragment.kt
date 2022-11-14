@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vald3nir.base_ui.view.BaseFragment
+import com.vald3nir.core.presentation.BaseFragment
 import com.vald3nir.core_ui.extensions.afterTextChanged
 import com.vald3nir.sales.R
 import com.vald3nir.sales.databinding.FragmentConfirmAddressBinding
@@ -60,7 +60,7 @@ class ConfirmAddressFragment : BaseFragment() {
         )
     }
 
-    private fun FragmentConfirmAddressBinding.fillAddress(addressFields: com.vald3nir.base_repository.dtos.AddressDTO) {
+    private fun FragmentConfirmAddressBinding.fillAddress(addressFields: com.vald3nir.core.repository.dtos.AddressDTO) {
         edtCep.setText(addressFields.cep)
         edtStreet.setText(addressFields.logradouro)
         edtNumber.setText(addressFields.number)
