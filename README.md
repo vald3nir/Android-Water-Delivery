@@ -1,7 +1,7 @@
 # Entrega de Água
 
- Aplicativo de entrega de água mineral e similares
+Mineral water delivery application and the like
 
-## Snapshots
+## Architecture
 
-### Login
+![image](https://user-images.githubusercontent.com/23506996/201673987-feb2165b-f0ee-4700-a2c9-c00cea6fa2e9.png)
