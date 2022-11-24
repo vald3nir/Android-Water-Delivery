@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_list_orders">
+
+    <fragment
+        android:id="@+id/navigation_list_orders"
+        android:name="com.vald3nir.diskwater.presentation.features.dashboard.orders.ListOrdersFragment"
+        android:label="@string/orders"
+        tools:layout="@layout/fragment_list_orders">
+        <action
+            android:id="@+id/action_navigation_list_orders_to_clientOrderDetailFragment"
+            app:destination="@id/clientOrderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/clientOrderDetailFragment"
+        android:name="com.vald3nir.diskwater.presentation.features.dashboard.orders.ClientOrderDetailFragment"
+        android:label="ClientOrderDetailFragment"
+        tools:layout="@layout/fragment_client_order_detail">
+        <action
+            android:id="@+id/action_clientOrderDetailFragment_to_navigation_list_orders"
+            app:destination="@id/navigation_list_orders" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="com.vald3nir.diskwater.presentation.features.dashboard.products.ProductsFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_products">
+
+        <action
+            android:id="@+id/action_navigation_products_to_product_detail"
+            app:destination="@id/navigation_product_detail" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_product_detail"
+        android:name="com.vald3nir.diskwater.presentation.features.dashboard.products.ProductDetailFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_product_detail">
+        <action
+            android:id="@+id/action_navigation_product_detail_to_navigation_products"
+            app:destination="@id/navigation_products" />
+    </fragment>
+
+</navigation>

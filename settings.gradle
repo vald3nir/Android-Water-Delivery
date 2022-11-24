@@ -14,12 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "diskwater"
 include ':app'
-include ':core'
-
-include ':features:login'
-include ':features:dashboard'
-include ':features:sales'
-
 include ':toolkit:core-ui'
 include ':toolkit:core-repository'
 include ':toolkit:core-utils'

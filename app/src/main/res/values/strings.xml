@@ -1,0 +1,71 @@
+<resources>
+
+    <!-- LOGIN -->
+    <string name="prompt_password">Senha</string>
+    <string name="prompt_email">Email</string>
+    <string name="tell_your_name">Informe seu nome</string>
+    <string name="tell_your_email">Informe seu email</string>
+    <string name="choose_a_password">Informe um senha</string>
+    <string name="prompt_confirm_password">Confirmar senha</string>
+    <string name="confirm_your_password">Confirme sua senha</string>
+    <string name="remember_login">Lembrar do login</string>
+    <string name="invalid_email">Email não é válido</string>
+    <string name="invalid_name">Nome não é válido</string>
+    <string name="invalid_password">A Senha deve ser maior que 5 caracteres</string>
+    <string name="passwords_not_equals">As senhas não são iguais</string>
+    <string name="login">Login</string>
+    <string name="register">Cadastrar</string>
+
+    <!-- ADDRESS -->
+    <string name="cep">CEP</string>
+    <string name="state">Estado</string>
+    <string name="city">Cidade</string>
+    <string name="street">Rua</string>
+    <string name="complement">Complemento</string>
+    <string name="district">Bairro</string>
+    <string name="number">Número</string>
+    <string name="order_address">Endereço do Pedido</string>
+    <string name="cep_invalid">CEP inválido</string>
+    <string name="street_invalid">Rua inválida</string>
+    <string name="district_invalid">Bairro inválido</string>
+    <string name="number_invalid">Número inválido</string>
+    <string name="confirm_address">Confirmação de Endereço</string>
+    <string name="address_successfully_updated">Endereço atualizado com sucesso!</string>
+
+    <!-- ACTIONS -->
+    <string name="cancel">Cancelar</string>
+    <string name="options">Opções</string>
+    <string name="update">Atualizar</string>
+    <string name="delete">Apagar</string>
+    <string name="next">Avançar</string>
+    <string name="finish">Finalizar</string>
+
+    <!-- SALES -->
+    <string name="my_last_orders">Meus últimos pedidos</string>
+    <string name="make_new_order">Fazer novo pedido</string>
+    <string name="list_empty">Lista vazia</string>
+    <string name="change_image">Mudar imagem</string>
+    <string name="price">Preço (R$)</string>
+    <string name="name">Nome</string>
+    <string name="my_products">Meus Produtos</string>
+    <string name="mineral_waters">Águas Minerais</string>
+    <string name="new_order">Novo Pedido</string>
+    <string name="items_order">Itens do Pedido</string>
+    <string name="category">Categoria</string>
+    <string name="quantity">Quantidade</string>
+    <string name="total_money">Total R$</string>
+    <string name="generic_water">Imagem de produto genérico</string>
+    <string name="add_product">Cadastrar Produto</string>
+    <string name="update_product">Alterar Produto</string>
+    <string name="unnamed_product">Produto sem nome informado!</string>
+    <string name="my_orders">Meus pedidos</string>
+    <string name="order_detail">Detalhe do Pedido</string>
+    <string name="title_activity_sales">Vendas</string>
+
+    <!-- NAVIGATION -->
+    <string name="client">Cliente</string>
+    <string name="salesman">Vendedor</string>
+    <string name="orders">Pedidos</string>
+    <string name="products">Produtos</string>
+
+</resources>
