@@ -53,7 +53,7 @@ class LoginFragment : BaseFragment() {
     private fun FragmentLoginBinding.setupObservers() {
 
         btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
+            findNavController().navigate(LoginFragmentDirections.actionNavigationLoginToNavigationRegister())
         }
 
         viewModel.loginDTO.observe(viewLifecycleOwner) {
