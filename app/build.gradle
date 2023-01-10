@@ -38,13 +38,13 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('..\\toolKit\\key\\store_file.jks')
+            storeFile file('..\\toolkit\\key\\store_file.jks')
             storePassword 'android'
             keyAlias 'key'
             keyPassword 'android'
         }
         release {
-            storeFile file('..\\toolKit\\key\\store_file.jks')
+            storeFile file('..\\toolkit\\key\\store_file.jks')
             storePassword 'android'
             keyAlias 'key'
             keyPassword 'android'
